@@ -61,7 +61,7 @@ session_start();
     <main>
         <form method="POST" action="administrator.php">
             <fieldset>
-                <legend>Đăng Ký Tài Khoản Quản Trị</legend>
+                <legend>Đăng Ký</legend>
                 <table>
                     <tr>
                         <th><label for="adminName">Họ và Tên: </label></th>
