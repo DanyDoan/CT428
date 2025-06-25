@@ -54,7 +54,7 @@ session_start();
 
     <!-- Header -->
     <?php
-    require("../controllers/header.html");
+    require("../require/header.html");
     ?>
 
     <!-- Main -->
@@ -127,7 +127,7 @@ session_start();
 
     <!-- Footer -->
     <?php
-    require("../controllers/footer.html");
+    require("../require/footer.html");
     ?>
 </body>
 

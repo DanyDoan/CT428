@@ -45,7 +45,7 @@
 
 <!-- Header -->
     <?php
-        require("../controllers/header.html");
+        require("../require/header.html");
     ?>
 
 <!-- Main -->
@@ -72,7 +72,7 @@
 
 <!-- Footer -->
     <?php
-        require("../controllers/footer.html");
+        require("../require/footer.html");
     ?>
 </body>
 </html>
