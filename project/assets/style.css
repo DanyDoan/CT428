@@ -1,28 +1,28 @@
-body{
-    margin:0px;
-    padding:0px;
+body {
+    margin: 0px;
+    padding: 0px;
 }
 
 
-header{
+header {
     height: 15svh;
     width: 100%;
     background-color: rgb(21, 19, 29);
     display: flex;
 }
 
-header .logo{
+header .logo {
     width: auto;
-    padding:10px;
+    padding: 10px;
 }
 
-header h1{
+header h1 {
     color: rgb(255, 255, 255);
     flex-grow: 1;
-    padding:10px 20px;
+    padding: 10px 20px;
 }
 
-main{
+main {
     height: 100svh;
     min-height: fit-content;
     width: 100%;
@@ -30,7 +30,7 @@ main{
     position: relative;
 }
 
-#sideBar{
+#sideBar {
     background-color: rgb(21, 19, 29);
     width: 220px;
     height: 100%;
@@ -41,25 +41,27 @@ main{
     flex-direction: column;
     transition: 0.5s;
 }
-#sideBar button{
+
+#sideBar button {
     background-color: rgb(255, 255, 255);
-    color:rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
 }
 
 
-#sideBar.active{
+#sideBar.active {
     width: 50px;
     transition: 0.5s;
 }
 
 
-#sideBar ul{
-    padding:0px;
+#sideBar ul {
+    padding: 0px;
     width: 100%;
     position: relative;
     /* background-color: blue; */
 }
-#sideBar li{
+
+#sideBar li {
     list-style: none;
     width: 100%;
     display: flex;
@@ -67,13 +69,14 @@ main{
 }
 
 
-#sideBar ul li a{
+#sideBar ul li a {
     text-decoration: none;
     width: 100%;
     transition: 0.5s;
     padding: 10px 10px 10px 0px;
 }
-#sideBar ul li a .icon{
+
+#sideBar ul li a .icon {
     width: 30px;
     min-width: 30px;
     background-size: contain;
@@ -81,26 +84,27 @@ main{
     text-align: center;
     opacity: 0.5;
     position: relative;
-    left:10px;
+    left: 10px;
 }
-#sideBar a span{
-    margin-left:20px;
+
+#sideBar a span {
+    margin-left: 20px;
     position: relative;
     bottom: 12px;
-    color:rgb(250, 250, 250);
+    color: rgb(250, 250, 250);
     font-weight: bold;
     width: 100%;
     /* font-size: 12px; */
 }
 
-#sideBar ul li:hover{
+#sideBar ul li:hover {
     background-color: rgb(122, 122, 142);
     transition: 0.5s;
     transform: scale(1.1);
 }
 
 
-#content{
+#content {
     background-color: rgb(220, 208, 208);
     flex-grow: 1;
     display: flex;
@@ -108,18 +112,104 @@ main{
     align-items: center;
     /* justify-content: center; */
 }
-footer{
+
+footer {
     height: 15svh;
     width: 100%;
     background-color: rgb(21, 19, 29);
 }
 
-#content table{
+#content table {
     background-color: rgb(255, 255, 255);
     border-collapse: collapse;
 }
 
-#content th, #content td{
-    border:1px solid rgb(0, 0, 0);
-    padding:5px 20px;
+#content th,
+#content td {
+    border: 1px solid rgb(0, 0, 0);
+    padding: 5px 20px;
+}
+
+
+.register-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f7fb;
+    height: 100vh;
+}
+
+.register-container {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 500px;
+}
+
+.register-title {
+    text-align: center;
+    color: #0d47a1;
+    margin-bottom: 25px;
+}
+
+.register-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #333;
+}
+
+.register-input,
+.register-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+.register-input:focus,
+.register-select:focus {
+    border-color: #0d47a1;
+    outline: none;
+}
+
+.register-notice {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.register-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.register-submit,
+.register-reset {
+    width: 48%;
+    padding: 12px;
+    background-color: #0d47a1;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.register-reset {
+    background-color: #9e9e9e;
+}
+
+.register-submit:hover {
+    background-color: #1565c0;
+}
+
+.register-reset:hover {
+    background-color: #757575;
 }
