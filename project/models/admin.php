@@ -9,11 +9,12 @@ class admin
     public function __construct($conn, $id)
     {
         $sql = "SELECT *
-                    FROM user
-                    WHERE userID = '$id'";
-        $result = $conn->querry($sql);
+                FROM user
+                WHERE userID = '$id'";
 
+        $result = $conn->querry($sql);
         $row = $result->fetch_assoc();
+        
         $this->userID = $id;
         $this->userEmail = $row["userEmail"];
         $this->userName = $row["userName"];
