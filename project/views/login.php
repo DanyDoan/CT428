@@ -50,24 +50,33 @@
 
 <!-- Main -->
 <main>
-    <form method="POST" action="login.php">
-        <fieldset>
-            <legend>Đăng nhập</legend>
-            <table>
-                <tr>
-                    <th><label for="userName">Mã tài khoản: </label></th>
-                    <td><input type="text" required></td>
-                </tr>
-                <tr>
-                    <th><label for="userPassword">Mật khẩu: </label></th>
-                    <td><input type="password" required></td>
-                </tr>
-            </table>
-            <input type="submit" value="Đăng nhập"></input>
-            <input type="reset" value="Hủy"></input>
-        </fieldset>
 
-    </form>
+    <!-- Side Bar -->
+    <?php
+        require("../require/sideBar.html");
+    ?>
+
+    <!-- Content -->
+    <div id="content">
+        <form method="POST" action="login.php">
+            <fieldset>
+                <legend>Đăng nhập</legend>
+                <table>
+                    <tr>
+                        <th><label for="userName">Mã tài khoản: </label></th>
+                        <td><input type="text" required></td>
+                    </tr>
+                    <tr>
+                        <th><label for="userPassword">Mật khẩu: </label></th>
+                        <td><input type="password" required></td>
+                    </tr>
+                </table>
+                <input type="submit" value="Đăng nhập"></input>
+                <input type="reset" value="Hủy"></input>
+            </fieldset>
+
+        </form>
+    </div>
 </main>
 
 <!-- Footer -->
@@ -77,6 +86,9 @@
 </body>
 </html>
 
-<?php
-    
-?>
+<script>
+    function hideNav(){
+        const sideBar = document.getElementById("sideBar");
+        sideBar.classList.toggle("active");
+    }
+</script>
