@@ -51,3 +51,8 @@
 # 11/ Chức năng tìm kiếm theo tên hoặc MSSV
 
 
+#Buổi họp đầu tiên
+#Code Giao diện cho các trang
+#Đăng nhập/ Đăng ký: chị Trân
+#Thông Tin Cán Bộ: Tuấn
+#Quản Lý Sinh Viên: Dân
