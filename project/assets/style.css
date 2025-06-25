@@ -17,13 +17,12 @@ header .logo{
 }
 
 header h1{
-    color: rgb(247, 247, 247);
+    color: rgb(150, 15, 15);
     flex-grow: 1;
     padding:10px 20px;
 }
 
 main{
-    background-color: rgb(255, 255, 255);
     height: 100svh;
     min-height: fit-content;
     width: 100%;
@@ -105,10 +104,22 @@ main{
     background-color: rgb(220, 208, 208);
     flex-grow: 1;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
 }
 footer{
     height: 15svh;
     width: 100%;
     background-color: rgb(21, 19, 29);
+}
+
+#content table{
+    background-color: rgb(255, 255, 255);
+    border-collapse: collapse;
+}
+
+#content th, #content td{
+    border:1px solid rgb(0, 0, 0);
+    padding:5px 20px;
 }

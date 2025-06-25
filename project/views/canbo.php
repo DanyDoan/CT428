@@ -14,13 +14,13 @@
 
 <!-- Header -->
     <?php
-        require("../controllers/header.html")
+        require("../require/header.html")
     ?>
 
 <!-- Main -->
 <main>
     <?php
-        require("../controllers/sideBar.html")
+        require("../require/sideBar.html")
     ?>
     
     <!-- Content -->
@@ -31,7 +31,7 @@
 
 <!-- Footer -->
     <?php
-        require("../controllers/footer.html");
+        require("../require/footer.html");
     ?>
 </body>
 </html>

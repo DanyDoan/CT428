@@ -22,12 +22,14 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // important!
 <!-- Create adminList table -->
 <?php
 
-    $query = "CREATE TABLE QuanTriVien(
-              id varchar(50) PRIMARY KEY,
-              matkhau varchar(255),
-              ten varchar(50),
-              ngaysinh date,
-              noicongtac varchar(50));";
+    $query = "CREATE TABLE CANBO(
+              MSCB varchar(50) PRIMARY KEY,
+              matKhau varchar(255),
+              hoTen varchar(50),
+              ngaySinh date,
+              gioiTinh varchar(5),
+              maLop varchar(10),
+              noiCongTac varchar(50));";
     try{
         $conn->query($query);
         echo "Table adminList created<br>";
@@ -38,17 +40,33 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // important!
 
 <!-- Create SinhVien table -->
 <?php
-    $query = "CREATE TABLE SinhVien(
+    $query = "CREATE TABLE SINHVIEN(
               MSSV varchar(50) PRIMARY KEY,
-              TenSinhVien varchar(50),
-              NgaySinh date,
-              GioiTinh varchar(5),
-              Lop varchar(50),
-              Khoa varchar(50));";
+              hoTen varchar(50),
+              ngaySinh date,
+              gioiTinh varchar(5),
+              maLop varchar(10),
+              khoa varchar(5));"; #Khóa
     try{
         $conn->query($query);
         echo "Table SinhVien created<br>";
     }catch(mysqli_sql_exception){
         echo "SinhVien is already created<br>";
     }
+?>
+
+<!-- Create Lop table -->
+ <?php
+
+    $query = "CREATE TABLE LOP(
+                maLop varchar(10) PRIMARY KEY,
+                tenLop varchar(50)
+            );";
+    try{
+        $conn->query($query);
+        echo "Table LOP created<br>";
+    }catch(mysqli_sql_exception){
+        echo "LOP is already created<br>";
+    }
+
 ?>
