@@ -22,12 +22,12 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // important!
 <!-- Create adminList table -->
 <?php
 
-    $query = "CREATE TABLE adminList(
-              adminID varchar(50) PRIMARY KEY,
-              adminPassword varchar(255),
-              adminName varchar(50),
-              adminBirth date,
-              adminWorkplace varchar(50));";
+    $query = "CREATE TABLE QuanTriVien(
+              id varchar(50) PRIMARY KEY,
+              matkhau varchar(255),
+              ten varchar(50),
+              ngaysinh date,
+              noicongtac varchar(50));";
     try{
         $conn->query($query);
         echo "Table adminList created<br>";
@@ -38,7 +38,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // important!
 
 <!-- Create SinhVien table -->
 <?php
-    $hehe = "CREATE TABLE SinhVien(
+    $query = "CREATE TABLE SinhVien(
               MSSV varchar(50) PRIMARY KEY,
               TenSinhVien varchar(50),
               NgaySinh date,
@@ -46,7 +46,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // important!
               Lop varchar(50),
               Khoa varchar(50));";
     try{
-        $conn->query($hehe);
+        $conn->query($query);
         echo "Table SinhVien created<br>";
     }catch(mysqli_sql_exception){
         echo "SinhVien is already created<br>";
