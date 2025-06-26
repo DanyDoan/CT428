@@ -24,7 +24,7 @@ session_start();
         }
 
         table {
-            line-height: 40px;
+            line-height: 2em;
         }
 
         th,

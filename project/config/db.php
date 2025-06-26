@@ -12,7 +12,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // important!
         $conn->query($query);
         echo "Database created!<br>";
     }catch(mysqli_sql_exception){
-        echo "Database already created<br>";
+        echo "";
     }
 
     $conn->select_db($name);
@@ -32,9 +32,9 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // important!
               noiCongTac varchar(50));";
     try{
         $conn->query($query);
-        echo "Table adminList created<br>";
+        echo "Table CANBO created<br>";
     }catch(mysqli_sql_exception){
-        echo "adminList is already created<br>";
+        echo "CANBO is already created<br>";
     }
 ?>
 
@@ -46,12 +46,13 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // important!
               ngaySinh date,
               gioiTinh varchar(5),
               maLop varchar(10),
-              khoa varchar(5));"; #Khóa
+              khoa varchar(5)), #Khóa
+              FOREIGN KEY (maLop) REFERENCES LOP(maLop));";
     try{
         $conn->query($query);
-        echo "Table SinhVien created<br>";
+        echo "Table SINHVIEN created<br>";
     }catch(mysqli_sql_exception){
-        echo "SinhVien is already created<br>";
+        echo "SINHVIEN is already created<br>";
     }
 ?>
 
