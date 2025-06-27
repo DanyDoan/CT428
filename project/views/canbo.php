@@ -8,13 +8,10 @@ require("../config/db.php");
 
 $stmt = $conn->prepare("SELECT * FROM CANBO WHERE MSCB = ?");
 $stmt->bind_param("s", $_SESSION['MSCB']);
-if ($stmt->execute()) {
-    $result = $stmt->get_result();
-    if ($result && $result->num_rows > 0)
-        $row = $result->fetch_assoc();
+if ($stmt->execute() && ($result = $stmt->get_result())) {
+    $row = $result->fetch_assoc();
 } else
     echo "Error: " . $stmt->error;
-
 ?>
 
 <!DOCTYPE html>
