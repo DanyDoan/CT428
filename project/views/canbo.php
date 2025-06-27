@@ -42,7 +42,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
                 "user-profile user-profile class-change"
                 "user-profile user-profile logout"
                 "contact-info forum messages"
-                "tracking-board grades database-management";
+                "group fact_check calendar_month";
         }
 
         .box {
@@ -108,16 +108,16 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             grid-area: messages;
         }
 
-        .tracking-board {
-            grid-area: tracking-board;
+        .group {
+            grid-area: group;
         }
 
-        .grades {
-            grid-area: grades;
+        .fact_check {
+            grid-area: fact_check;
         }
 
-        .database-management {
-            grid-area: database-management;
+        .calendar_month {
+            grid-area: calendar_month;
         }
     </style>
 
@@ -184,17 +184,17 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
                     </span>
                     <span class="main-title-box">Nhắn tin</span>
                 </a>
-                <a href="#" class="box tracking-board">
+                <a href="#" class="box group">
                     <span class="material-symbols-outlined">group</span>
                     <span class="main-title-box">Danh sách lớp</span>
                 </a>
 
-                <a href="#" class="box grades">
+                <a href="#" class="box fact_check">
                     <span class="material-symbols-outlined">fact_check</span>
                     <span class="main-title-box">Duyệt đơn / Yêu cầu</span>
                 </a>
 
-                <a href="#" class="box database-management">
+                <a href="#" class="box calendar_month">
                     <span class="material-symbols-outlined">calendar_month</span>
                     <span class="main-title-box">Lịch làm việc / Giảng dạy</span>
                 </a>
