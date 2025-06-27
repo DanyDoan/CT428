@@ -1,43 +1,222 @@
 <?php
-    require("../config/db.php");
+session_start();
+if (!isset($_SESSION['MSCB'])) {
+    header("Location: login.php");
+    exit;
+}
+require("../config/db.php");
+
+$stmt = $conn->prepare("SELECT * FROM CANBO WHERE MSCB = ?");
+$stmt->bind_param("s", $_SESSION['MSCB']);
+if ($stmt->execute()) {
+    $result = $stmt->get_result();
+    if ($result && $result->num_rows > 0)
+        $row = $result->fetch_assoc();
+} else
+    echo "Error: " . $stmt->error;
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: grid;
+            width: 80%;
+            height: auto;
+            margin-left: 0;
+            margin-right: auto;
+            padding: 32px;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: repeat(4, 30%);
+            gap: 24px 24px;
+            grid-auto-flow: row;
+            grid-template-areas:
+                "user-profile user-profile class-change"
+                "user-profile user-profile logout"
+                "contact-info forum messages"
+                "tracking-board grades database-management";
+        }
+
+        .box {
+            background-color: #eee;
+            padding: 12px;
+            border-radius: 12px;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .box:hover {
+            transition: 0.4s;
+            transform: translateY(-8px);
+            opacity: 0.6;
+        }
+
+        .main-title-box,
+        .sub-title-box {
+            margin-top: 12px;
+        }
+
+        .main-title-box {
+            font-size: 1rem;
+            font-weight: 550;
+        }
+
+        .sub-title-box {
+            font-size: 0.8rem;
+        }
+
+        .container a {
+            border: 2px solid #ddd;
+            color: #000;
+            text-decoration: none;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .user-profile {
+            grid-area: user-profile;
+        }
+
+        .class-change {
+            grid-area: class-change;
+        }
+
+        .logout {
+            grid-area: logout;
+        }
+
+        .contact-info {
+            grid-area: contact-info;
+        }
+
+        .forum {
+            grid-area: forum;
+        }
+
+        .messages {
+            grid-area: messages;
+        }
+
+        .tracking-board {
+            grid-area: tracking-board;
+        }
+
+        .grades {
+            grid-area: grades;
+        }
+
+        .database-management {
+            grid-area: database-management;
+        }
+    </style>
+
 </head>
 
 <body>
 
-<!-- Header -->
+    <!-- Header -->
     <?php
-        require("../require/header.html")
+    require("../require/header.html")
     ?>
 
-<!-- Main -->
-<main>
-    <?php
+    <!-- Main -->
+    <main>
+        <?php
         require("../require/sideBar.html")
-    ?>
-    
-    <!-- Content -->
-    <div id="content">
-        <h2>Đây là trang thông tin cán bộ</h2>
-    </div>
-</main>
+        ?>
 
-<!-- Footer -->
+        <!-- Content -->
+        <div id="content">
+            <h2>Đây là trang thông tin cán bộ</h2>
+
+            <div class="container">
+                <a href="#" class="box user-profile">
+                    <span class="material-symbols-outlined">
+                        account_circle
+                    </span>
+                    <span class="main-title-box">Thông tin cá nhân</span>
+                    <?php echo $row['hoTen']; ?>
+                    <span class="sub-title-box">Nơi công tác</span>
+                    <?php echo $row['noiCongTac']; ?>
+                    <span class="sub-title-box">Lớp hiện tại</span>
+                    <?php echo $row['maLop']; ?>
+                </a>
+
+                <a href="#" class="box class-change">
+                    <span class="material-symbols-outlined">swap_horiz</span>
+                    <span class="main-title-box">Đổi lớp</span>
+                </a>
+
+                <a href="#" class="box logout">
+                    <span class="material-symbols-outlined">
+                        logout
+                    </span>
+                    <span class="main-title-box">Đăng xuất</span>
+                </a>
+                <a href="#" class="box contact-info">
+                    <span class="material-symbols-outlined">
+                        info
+                    </span>
+                    <span class="main-title-box">Liên hệ</span>
+                </a>
+
+                <a href="#" class="box forum">
+                    <span class="material-symbols-outlined">
+                        forum
+                    </span>
+                    <span class="main-title-box">Diễn đàn</span>
+                </a>
+
+                <a href="#" class="box messages">
+                    <span class="material-symbols-outlined">
+                        chat
+                    </span>
+                    <span class="main-title-box">Nhắn tin</span>
+                </a>
+                <a href="#" class="box tracking-board">
+                    <span class="material-symbols-outlined">group</span>
+                    <span class="main-title-box">Danh sách lớp</span>
+                </a>
+
+                <a href="#" class="box grades">
+                    <span class="material-symbols-outlined">fact_check</span>
+                    <span class="main-title-box">Duyệt đơn / Yêu cầu</span>
+                </a>
+
+                <a href="#" class="box database-management">
+                    <span class="material-symbols-outlined">calendar_month</span>
+                    <span class="main-title-box">Lịch làm việc / Giảng dạy</span>
+                </a>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
     <?php
-        require("../require/footer.html");
+    require("../require/footer.html");
     ?>
 </body>
+
 </html>
 
 <script>
-    function hideNav(){
+    function hideNav() {
         const sideBar = document.getElementById("sideBar");
         sideBar.classList.toggle("active");
     }
