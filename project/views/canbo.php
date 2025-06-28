@@ -53,6 +53,8 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            cursor: pointer;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         }
 
         .box:hover {
@@ -81,7 +83,6 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             text-decoration: none;
             width: 100%;
             height: 100%;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         }
 
         .user-profile {
@@ -119,6 +120,47 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
         .calendar_month {
             grid-area: calendar_month;
         }
+
+        .hidden {
+            display: none;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+        }
+
+        .modal {
+            position: fixed;
+            width: 50%;
+            height: 50%;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(250, 250, 250, 1);
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+            padding: 8px 16px;
+        }
+
+        .button {
+            cursor: pointer;
+            position: absolute;
+            top: 6px;
+            right: 4px;
+        }
     </style>
 
 </head>
@@ -141,7 +183,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             <h2>Đây là trang thông tin cán bộ</h2>
 
             <div class="container">
-                <a href="#" class="box user-profile">
+                <div onclick="showModal()" class="box user-profile">
                     <span class="material-symbols-outlined">
                         account_circle
                     </span>
@@ -151,7 +193,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
                     <?php echo $row['noiCongTac']; ?>
                     <span class="sub-title-box">Lớp hiện tại</span>
                     <?php echo $row['maLop']; ?>
-                </a>
+                </div>
 
                 <a href="#" class="box class-change">
                     <span class="material-symbols-outlined">swap_horiz</span>
@@ -208,6 +250,25 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
     <?php
     require("../require/footer.html");
     ?>
+    <div id="overlay" class="overlay hidden"></div>
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="material-symbols-outlined button" onclick="closeModal()">close</span>
+            <span class="main-title-box">Thông tin chi tiết</span>
+            <span class="sub-title-box">Mã số cán bộ</span>
+            <?php echo $row['MSCB']; ?>
+            <span class="sub-title-box">Họ tên</span>
+            <?php echo $row['hoTen']; ?>
+            <span class="sub-title-box">Ngày sinh</span>
+            <?php echo $row['ngaySinh']; ?>
+            <span class="sub-title-box">Giới tính</span>
+            <?php echo $row['gioiTinh']; ?>
+            <span class="sub-title-box">Nơi công tác</span>
+            <?php echo $row['noiCongTac']; ?>
+            <span class="sub-title-box">Lớp hiện tại</span>
+            <?php echo $row['maLop']; ?>
+        </div>
+    </div>
 </body>
 
 </html>
@@ -216,5 +277,15 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
     function hideNav() {
         const sideBar = document.getElementById("sideBar");
         sideBar.classList.toggle("active");
+    }
+
+    function showModal() {
+        document.getElementById("overlay").classList.remove("hidden");
+        document.getElementById("modal").classList.remove("hidden");
+    }
+
+    function closeModal() {
+        document.getElementById("overlay").classList.add("hidden");
+        document.getElementById("modal").classList.add("hidden");
     }
 </script>
