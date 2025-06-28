@@ -1,0 +1,35 @@
+main {
+    /* background-color: black; */
+    justify-content: center;
+    align-items: center;
+}
+
+fieldset {
+    padding: 20px;
+    text-align: center;
+}
+
+table {
+    line-height: 40px;
+}
+
+th,
+td {
+    font-size: 16px;
+    color: black;
+}
+
+fieldset>input {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 6px 10px;
+    margin: 10px;
+    transition: 0.5s;
+}
+
+fieldset>input:hover {
+    transition: 0.5s;
+    transform: scale(1.1);
+}

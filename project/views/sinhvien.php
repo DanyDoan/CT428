@@ -1,44 +1,40 @@
 <?php
-    require("../config/db.php");
+require("../config/db.php");
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sinh viên</title>
+   <link rel="stylesheet" href="../assets/sidebar-style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
+  <div class="d-flex vh-100">
+    <!-- Sidebar -->
+    <?php require("../require/sideBar.php"); ?>
 
-<!-- Header -->
-    <?php
-        require("../require/header.html")
-    ?>
+    <!-- Main content -->
+    <div class="flex-grow-1 d-flex flex-column">
+      <!-- Header -->
+      <?php require("../require/header.html"); ?>
 
-<!-- Main -->
-<main>
-    <?php
-        require("../require/sideBar.html")
-    ?>
-    
-    <!-- Content -->
-    <div id="content">
-        <h2>Đây là trang quản lý sinh viên</h2>
+      <!-- Main page content -->
+      <main class="flex-grow-1 p-4 bg-light">
+        <h2 class="mb-4">Đây là trang Sinh viên</h2>
+      </main>
+
+      <!-- Footer -->
+      <?php require("../require/footer.html"); ?>
     </div>
-</main>
+  </div>
 
-<!-- Footer -->
-    <?php
-        require("../require/footer.html");
-    ?>
+  
 </body>
-</html>
 
-<script>
-    function hideNav(){
-        const sideBar = document.getElementById("sideBar");
-        sideBar.classList.toggle("active");
-    }
-</script>
+</html>
