@@ -93,7 +93,10 @@ require("../config/db.php");
             gap: 10px;
         }
 
-        @media only screen and (max-width: 800px) {
+        #anounceBox{
+            position: absolute;
+        }
+        @media only screen and (max-width: 600px) {
             * {
                 font-size: 12px;
             }
@@ -201,9 +204,12 @@ require("../config/db.php");
                             <option value="K49">K49</option>
                             <option value="K50">K50</option>
                         </select>
-                        <button type="submit" onclick="themSinhVien()">Thêm</button>
+                        <button type="button" onclick="themSinhVien()">Thêm</button>
                     </form>
                 </fieldset>
+                <div id="anounceBox">
+                
+                </div>
             </div>
 
 
@@ -235,10 +241,10 @@ require("../config/db.php");
 <script src="../assets/js/danhSachNganh.js"></script>
 
 <!-- Các chức năng thêm, sửa, xóa, tìm kiếm sinh viên -->
-<script src="../assets/js/xoa"></script>
-<script src="../assets/js/hienThiSinhVien.js?v=1"></script>
-<script src="../assets/js/themSinhVien.js?v=1"></script>
-<script src="../assets/js/timSinhVien.js?v=1"></script>
+<script src="../assets/js/xoaSinhVien.jsSS"></script>
+<script src="../assets/js/hienThiSinhVien.js?v=2"></script>
+<script src="../assets/js/themSinhVien.js?v=2"></script>
+<script src="../assets/js/timSinhVien.js?v=2"></script>
 
 <!-- Gọi hàm :v -->
 <script>

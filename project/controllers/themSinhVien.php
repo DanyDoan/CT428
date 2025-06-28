@@ -1,6 +1,13 @@
 <?php
-    header("Content-type: application/json");
     require_once("../config/db.php");
+    if (  empty($_POST["MSSV"])
+        ||empty($_POST["hoTen"])
+        ||empty($_POST["ngaySinh"])
+        ||empty($_POST["gioiTinh"]))
+    {
+            die(json_encode(["status" => "fail"]));
+    }
+    
     $stm = $conn->prepare("INSERT INTO SINHVIEN 
                              (MSSV, hoTen, ngaySinh, gioiTinh, truong, tenLop, khoa)
                              VALUES ( ?, ?, ?, ?, ?, ?, ?)");
@@ -9,6 +16,6 @@
         $query = "SELECT * FROM SINHVIEN";
         $result = $conn->query($query);
         $output = $result->fetch_all(MYSQLI_ASSOC);
-        echo json_encode($output);
-    }else echo json_encode("Failed");
+        echo json_encode(["status" => "success", "data" => $output]);
+    }
 ?>
