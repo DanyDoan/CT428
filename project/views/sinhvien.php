@@ -9,12 +9,12 @@ require("../config/db.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png">
-    <link rel="stylesheet" href="../assets/css/style.css?v=2">
+    <link rel="stylesheet" href="../assets/css/style.css?v=1">
     <style>
         #content {
             display: grid;
             padding: 30px 10px;
-            grid-template-columns: 3fr 1fr;
+            grid-template-columns: 4fr 1fr;
             grid-template-rows: auto 1fr 200px;
             gap: 30px 10px;
             grid-template-areas:
@@ -49,10 +49,13 @@ require("../config/db.php");
             border: 1px solid black;
             text-align: center;
         }
-
+        th {
+            background-color: rgb(47, 79, 172);
+            color:white;
+        }
         th,
         td {
-            font-size: 0.8em;
+            font-size: 0.6em;
             width: fit-content;
         }
 
@@ -68,14 +71,19 @@ require("../config/db.php");
             box-sizing: border-box;
         }
 
-
+        #toolBox fieldset *{
+            width: 100%;
+        }
+        #toolBox label{
+            font-size: 0.6em;
+        }
         #toolBox input {
             width: fit-content;
             font-size: 0.8em;
         }
 
         #toolBox select {
-            width: fit-content;
+            width: 200px;
             font-size: 0.8em;
         }
 
@@ -118,6 +126,31 @@ require("../config/db.php");
             * {
                 display: none;
             }
+        }
+        #studentList .icon{
+            height: 10px;
+            width: 10px;
+            font-size: 10px;
+            background-color: black;
+            margin:2px;
+        }
+        #studentList .icon:nth-child(n){
+            background-image: url("../assets/images/modify.png");
+            background-size:contain;
+            background-repeat: no-repeat;
+            background-position: center;       
+        }
+        #studentList .icon:nth-child(2n){
+            background-image: url("../assets/images/close.png");
+            background-size:contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        #studentList tr{
+            background-color: rgba(221, 237, 125, 0.43);
+        }        #studentList tr:nth-child(2n){
+            background-color: rgb(255, 255, 255);
         }
     </style>
 </head>
@@ -241,10 +274,10 @@ require("../config/db.php");
 <script src="../assets/js/danhSachNganh.js"></script>
 
 <!-- Các chức năng thêm, sửa, xóa, tìm kiếm sinh viên -->
-<script src="../assets/js/xoaSinhVien.jsSS"></script>
-<script src="../assets/js/hienThiSinhVien.js?v=2"></script>
-<script src="../assets/js/themSinhVien.js?v=2"></script>
-<script src="../assets/js/timSinhVien.js?v=2"></script>
+<script src="../assets/js/xoaSinhVien.js"></script>
+<script src="../assets/js/hienThiSinhVien.js?v=1.0.1"></script>
+<script src="../assets/js/themSinhVien.js"></script>
+<script src="../assets/js/timSinhVien.js"></script>
 
 <!-- Gọi hàm :v -->
 <script>

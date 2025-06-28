@@ -13,7 +13,8 @@ function hienThiSinhVien(danhSachSinhVien) {
         for (let muc in sinhVien) {
             row += "<td>" + sinhVien[muc] + "</td>";
         }
-        row += "<td><button type='button' onclick ='xoaSinhVien("+(count+1)+")'>Xóa</button></td></tr>";
+        row += "<td><button type='button' onclick='suaSinhVien("+sinhVien["MSSV"]+")' class='icon'></button></button>"
+        row += "<button type='button' onclick='xoaSinhVien("+sinhVien["MSSV"]+")' class='icon'></button></td></tr>";
         stack.push(row);
         count++;
         if (count % 10 == 0) {
