@@ -39,7 +39,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             gap: 24px 24px;
             grid-auto-flow: row;
             grid-template-areas:
-                "user-profile user-profile class-change"
+                "user-profile user-profile edit-profile"
                 "user-profile user-profile logout"
                 "contact-info forum messages"
                 "group fact_check calendar_month";
@@ -55,6 +55,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             align-items: flex-start;
             cursor: pointer;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border: 2px solid #ddd;
         }
 
         .box:hover {
@@ -78,7 +79,6 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
         }
 
         .container a {
-            border: 2px solid #ddd;
             color: #000;
             text-decoration: none;
             width: 100%;
@@ -89,8 +89,8 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             grid-area: user-profile;
         }
 
-        .class-change {
-            grid-area: class-change;
+        .edit-profile {
+            grid-area: edit-profile;
         }
 
         .logout {
@@ -195,9 +195,9 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
                     <?php echo $row['maLop']; ?>
                 </div>
 
-                <a href="#" class="box class-change">
-                    <span class="material-symbols-outlined">swap_horiz</span>
-                    <span class="main-title-box">Đổi lớp</span>
+                <a href="updatecanbo.php" class="box edit-profile">
+                    <span class="material-symbols-outlined">manage_accounts</span>
+                    <span class="main-title-box">Cập nhật thông tin</span>
                 </a>
 
                 <a href="#" class="box logout">
