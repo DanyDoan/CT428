@@ -1,0 +1,22 @@
+#sidebar {
+    overflow: hidden;
+}
+
+.menu-text,
+#sidebar-brand,
+#profile-info {
+    transition: opacity 0.6s ease-in-out;
+    white-space: nowrap;
+}
+
+.menu-text.d-none,
+#sidebar-brand.d-none,
+#profile-info.d-none {
+    opacity: 0;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}

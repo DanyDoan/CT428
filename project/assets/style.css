@@ -16,12 +16,12 @@ header{
     display: flex;
 }
 
-header .logo{
+header .logo {
     width: auto;
-    padding:10px;
+    padding: 10px;
 }
 
-header h1{
+header h1 {
     color: rgb(255, 255, 255);
     flex-grow: 1;
     padding:10px 20px;
@@ -38,7 +38,7 @@ main{
     position: relative;
 }
 
-#sideBar{
+#sideBar {
     background-color: rgb(21, 19, 29);
     width: 180px;
     height: 100%;
@@ -52,7 +52,7 @@ main{
 
 #sideBar button{
     background-color: rgb(255, 255, 255);
-    color:rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
 }
 
 #sideBar.active{
@@ -89,19 +89,19 @@ main{
     text-align: center;
     opacity: 0.5;
     position: relative;
-    left:10px;
+    left: 10px;
 }
 #sideBar ul li a span{
     margin-left:20px;
     position: relative;
     bottom: 12px;
-    color:rgb(250, 250, 250);
+    color: rgb(250, 250, 250);
     font-weight: bold;
     width: 100%;
     font-size: 12px;
 }
 
-#sideBar ul li:hover{
+#sideBar ul li:hover {
     background-color: rgb(122, 122, 142);
     transition: 0.5s;
     transform: scale(1.1);
@@ -116,7 +116,7 @@ main{
     /* justify-content: center; */
 }
 
-#content table{
+#content table {
     background-color: rgb(255, 255, 255);
     border-collapse: collapse;
 }

@@ -10,13 +10,13 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // important!
     $query = "CREATE DATABASE $name;";
     try{
         $conn->query($query);
-        echo "Database created!<br>";
+        //echo "Database created!<br>";
     }catch(mysqli_sql_exception){
-        echo "Database already created<br>";
+        //echo "Database already created<br>";
     }
 
     $conn->select_db($name);
-    echo "Database connected<br>";
+   // echo "Database connected<br>";
 ?>
 
 <!-- Create adminList table -->
@@ -32,9 +32,9 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // important!
               noiCongTac varchar(50));";
     try{
         $conn->query($query);
-        echo "Table adminList created<br>";
+        //echo "Table adminList created<br>";
     }catch(mysqli_sql_exception){
-        echo "adminList is already created<br>";
+        //echo "adminList is already created<br>";
     }
 ?>
 
@@ -49,9 +49,9 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // important!
               khoa varchar(5));"; #Khóa
     try{
         $conn->query($query);
-        echo "Table SinhVien created<br>";
+        //echo "Table SinhVien created<br>";
     }catch(mysqli_sql_exception){
-        echo "SinhVien is already created<br>";
+        //echo "SinhVien is already created<br>";
     }
 ?>
 
@@ -64,9 +64,9 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // important!
             );";
     try{
         $conn->query($query);
-        echo "Table LOP created<br>";
+        //echo "Table LOP created<br>";
     }catch(mysqli_sql_exception){
-        echo "LOP is already created<br>";
+        //echo "LOP is already created<br>";
     }
 
 ?>
