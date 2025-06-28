@@ -1,133 +1,152 @@
-*{
+* {
     font-size: 16px;
-    font-family: sans-serif;
+    font-family: 'Times New Roman', Times, serif;
 }
 
-body{
-    margin:0px;
-    padding:0px;
+body {
+    margin: 0px;
+    padding: 0px;
 }
 
 /* Header */
-header{
+header {
     height: 15svh;
-    width: 100%;
-    background-color: rgb(21, 19, 29);
+    width: auto;
     display: flex;
 }
 
-header .logo{
+header .logo {
     width: auto;
-    padding:10px;
+    padding: 10px;
 }
 
-header h1{
+header h1 {
     color: rgb(255, 255, 255);
     flex-grow: 1;
-    padding:10px 20px;
+    padding: 10px 20px;
     font-size: 35px;
 }
 
 
 /* Main */
-main{
-    height: 100svh;
-    min-height: fit-content;
-    width: 100%;
+main {
+    width: auto;
+    height: fit-content;
+    min-height: 90svh;
     display: flex;
     position: relative;
 }
 
-#sideBar{
-    background-color: rgb(21, 19, 29);
-    width: 180px;
-    height: 100%;
+#sideBar {
+    width: 200px;
+    height: auto;
     overflow: hidden;
     white-space: nowrap;
-    position: relative;
     display: flex;
     flex-direction: column;
     transition: 0.5s;
+    flex-shrink: 0;
+    position: sticky;
 }
 
-#sideBar button{
+
+#sideBar button {
     background-color: rgb(255, 255, 255);
-    color:rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
 }
 
-#sideBar.active{
+#sideBar.active {
+    min-width: 50px;
     width: 50px;
     transition: 0.5s;
 }
 
-#sideBar ul{
-    padding:0px;
+#sideBar ul {
+    padding: 0px;
     width: 100%;
     position: relative;
     /* background-color: blue; */
 }
 
-#sideBar ul li{
+#sideBar ul li {
     list-style: none;
     width: 100%;
     display: flex;
     position: relative;
 }
 
-#sideBar ul li a{
+#sideBar ul li a {
     text-decoration: none;
     width: 100%;
     transition: 0.5s;
     padding: 10px 10px 10px 0px;
 }
 
-#sideBar ul li a .icon{
-    width: 30px;
-    min-width: 30px;
+#sideBar ul li a .icon {
+    width: 20px;
+    min-width: 10px;
     background-size: contain;
     background-repeat: no-repeat;
     text-align: center;
-    opacity: 0.5;
+    opacity: 1;
     position: relative;
-    left:10px;
-}
-#sideBar ul li a span{
-    margin-left:20px;
-    position: relative;
-    bottom: 12px;
-    color:rgb(250, 250, 250);
-    font-weight: bold;
-    width: 100%;
-    font-size: 12px;
+    left: 10px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 20px;
 }
 
-#sideBar ul li:hover{
-    background-color: rgb(122, 122, 142);
+#sideBar ul li a span {
+    margin-left: 20px;
+    position: relative;
+    bottom: 12px;
+    color: rgb(250, 250, 250);
+    font-weight: bold;
+    width: 100%;
+    font-size: 14px;
+    /* background-size: cover;
+            background-clip: text;
+            color: transparent; */
+}
+
+#sideBar ul li:hover {
+    background-color: rgb(195, 195, 205);
     transition: 0.5s;
     transform: scale(1.1);
 }
 
-#content{
+#content {
     background-color: rgb(255, 255, 255);
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
+    width: auto;
 }
 
-#content table{
+#content table {
     background-color: rgb(255, 255, 255);
     border-collapse: collapse;
 }
 
 
 /* Footer */
-footer{
+footer {
     height: 10svh;
     width: 100%;
-    background-color: rgb(21, 19, 29);
 }
 
+@media only screen and (max-width: 600px){
+    *{
+        font-size:12px;
+    }
+}
+header,
+#sideBar,
+footer {
+    background-color: #14375F;
+}
 
-
+footer{
+    background-color: rgb(173, 166, 166);
+}
