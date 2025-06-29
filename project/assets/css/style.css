@@ -1,0 +1,154 @@
+* {
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Header */
+header {
+    height: 15svh;
+    width: auto;
+    display: flex;
+}
+
+header .logo {
+    width: auto;
+    padding: 10px;
+}
+
+header h1 {
+    color: rgb(255, 255, 255);
+    flex-grow: 1;
+    padding: 10px 20px;
+    font-size: 35px;
+}
+
+
+/* Main */
+main {
+    width: auto;
+    height: fit-content;
+    min-height: 90svh;
+    display: flex;
+    position: relative;
+}
+
+#sideBar {
+    width: 150px;
+    height: auto;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    transition: 0.5s;
+    flex-shrink: 0;
+    position: sticky;
+}
+
+
+#sideBar button {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+#sideBar.active {
+    min-width: 45px;
+    width: 45px;
+    transition: 0.5s;
+}
+
+#sideBar ul {
+    padding: 0px;
+    width: 100%;
+    position: relative;
+    /* background-color: blue; */
+}
+
+#sideBar ul li {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+#sideBar ul li a {
+    text-decoration: none;
+    width: 100%;
+    transition: 0.5s;
+    padding: 10px 10px 10px 0px;
+}
+
+#sideBar ul li a .icon {
+    width: 15px;
+    min-width: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-align: center;
+    opacity: 1;
+    position: relative;
+    left: 10px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+#sideBar ul li a span {
+    margin-left: 20px;
+    position: relative;
+    bottom: 12px;
+    color: rgb(250, 250, 250);
+    font-weight: bold;
+    width: 100%;
+    font-size: 10px;
+    /* background-size: cover;
+            background-clip: text;
+            color: transparent; */
+}
+
+#sideBar ul li:hover {
+    background-color: rgb(195, 195, 205);
+    transition: 0.5s;
+    transform: scale(1.1);
+}
+#sideBar ul li:hover .icon{
+    background-color: rgb(240, 248, 149);
+}
+#content {
+    background-color: rgb(255, 255, 255);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+}
+
+#content table {
+    background-color: rgb(255, 255, 255);
+    border-collapse: collapse;
+}
+
+
+/* Footer */
+footer {
+    height: 10svh;
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px){
+    *{
+        font-size:12px;
+    }
+}
+header,
+#sideBar,
+footer {
+    background-color: #14375F;
+}
+
+footer{
+    background-color: rgb(173, 166, 166);
+}
