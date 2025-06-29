@@ -11,17 +11,22 @@ require("../config/db.php");
     <link rel="icon" href="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png">
     <link rel="stylesheet" href="../assets/css/style.css?v=1">
     <style>
+        main{
+            z-index: 0;
+        }
         #content {
+            z-index: 1;
             display: grid;
             padding: 30px 10px;
-            grid-template-columns: 4fr 1fr;
-            grid-template-rows: auto 1fr 200px;
             gap: 30px 10px;
+            grid-template-rows: auto 30px 1fr 20px;
             grid-template-areas:
-                "searchBar searchBar"
-                "container toolBox"
-                "remain remain"
+                "toolBox"
+                "searchBar"
+                "container"
+                "remain"
             ;
+            position: relative;
         }
 
         #searchBar {
@@ -55,7 +60,7 @@ require("../config/db.php");
         }
         th,
         td {
-            font-size: 0.6em;
+            font-size: 0.8em;
             width: fit-content;
         }
 
@@ -67,7 +72,7 @@ require("../config/db.php");
 
         #toolBox fieldset {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             box-sizing: border-box;
         }
 
@@ -83,7 +88,7 @@ require("../config/db.php");
         }
 
         #toolBox select {
-            width: 200px;
+            width: fit-content;
             font-size: 0.8em;
         }
 
@@ -103,6 +108,7 @@ require("../config/db.php");
 
         #anounceBox{
             position: absolute;
+            right:20px;
         }
         @media only screen and (max-width: 600px) {
             * {
@@ -112,11 +118,14 @@ require("../config/db.php");
             #content {
                 grid-column: 1fr;
                 grid-template-areas:
-                    "searchBar searchBar searchBar"
-                    "container container container"
+                    "searchBar"
+                    "container"
+                    "remain"
                 ;
             }
-
+            #container{
+                width: 100%;
+            }
             #toolBox {
                 display: none;
             }
@@ -152,6 +161,24 @@ require("../config/db.php");
         }        #studentList tr:nth-child(2n){
             background-color: rgb(255, 255, 255);
         }
+
+        #toolBox{
+            z-index: 0;
+            transition: 1s;
+        }
+        #content.active{
+            transform:translateY(-100px);
+            transition: 0.5s;
+            position: absolute;
+            overflow: hidden;
+        }
+        #toolBox div{
+            width: fit-content;
+        }
+        #toolBox button{
+            width: fit-content;
+            background-color: rgb(218, 142, 142);
+        }
     </style>
 </head>
 
@@ -163,7 +190,7 @@ require("../config/db.php");
     ?>
 
     <!-- Main -->
-    <main>
+    <main id="main">
         <?php
         require("../require/sideBar.html")
         ?>
@@ -238,6 +265,7 @@ require("../config/db.php");
                             <option value="K50">K50</option>
                         </select>
                         <button type="button" onclick="themSinhVien()">Thêm</button>
+                        <!-- <button type="button" onclick="hide()">Ẩn</button> -->
                     </form>
                 </fieldset>
                 <div id="anounceBox">
@@ -267,6 +295,11 @@ require("../config/db.php");
 
 </html>
 
+<script>
+    function hide(){
+        document.getElementById("content").classList.toggle("active");
+    }
+</script>
 <!-- Ẩn hiện side bar -->
 <script src="../assets/js/hideNav.js"></script>
 
@@ -274,10 +307,10 @@ require("../config/db.php");
 <script src="../assets/js/danhSachNganh.js"></script>
 
 <!-- Các chức năng thêm, sửa, xóa, tìm kiếm sinh viên -->
-<script src="../assets/js/xoaSinhVien.js"></script>
-<script src="../assets/js/hienThiSinhVien.js?v=1.0.1"></script>
+<script src="../assets/js/hienThiSinhVien.js?v=1.1"></script>
 <script src="../assets/js/themSinhVien.js"></script>
 <script src="../assets/js/timSinhVien.js"></script>
+<script src="../assets/js/xoaSinhVien.js?v=1.0.1"></script>
 
 <!-- Gọi hàm :v -->
 <script>

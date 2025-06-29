@@ -124,6 +124,7 @@ main {
     flex-direction: column;
     align-items: center;
     width: auto;
+    height: fit-content;
 }
 
 #content table {
@@ -146,7 +147,8 @@ footer {
 header,
 #sideBar,
 footer {
-    background-color: #14375F;
+    background-color: #031931;
+    z-index: 10;
 }
 
 footer{

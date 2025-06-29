@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (!isset($_SESSION['MSCB'])) {
-    header("Location: login.php");
-    exit;
-}
+// if (!isset($_SESSION['MSCB'])) {
+//     header("Location: login.php");
+//     exit;
+// }
 require("../config/db.php");
 
 $stmt = $conn->prepare("SELECT * FROM CANBO WHERE MSCB = ?");
@@ -11,7 +11,7 @@ $stmt->bind_param("s", $_SESSION['MSCB']);
 if ($stmt->execute() && ($result = $stmt->get_result())) {
     $row = $result->fetch_assoc();
 } else
-    echo "Error: " . $stmt->error;
+    // echo "Error: " . $stmt->error;
 ?>
 
 <!DOCTYPE html>
@@ -24,19 +24,19 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
     <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <style>
-        * {
+        #content * {
             box-sizing: border-box;
         }
 
         .container {
             display: grid;
-            width: 80%;
+            width: 90%;
             height: auto;
-            margin-left: 0;
+            margin-left: auto;
             margin-right: auto;
             padding: 32px;
             grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: repeat(4, 30%);
+            grid-template-rows: repeat(4, 20%);
             gap: 24px 24px;
             grid-auto-flow: row;
             grid-template-areas:
