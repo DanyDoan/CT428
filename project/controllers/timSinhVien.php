@@ -5,7 +5,7 @@
     $query = "";
     $result = "";
     if (empty($_POST["fieldValue"]))
-        $query = "SELECT * FROM SINHVIEN";
+    $query = "SELECT * FROM SINHVIEN ORDER BY MSSV";
     else{
         $field = $_POST["searchingField"];
         $fieldValue = $_POST["fieldValue"];

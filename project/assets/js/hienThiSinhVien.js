@@ -1,9 +1,22 @@
+let load = 0;
+
 function phanTrang(danhSachSinhVien) {
-    let theader = "<tr><th>MSSV</th><th>Họ Tên</th><th>Ngày Sinh</th><th>Giới Tính</th><th>Tên lớp</th><th>Trường</th><th>Khóa</th></th><th>Chức năng</th></tr>";
-    document.getElementById("studentList").innerHTML = theader + danhSachSinhVien;
+    if (danhSachSinhVien == ''){
+        document.getElementById("studentList").innerHTML = "";
+        document.getElementById("nutPhanTrang").innerHTML = "";
+    }
+    else{
+        let theader = "<tr><th>MSSV</th><th>Họ Tên</th><th>Ngày Sinh</th><th>Giới Tính</th><th>Tên lớp</th><th>Trường</th><th>Khóa</th></th><th>Chức năng</th></tr>";
+        document.getElementById("studentList").innerHTML = theader + danhSachSinhVien;
+    }
 }
 
-function hienThiSinhVien(danhSachSinhVien) {
+function hienThiSinhVien(danhSachSinhVien) {    
+    if (danhSachSinhVien == '' && load != 0){
+        phanTrang('');
+        exit;
+    }
+    load++;
     let pages = [];
     let stack = [];
     let count = 0;
@@ -36,5 +49,6 @@ function hienThiSinhVien(danhSachSinhVien) {
     }
     if (pages.length > 0)
         phanTrang(pages[0]);
+
 }
 

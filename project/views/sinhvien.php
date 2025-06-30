@@ -11,9 +11,10 @@ require("../config/db.php");
     <link rel="icon" href="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png">
     <link rel="stylesheet" href="../assets/css/style.css?v=1">
     <style>
-        main{
+        main {
             z-index: 0;
         }
+
         #content {
             z-index: 1;
             display: grid;
@@ -24,9 +25,51 @@ require("../config/db.php");
                 "toolBox"
                 "searchBar"
                 "container"
-                "remain"
-            ;
-            position: relative;
+                "pagination";
+            /* position: relative; */
+            transition: 0.5s;
+        }
+
+        #content.active {
+            transform: translateY(-100px);
+            position: absolute;
+            overflow: hidden;
+        }
+
+        #toolBox {
+            grid-area: toolBox;
+            width: 100%;
+            transition: 1s;
+            z-index: 0;
+        }
+
+        #toolBox fieldset {
+            display: flex;
+            flex-direction: row;
+            box-sizing: border-box;
+        }
+
+        #toolBox fieldset * {
+            width: 100%;
+        }
+
+        #toolBox label {
+            font-size: 0.6em;
+        }
+
+        #toolBox input,
+        #toolBox select,
+        #toolBox button {
+            width: fit-content;
+            font-size: 0.8em;
+        }
+
+        #toolBox button {
+            background-color: rgb(218, 142, 142);
+        }
+
+        #toolBox div {
+            width: fit-content;
         }
 
         #searchBar {
@@ -41,55 +84,71 @@ require("../config/db.php");
             grid-area: container;
             width: 100%;
             display: flex;
-            align-self: self-start;
+            align-self: start;
             background-color: red;
         }
 
-        #container #studentList {
+        #studentList {
             width: 100%;
             border-collapse: collapse;
         }
 
-        #container #studentList * {
+        #studentList * {
             border: 1px solid black;
             text-align: center;
         }
-        th {
+
+        #studentList th {
             background-color: rgb(47, 79, 172);
-            color:white;
+            color: white;
         }
-        th,
-        td {
+
+        #studentList th,
+        #studentList td {
             font-size: 0.8em;
             width: fit-content;
         }
 
-        #toolBox {
-            grid-area: toolBox;
-            width: 100%;
-            height: 100%;            
+        #studentList .icon {
+            height: 10px;
+            width: 10px;
+            font-size: 10px;
+            background-color: black;
+            margin: 2px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
-        #toolBox fieldset {
+        #studentList .icon:nth-child(odd) {
+            background-image: url("../assets/images/modify.png");
+        }
+
+        #studentList .icon:nth-child(even) {
+            background-image: url("../assets/images/close.png");
+        }
+
+        #studentList tr {
+            background-color: rgba(221, 237, 125, 0.43);
+        }
+
+        #studentList tr:nth-child(even) {
+            background-color: rgb(255, 255, 255);
+        }
+
+        #nutPhanTrang {
+            grid-area: pagination;
             display: flex;
-            flex-direction: row;
-            box-sizing: border-box;
+            justify-self: center;
+            gap: 10px;
+            gap: 10px;
+            position: absolute;
+            bottom: 10px;
         }
 
-        #toolBox fieldset *{
-            width: 100%;
-        }
-        #toolBox label{
-            font-size: 0.6em;
-        }
-        #toolBox input {
-            width: fit-content;
-            font-size: 0.8em;
-        }
-
-        #toolBox select {
-            width: fit-content;
-            font-size: 0.8em;
+        #anounceBox {
+            position: absolute;
+            right: 20px;
         }
 
         #addingForm {
@@ -98,86 +157,47 @@ require("../config/db.php");
             gap: 10px;
         }
 
+        /* Responsive Styles */
 
-        #nutPhanTrang {
-            grid-area: remain;
-            display: flex;
-            justify-self: center;
-            gap: 10px;
-        }
-
-        #anounceBox{
-            position: absolute;
-            right:20px;
-        }
         @media only screen and (max-width: 600px) {
             * {
                 font-size: 12px;
             }
 
             #content {
-                grid-column: 1fr;
                 grid-template-areas:
                     "searchBar"
                     "container"
-                    "remain"
-                ;
+                    "pagination";
             }
-            #container{
-                width: 100%;
-            }
+
             #toolBox {
                 display: none;
             }
         }
 
+        .message {
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size:0.8em;
+            /* animation: fade 5s forwards; */
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+
         @media only screen and (max-width: 400px) {
             * {
                 display: none;
             }
-        }
-        #studentList .icon{
-            height: 10px;
-            width: 10px;
-            font-size: 10px;
-            background-color: black;
-            margin:2px;
-        }
-        #studentList .icon:nth-child(n){
-            background-image: url("../assets/images/modify.png");
-            background-size:contain;
-            background-repeat: no-repeat;
-            background-position: center;       
-        }
-        #studentList .icon:nth-child(2n){
-            background-image: url("../assets/images/close.png");
-            background-size:contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        #studentList tr{
-            background-color: rgba(221, 237, 125, 0.43);
-        }        #studentList tr:nth-child(2n){
-            background-color: rgb(255, 255, 255);
-        }
-
-        #toolBox{
-            z-index: 0;
-            transition: 1s;
-        }
-        #content.active{
-            transform:translateY(-100px);
-            transition: 0.5s;
-            position: absolute;
-            overflow: hidden;
-        }
-        #toolBox div{
-            width: fit-content;
-        }
-        #toolBox button{
-            width: fit-content;
-            background-color: rgb(218, 142, 142);
         }
     </style>
 </head>
@@ -269,7 +289,7 @@ require("../config/db.php");
                     </form>
                 </fieldset>
                 <div id="anounceBox">
-                
+
                 </div>
             </div>
 
@@ -296,7 +316,7 @@ require("../config/db.php");
 </html>
 
 <script>
-    function hide(){
+    function hide() {
         document.getElementById("content").classList.toggle("active");
     }
 </script>
@@ -307,10 +327,10 @@ require("../config/db.php");
 <script src="../assets/js/danhSachNganh.js"></script>
 
 <!-- Các chức năng thêm, sửa, xóa, tìm kiếm sinh viên -->
-<script src="../assets/js/hienThiSinhVien.js?v=1.1"></script>
-<script src="../assets/js/themSinhVien.js"></script>
-<script src="../assets/js/timSinhVien.js"></script>
-<script src="../assets/js/xoaSinhVien.js?v=1.0.1"></script>
+<script src="../assets/js/hienThiSinhVien.js?v=8.9.7"></script>
+<script src="../assets/js/themSinhVien.js?b=1.2.3.4"></script>
+<script src="../assets/js/timSinhVien.js?v=92.3"></script>
+<script src="../assets/js/xoaSinhVien.js?v=1.9.5"></script>
 
 <!-- Gọi hàm :v -->
 <script>
