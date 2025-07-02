@@ -6,13 +6,12 @@ session_start();
 // }
 require("../config/db.php");
 
-$stmt = $conn->prepare("SELECT * FROM CANBO WHERE MSCB = ?");
-$stmt->bind_param("s", $_SESSION['MSCB']);
-if ($stmt->execute() && ($result = $stmt->get_result())) {
-    $row = $result->fetch_assoc();
-} else
-    // echo "Error: " . $stmt->error;
-?>
+// $stmt = $conn->prepare("SELECT * FROM CANBO WHERE MSCB = ?");
+// $stmt->bind_param("s", $_SESSION['MSCB']);
+// if ($stmt->execute() && ($result = $stmt->get_result())) {
+//     $row = $result->fetch_assoc();
+// } else
+// ?>
 
 <!DOCTYPE html>
 <html lang="en">
