@@ -51,7 +51,7 @@
 # 11/ Chức năng tìm kiếm theo tên hoặc MSSV
 
 
-#Buổi họp đầu tiên
+#Buổi họp đầu tiên 25/6/2025
 #Code Giao diện cho các trang
 #Đăng nhập/ Đăng ký: chị Trân
 #Thông Tin Cán Bộ: Tuấn
