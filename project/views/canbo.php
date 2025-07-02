@@ -1,6 +1,5 @@
 <?php
 session_start();
-$_SESSION['MSCB'] = "6647";
 if (!isset($_SESSION['MSCB'])) {
     header("Location: login.php");
     exit;
