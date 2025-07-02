@@ -8,7 +8,7 @@ class canbo
     private $hoTen;
     private $ngaySinh;
     private $gioiTinh;
-    private $maLop;
+    private $tenLop;
     private $noiCongTac;
 
     public function __construct($conn, $id)
@@ -26,12 +26,12 @@ class canbo
         $this->hoTen = $row["hoTen"];
         $this->ngaySinh = $row["ngaySinh"];
         $this->gioiTinh = $row["gioiTinh"];
-        $this->maLop = $row["maLop"];
+        $this->tenLop = $row["tenLop"];
         $this->noiCongTac = $row["noiCongTac"];
     }
 
 
-    public function update($conn, $field, $newValue)
+    public function sua($conn, $field, $newValue)
     {
         $stm = $conn->prepare("UPDATE CANBO
                                SET $field = '$newValue'
@@ -49,7 +49,7 @@ class canbo
             echo $stm->error;
     }
 
-    public function get($field)
+    public function lay($field)
     {
         return $this->$field;
     }

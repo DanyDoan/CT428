@@ -3,16 +3,22 @@
     require("../config/db.php");
 
     $query = "";
-    $result = "";
-    if (empty($_POST["fieldValue"]))
-        $query = "SELECT * FROM SINHVIEN";
+    $output = [];
+    if (empty($_POST["fieldValue"])){
+        $query = "SELECT * FROM SINHVIEN ORDER BY MSSV";
+        $result = $conn->query($query);
+        $output = $result->fetch_all(MYSQLI_ASSOC);
+    }
     else{
         $field = $_POST["searchingField"];
-        $fieldValue = $_POST["fieldValue"];
-        $query = "SELECT * FROM SINHVIEN
-                  WHERE $field LIKE '%$fieldValue%'";
+        $fieldValue = "%".$_POST["fieldValue"]."%";
+        $stm = $conn->prepare("SELECT * FROM SINHVIEN
+                               WHERE $field LIKE ?");
+
+        $stm->bind_param("s", $fieldValue);
+        $stm->execute();
+        $result = $stm->get_result();
+        $output = $result->fetch_all(MYSQLI_ASSOC);
     }
-    $result = $conn->query($query);
-    $output = $result->fetch_all(MYSQLI_ASSOC);
     echo json_encode($output);
 ?>
