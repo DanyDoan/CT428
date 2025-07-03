@@ -5,12 +5,14 @@ function phanTrang(danhSachSinhVien) {
         document.getElementById("nutPhanTrang").innerHTML = "";
     }
     else {
-        let theader = "<tr><th>MSSV</th><th>Họ Tên</th><th>Ngày Sinh</th><th>Giới Tính</th><th>Trường</th><th>Lớp</th><th>Khóa</th></th><th>Chức năng</th></tr>";
+        let theader = "<tr><th>Mã Số Sinh Viên</th><th>Họ Tên Sinh Viên</th><th>Ngày Sinh</th><th>Giới Tính</th><th>Trường / Khoa</th><th>Lớp Học</th><th>Khóa</th></th><th>Lưu Thay Đổi</th><th>Xóa Sinh Viên</th></tr>";
         document.getElementById("studentList").innerHTML = theader + danhSachSinhVien;
     }
 }
 
 function hienThiSinhVien(danhSachSinhVien) {
+
+    
     if (danhSachSinhVien == '' && load != 0) {
         phanTrang('');
         exit;
@@ -20,6 +22,23 @@ function hienThiSinhVien(danhSachSinhVien) {
     let stack = [];
     let count = 0;
 
+    let obj = {
+        "DI" : "Trường CNTT&TT",
+        "DA" : "Viện CNSH&TP",
+        "KT" : "Trường Kinh Tế",
+        "FL" : "Khoa Ngoại Ngữ",
+        "HG" : "Khoa PTNT",
+        "KH" : "Khoa KHTN",
+        "XH" : "Khoa KHXH&NV",
+        "LK" : "Khoa Luật",
+        "MT" : "Khoa MT&TNTN",
+        "ML" : "Khoa Chính Trị",
+        "NN" : "Trường Nông Nghiệp",
+        "SP" : "Trường Sư Phạm",
+        "TD" : "Khoa Thể Chất",
+        "TN" : "Trường Bách Khoa",
+        "TS" : "Trường Thủy Sản"
+    }
     for (let sinhVien of danhSachSinhVien) {
         let row = "<tr>";
         row += "<td><input type='text' value='" + sinhVien["MSSV"] + "' disabled></td>";
@@ -42,9 +61,9 @@ function hienThiSinhVien(danhSachSinhVien) {
         row += "<td><select name='truong' onchange='ganDanhSachNganhV2(this)'>";
         for (let key in maTruong) {
             if (key == sinhVien["truong"])
-                row += "<option value='" + key + "' selected>" + key + "</option>"
+                row += "<option value='" + key + "' selected>" + obj[key] + "</option>"
             else
-                row += "<option value='" + key + "'>" + key + "</option>"
+                row += "<option value='" + key + "'>" + obj[key] + "</option>"
         }
         row += "</select></td>";
 
@@ -68,8 +87,8 @@ function hienThiSinhVien(danhSachSinhVien) {
         }
 
         row += "</select></td>";
-        row += `<td><button type='button' onclick="suaSinhVien(this)" class='icon'></button></button>`
-        row += `<button type='button' onclick="xoaSinhVien('${sinhVien["MSSV"]}')" class='icon'></button></td></tr>`;
+        row += `<td><button type='button' onclick="suaSinhVien(this)" class='icon'></button></td>`
+        row += `<td><button type='button' onclick="xoaSinhVien('${sinhVien["MSSV"]}')" class='icon'></button></td></tr>`;
 
         stack.push(row);
         count++;

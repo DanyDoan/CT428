@@ -7,15 +7,21 @@
     {
             die(json_encode(["status" => "fail"]));
     }
-    
+
     $stm = $conn->prepare("INSERT INTO SINHVIEN 
                              (MSSV, hoTen, ngaySinh, gioiTinh, truong, tenLop, khoa)
                              VALUES ( ?, ?, ?, ?, ?, ?, ?)");
     $stm->bind_param("sssssss", $_POST["MSSV"], $_POST["hoTen"], $_POST["ngaySinh"], $_POST["gioiTinh"],  $_POST["tenTruong"], $_POST["tenLop"], $_POST["khoa"]);
-    if ($stm->execute()){
+    if ($stm->execute()) {
         $query = "SELECT * FROM SINHVIEN";
         $result = $conn->query($query);
         $output = $result->fetch_all(MYSQLI_ASSOC);
         echo json_encode(["status" => "success", "data" => $output]);
+    } else {
+        if ($conn->errno == 1062) { // 1062: Duplicate entry for key PRIMARY or UNIQUE
+            die(json_encode(["status" => "existed"]));
+        } else {
+            die(json_encode(["status" => "fail", "error" => $stm->error]));
+        }
     }
 ?>

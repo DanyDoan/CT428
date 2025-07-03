@@ -1,19 +1,19 @@
 <?php
-session_start();
-if (!isset($_SESSION['MSCB'])) {
-    header("Location: login.php");
-    exit;
-}
-require("../config/db.php");
+// session_start();
+// if (!isset($_SESSION['MSCB'])) {
+//     header("Location: login.php");
+//     exit;
+// }
+// require("../config/db.php");
 
-$stmt = $conn->prepare("SELECT * FROM CANBO WHERE MSCB = ?");
-$stmt->bind_param("s", $_SESSION['MSCB']);
-if ($stmt->execute() && ($result = $stmt->get_result())) {
-    $row = $result->fetch_assoc();
-} else {
-    echo "Error: " . $stmt->error;
-    exit;
-}
+// $stmt = $conn->prepare("SELECT * FROM CANBO WHERE MSCB = ?");
+// $stmt->bind_param("s", $_SESSION['MSCB']);
+// if ($stmt->execute() && ($result = $stmt->get_result())) {
+//     $row = $result->fetch_assoc();
+// } else {
+//     echo "Error: " . $stmt->error;
+//     exit;
+// }
 ?>
 
 <!DOCTYPE html>

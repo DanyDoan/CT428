@@ -17,11 +17,12 @@ header {
 }
 
 header h1 {
+    padding-left:1em;
     color: rgb(255, 255, 255);
     flex-grow: 1;
     align-self: center;
     justify-self: center;
-    font-size: 45px;
+    font-size: 3em;
     position: relative;
     background-image: linear-gradient(to left,rgb(166, 213, 233),rgba(18, 0, 0, 0.342));
     color: transparent;
