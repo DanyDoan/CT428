@@ -11,6 +11,11 @@ function suaSinhVien(button) {
         tenLop: selects[2].value,
         khoa: selects[3].value
     }
+    if (data.ngaySinh.substring(0, 4) < 1975 || data.ngaySinh.substring(0, 4) > 2006){
+        alert("Năm sinh không hợp lệ");
+        window.location.reload();
+        return;
+    }
     let xhttp = new XMLHttpRequest();
     xhttp.onload = function () {
         try {

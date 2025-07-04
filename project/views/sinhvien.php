@@ -9,7 +9,8 @@ require("../config/db.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png">
-    <link rel="stylesheet" href="../assets/css/style.css?v=2.3.4.10">
+    <link rel="stylesheet" href="../assets/css/style.css?v=4.10.29.9">
+    <title>Sinh Viên</title>
     <style>
         #content {
             z-index: 1;
@@ -23,11 +24,10 @@ require("../config/db.php");
                 "container"
                 "pagination"
             ;
-            /* position: relative; */
             transition: 0.5s;
             background-image: linear-gradient(to bottom, rgba(252, 252, 255, 0.69), rgba(164, 164, 164, 0.55));
-            /* animation: surf 2s linear infinite; */
         }
+
 
         @keyframes surf {
             to {
@@ -64,7 +64,7 @@ require("../config/db.php");
             width: fit-content;
             text-transform: uppercase;
             font-weight: 800;
-            background-image: linear-gradient(to left,rgb(0, 0, 0),rgba(17, 47, 197, 0.34));
+            background-image: linear-gradient(to left, rgb(0, 0, 0), rgba(17, 47, 197, 0.34));
             color: transparent;
             background-clip: text;
             animation: surfing 20s linear infinite;
@@ -82,7 +82,7 @@ require("../config/db.php");
             font-weight: 800;
             min-width: fit-content;
             width: 5em;
-            color: rgb(3, 21, 75);
+            color: rgb(0, 0, 0);
             text-align: right;
         }
 
@@ -142,6 +142,7 @@ require("../config/db.php");
             grid-area: searchBar;
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
         }
 
         #searchBar form {
@@ -157,7 +158,7 @@ require("../config/db.php");
             background-color: rgba(126, 124, 249, 0.3);
             border: 1px 0px solid rgb(5, 0, 68);
             border-radius: 0.8em;
-            padding:10px;
+            padding: 10px;
             min-width: fit-content;
             min-height: fit-content;
             width: 10em;
@@ -321,8 +322,8 @@ require("../config/db.php");
             font-weight: 800;
             text-transform: uppercase;
             font-size: 0.8em;
-            /* animation: fade 5s forwards; */
-            color:black;
+            animation: fade 5s forwards;
+            color: black;
         }
 
 

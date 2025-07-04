@@ -48,7 +48,7 @@ main {
 }
 
 #sideBar {
-    width: 110px;
+    width: 150px;
     height: auto;
     overflow: hidden;
     white-space: nowrap;
@@ -109,11 +109,11 @@ main {
 #sideBar ul li a span {
     margin-left: 15px;
     position: relative;
-    bottom: 10px;
+    bottom: 7px;
     color: rgb(250, 250, 250);
     font-weight: bold;
     width: 100%;
-    font-size: 10px;
+    font-size: 14px;
     /* background-size: cover;
             background-clip: text;
             color: transparent; */
@@ -159,6 +159,6 @@ footer {
 header,
 #sideBar,
 footer {
-    background-color: rgba(4, 1, 47, 0.985);
+    background: #13131d;
     z-index: 10;
 }
