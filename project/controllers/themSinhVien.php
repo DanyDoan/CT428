@@ -18,7 +18,7 @@
         $output = $result->fetch_all(MYSQLI_ASSOC);
         echo json_encode(["status" => "success", "data" => $output]);
     } else {
-        if ($conn->errno == 1062) { // 1062: Duplicate entry for key PRIMARY or UNIQUE
+        if ($stm->errno == 1062) { // 1062: Duplicate entry for key PRIMARY or UNIQUE
             die(json_encode(["status" => "existed"]));
         } else {
             die(json_encode(["status" => "fail", "error" => $stm->error]));

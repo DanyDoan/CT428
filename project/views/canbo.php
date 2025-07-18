@@ -1,19 +1,19 @@
 <?php
-// session_start();
-// if (!isset($_SESSION['MSCB'])) {
-//     header("Location: login.php");
-//     exit;
-// }
-// require("../config/db.php");
+session_start();
+if (!isset($_SESSION['MSCB'])) {
+    header("Location: login.php");
+    exit;
+}
+require("../config/db.php");
 
-// $stmt = $conn->prepare("SELECT * FROM CANBO WHERE MSCB = ?");
-// $stmt->bind_param("s", $_SESSION['MSCB']);
-// if ($stmt->execute() && ($result = $stmt->get_result())) {
-//     $row = $result->fetch_assoc();
-// } else {
-//     echo "Error: " . $stmt->error;
-//     exit;
-// }
+$stmt = $conn->prepare("SELECT * FROM CANBO WHERE MSCB = ?");
+$stmt->bind_param("s", $_SESSION['MSCB']);
+if ($stmt->execute() && ($result = $stmt->get_result())) {
+    $row = $result->fetch_assoc();
+} else {
+    echo "Error: " . $stmt->error;
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,8 +23,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="icon" href="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png">
+    <link rel="stylesheet" href="../assets/css/style.css?v=1.6.7">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/sidebar-style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
     <title>Cán bộ</title>
 
     <style>
@@ -172,21 +178,20 @@
 </head>
 
 <body>
-    <div class="d-flex vh-100">
-
+    <!-- Sidebar -->
+    <div id="sideBar">
+        <?php require("../shared/sideBar.php"); ?>
+    </div>
+    <!-- Main content -->
+    <div id="main">
         <!-- Header -->
-        <?php
-        require("../require/header.html")
-        ?>
+        <?php require("../shared/header.html"); ?>
 
         <!-- Main -->
-        <main>
-            <?php
-            require("../require/sideBar.html")
-            ?>
+        <div id="content">
 
             <!-- Content -->
-            <div id="content">
+            <div id="content" class="flex-grow-1 overflow-auto">
                 <h2>Đây là trang thông tin cán bộ</h2>
 
                 <div class="container">
@@ -228,31 +233,41 @@
                 </div>
 
             </div>
-        </main>
+        </div>
 
         <!-- Footer -->
-        <?php
-        require("../require/footer.html");
-        ?>
-        <div id="overlay" class="overlay hidden"></div>
-        <div id="modal" class="modal hidden">
-            <div class="modal-content">
-                <span class="material-symbols-outlined button" onclick="closeModal()">close</span>
-                <span class="main-title-box">Thông tin chi tiết</span>
-                <span class="sub-title-box">Mã số cán bộ</span>
-                <?php echo $row['MSCB']; ?>
-                <span class="sub-title-box">Họ tên</span>
-                <?php echo $row['hoTen']; ?>
-                <span class="sub-title-box">Ngày sinh</span>
-                <?php echo $row['ngaySinh']; ?>
-                <span class="sub-title-box">Giới tính</span>
-                <?php echo $row['gioiTinh']; ?>
-                <span class="sub-title-box">Nơi công tác</span>
-                <?php echo $row['noiCongTac']; ?>
-                <span class="sub-title-box">Lớp hiện tại</span>
-                <?php echo $row['maLop']; ?>
-            </div>
+        <?php require("../shared/footer.html"); ?>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div id="overlay" class="overlay hidden"></div>
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="material-symbols-outlined button" onclick="closeModal()">close</span>
+            <span class="main-title-box">Thông tin chi tiết</span>
+            <span class="sub-title-box">Mã số cán bộ</span>
+            <?php echo $row['MSCB']; ?>
+            <span class="sub-title-box">Họ tên</span>
+            <?php echo $row['hoTen']; ?>
+            <span class="sub-title-box">Ngày sinh</span>
+            <?php echo $row['ngaySinh']; ?>
+            <span class="sub-title-box">Giới tính</span>
+            <?php echo $row['gioiTinh']; ?>
+            <span class="sub-title-box">Nơi công tác</span>
+            <?php echo $row['noiCongTac']; ?>
+            <span class="sub-title-box">Lớp hiện tại</span>
+            <?php echo $row['maLop']; ?>
         </div>
+    </div>
 </body>
 
 </html>

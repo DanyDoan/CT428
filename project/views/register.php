@@ -1,6 +1,19 @@
 <?php
 require_once("../config/db.php");
 session_start();
+function generateSecurityKey($length = 8)
+{
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    $key = '';
+    for ($i = 0; $i < $length; $i++) {
+        $key .= $characters[random_int(0, strlen($characters) - 1)];
+    }
+    return $key;
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    $_SESSION['generatedKey'] = generateSecurityKey(8);
+}
 ?>
 
 <!DOCTYPE html>
@@ -9,82 +22,76 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Đăng ký</title>
     <style>
-        #content {
-            /* background-color: black; */
-            justify-content: center;
-            align-items: center;
-            padding:50px 0px;
+        .password-strength {
+            height: 5px;
+            margin-top: 5px;
+            background-color: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
         }
 
-        fieldset {
-            padding: 20px;
-            text-align: center;
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
         }
 
-        table {
-            line-height: 2em;
+        .weak {
+            background-color: #dc3545;
+            width: 33%;
         }
 
-        th,
-        td {
-            font-size: 16px;
-            color: black;
+        .medium {
+            background-color: #ffc107;
+            width: 66%;
         }
 
-        fieldset>input {
-            background-color: black;
-            color: white;
-            border: 1px solid white;
-            border-radius: 10px;
-            padding: 6px 10px;
-            margin: 10px;
-            transition: 0.5s;
+        .strong {
+            background-color: #28a745;
+            width: 100%;
         }
 
-        fieldset>input:hover {
-            transition: 0.5s;
-            transform: scale(1.1);
+        .password-match {
+            display: none;
         }
     </style>
 </head>
 
-<body>
-
-    <!-- Header -->
-    <?php
-    require("../require/header.html");
-    ?>
-
-    <!-- Main -->
-    <main>
-
-        <!-- Side Bars -->
-        <?php
-            require("../require/sideBar.html");
-        ?>
-
-        <div id="content">
-            <form method="POST" action="register.php">
-                <fieldset>
-                    <legend>Đăng Ký Tài Khoản Quản Trị</legend>
-                    <table>
-                        <tr>
-                            <th><label for="adminName">Họ và Tên: </label></th>
-                            <td><input type="text" id="adminName" name="adminName" required></td>
-                        </tr>
-                        <tr>
-                            <th><label for="adminBirth">Ngày sinh</label></th>
-                            <td><input type="date" id="adminBirth" name="adminBirth" required></td>
-                        </tr>
-                        <tr>
-                            <th><label for="adminWorkplace" required>Công tác tại: </label></th>
-                            <td>
-                                <select id="adminWorkplace" name="adminWorkplace">
-                                    <optgroup label="Cấp Trường" selected>
-                                        <option value="DI" selected>Trường CNTT&TT</option>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 class="card-title text-center mb-4">Đăng Ký Quản Trị Viên</h3>
+                        <form method="POST">
+                            <div class="mb-3">
+                                <label for="hoTen" class="form-label">Họ và Tên</label>
+                                <input type="text" id="hoTen" name="hoTen" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="ngaySinh" class="form-label">Ngày sinh</label>
+                                <input type="date" id="ngaySinh" name="ngaySinh" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label d-block">Giới tính</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gioiTinh" value="Nam" checked>
+                                    <label class="form-check-label">Nam</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gioiTinh" value="Nu">
+                                    <label class="form-check-label">Nữ</label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="noiCongTac" class="form-label">Công tác tại</label>
+                                <select id="noiCongTac" name="noiCongTac" class="form-select">
+                                    <optgroup label="Cấp Trường">
+                                        <option value="DI">Trường CNTT&TT</option>
                                         <option value="CN">Trường Bách Khoa</option>
                                         <option value="KT">Trường Kinh Tế</option>
                                         <option value="NN">Trường Nông Nghiệp</option>
@@ -102,103 +109,196 @@ session_start();
                                         <option value="TC">Khoa Giáo Dục Thể Chất</option>
                                     </optgroup>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th><label for="adminBirthday"></label></th>
-                        </tr>
-                        <tr>
-                            <th><label for="adminID">Mã tài khoản: </label></th>
-                            <td><input type="text" id="adminID" name="adminID" required></td>
-                        </tr>
-                        <tr>
-                            <th><label for="adminPassword">Đặt mật khẩu: </label></th>
-                            <td><input type="password" id="adminPassword" name="adminPassword" required></td>
-                        </tr>
-                        <tr>
-                            <th><label for="retype">Nhập lại mật khẩu: </label></th>
-                            <td><input type="password" id="retype" name="retype" required></td>
-                        </tr>
-                        <tr>
-                            <th><label for="key">Security Key: </label></th>
-                            <td><input type="text" id="key" name="key"></td>
-                        </tr>
-                        <tr>
-                            <th colspan=2 style="color:red">Tôi Cam Kết Thực Hiện Đúng Trách Nhiệm và Nghĩa Vụ</th>
-                        </tr>
-                    </table>
-                    <input type="submit" value="Đăng Ký" name="submit"></input>
-                    <input type="reset" value="Hủy"></input>
-                </fieldset>
-            </form>
-        </div>
-    </main>
+                            </div>
+                            <div class="mb-3">
+                                <label for="maLopCoVan" class="form-label">Mã lớp cố vấn</label>
+                                <input type="text" id="maLopCoVan" name="maLopCoVan" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="MSCB" class="form-label">Mã tài khoản</label>
+                                <input type="text" id="MSCB" name="MSCB" class="form-control" minlength="6" maxlength="6" required placeholder="001234">
+                            </div>
 
-    <!-- Footer -->
-    <?php
-    require("../require/footer.html");
-    ?>
+                            <div class="mb-3">
+                                <label for="matKhau" class="form-label">Đặt mật khẩu</label>
+                                <input type="password" id="matKhau" name="matKhau" class="form-control" required>
+                                <div class="password-strength">
+                                    <div class="password-strength-bar" id="password-strength-bar"></div>
+                                </div>
+                                <small id="password-help" class="form-text text-muted">
+                                    Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt
+                                </small>
+                                <div id="password-feedback" class="form-text"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="matKhauXacNhan" class="form-label">Nhập lại mật khẩu</label>
+                                <input type="password" id="matKhauXacNhan" name="matKhauXacNhan" class="form-control" required>
+                                <div id="confirm-feedback" class="form-text"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Mã bảo vệ</label>
+                                <div class="fw-bold fs-5 text-danger font-monospace">
+                                    <?= htmlspecialchars($_SESSION['generatedKey']) ?>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="key" class="form-label">Nhập lại mã bảo vệ</label>
+                                <input type="text" id="key" name="key" class="form-control" required minlength="8" maxlength="8">
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="camKet" required>
+                                <label class="form-check-label" for="camKet">
+                                    Tôi cam kết thực hiện đúng trách nhiệm và nghĩa vụ
+                                </label>
+                            </div>
+                            <div class="d-flex justify-content-end gap-2">
+                                <button type="submit" name="submit" class="btn btn-primary">Đăng Ký</button>
+                                <button type="reset" class="btn btn-secondary">Hủy</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const passwordInput = document.getElementById("matKhau");
+            const confirmInput = document.getElementById("matKhauXacNhan");
+            const passwordBar = document.getElementById("password-strength-bar");
+            const passwordFeedback = document.getElementById("password-feedback");
+            const confirmFeedback = document.getElementById("confirm-feedback");
+
+            // Kiểm tra độ mạnh mật khẩu
+            passwordInput.addEventListener("input", function() {
+                const password = this.value;
+                const strongRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+                // Reset classes
+                passwordBar.className = 'password-strength-bar';
+                passwordFeedback.textContent = '';
+
+                if (password.length === 0) {
+                    passwordBar.style.width = '0%';
+                    return;
+                }
+
+                // Kiểm tra độ mạnh
+                if (password.length < 8) {
+                    passwordBar.className = 'password-strength-bar weak';
+                    passwordFeedback.textContent = 'Mật khẩu quá ngắn (tối thiểu 8 ký tự)';
+                    passwordFeedback.className = 'form-text text-danger';
+                } else {
+                    let strength = 0;
+
+                    // Kiểm tra các yếu tố
+                    if (/[A-Z]/.test(password)) strength++;
+                    if (/[a-z]/.test(password)) strength++;
+                    if (/[0-9]/.test(password)) strength++;
+                    if (/[@$!%*?&]/.test(password)) strength++;
+
+                    // Đánh giá độ mạnh
+                    if (strength < 3) {
+                        passwordBar.className = 'password-strength-bar weak';
+                        passwordFeedback.textContent = 'Mật khẩu yếu';
+                        passwordFeedback.className = 'form-text text-danger';
+                    } else if (strength === 3) {
+                        passwordBar.className = 'password-strength-bar medium';
+                        passwordFeedback.textContent = 'Mật khẩu trung bình';
+                        passwordFeedback.className = 'form-text text-warning';
+                    } else {
+                        passwordBar.className = 'password-strength-bar strong';
+                        passwordFeedback.textContent = 'Mật khẩu mạnh';
+                        passwordFeedback.className = 'form-text text-success';
+                    }
+                }
+
+                // Kiểm tra đầy đủ yêu cầu
+                if (strongRegex.test(password)) {
+                    passwordFeedback.textContent = 'Mật khẩu đạt yêu cầu';
+                    passwordFeedback.className = 'form-text text-success';
+                }
+
+                // Kiểm tra khớp mật khẩu
+                checkPasswordMatch();
+            });
+
+            // Kiểm tra khớp mật khẩu
+            confirmInput.addEventListener("input", checkPasswordMatch);
+
+            function checkPasswordMatch() {
+                const pass = passwordInput.value;
+                const confirm = confirmInput.value;
+
+                if (confirm.length === 0) {
+                    confirmFeedback.textContent = '';
+                } else if (pass !== confirm) {
+                    confirmFeedback.textContent = 'Mật khẩu không khớp';
+                    confirmFeedback.className = 'form-text text-danger';
+                } else {
+                    confirmFeedback.textContent = 'Mật khẩu khớp';
+                    confirmFeedback.className = 'form-text text-success';
+                }
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
 
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        if ($_POST["adminPassword"] != $_POST["retype"]){
-            echo "<script>
-                        alert('Mật khẩu không khớp');
-                  </script>";
-            exit();
-        }
-        if ($_POST["key"] != "2025"){
-            echo "<script>
-                        alert('Sai key');
-                  </script>";
-            exit();
-        }
-        if (checkIfExist($conn, $_POST["adminID"])){
-            echo "Mã đã tồn tại";
-            exit();
-        }
-        else{
-            $stm =$conn->prepare("INSERT INTO adminList
-                                 (adminID, adminPassword, adminName, adminBirth, adminWorkplace)
-                                 VALUES( ?, ?, ?, ?, ?)");
+function checkIfExist($conn, $id)
+{
+    $stmt = $conn->prepare("SELECT MSCB FROM CANBO WHERE MSCB = ?");
+    $stmt->bind_param("s", $id);
+    $stmt->execute();
+    $stmt->store_result();
+    return ($stmt->num_rows > 0);
+}
 
-            $hashedPassword=password_hash($_POST["adminPassword"], PASSWORD_DEFAULT);
-            $stm->bind_param("sssss", $_POST["adminID"], 
-                                      $hashedPassword,
-                                      $_POST["adminName"], 
-                                      $_POST["adminBirth"], 
-                                      $_POST["adminWorkplace"]);
-            if ($stm->execute()){
-                echo "<script>
-                        location.href='index.php';  
-                     </script>";
-                // ob_start();
-                // header("Location: ../index.php");
-            }else
-                echo "<script>
-                        alert('thất bại');        
-                </script>";        
-        }
-    }
+// Xử lý khi gửi form
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $MSCB = $_POST['MSCB'];
+    $hoTen = $_POST['hoTen'];
+    $ngaySinh = $_POST['ngaySinh'];
+    $gioiTinh = $_POST['gioiTinh'];
+    $noiCongTac = $_POST['noiCongTac'];
+    $maLopCoVan = $_POST['maLopCoVan'] ?? '';
+    $matKhau = $_POST['matKhau'];
+    $matKhauXacNhan = $_POST['matKhauXacNhan'];
+    $key = $_POST['key'] ?? '';
+    $generatedKey = $_SESSION['generatedKey'] ?? '';
 
-    function checkIfExist($conn, $id){
-        $stm =$conn->prepare("SELECT * 
-                              FROM adminList
-                              WHERE adminID = ?");
-        $stm->bind_param("s", $id);
-        if ($stm->execute()){
-            $result = $stm->get_result();
-            return ($result->num_rows > 0);
-        }else;
+    $isStrongPassword = preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/', $matKhau);
+
+    if ($matKhau !== $matKhauXacNhan) {
+        echo "<script>alert('Mật khẩu không khớp');</script>";
+    } elseif (!$isStrongPassword) {
+        echo "<script>alert('Mật khẩu phải có ít nhất 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt');</script>";
+    } elseif ($key !== $generatedKey) {
+        echo "<script>alert('Mã bảo vệ không đúng');</script>";
+    } elseif (checkIfExist($conn, $MSCB)) {
+        echo "<script>alert('Mã tài khoản đã tồn tại');</script>";
+    } else {
+        $hashedPassword = password_hash($matKhau, PASSWORD_DEFAULT);
+
+        $stmt = $conn->prepare("INSERT INTO CANBO (MSCB, matKhau, hoTen, ngaySinh, gioiTinh, noiCongTac, maLopCoVan) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $MSCB, $hashedPassword, $hoTen, $ngaySinh, $gioiTinh, $noiCongTac, $maLopCoVan);
+
+        if ($stmt->execute()) {
+            $_SESSION['generatedKey'] = generateSecurityKey(8);
+            echo "<script>alert('Đăng ký thành công!'); location.href='login.php';</script>";
+        } else {
+            echo "<script>alert('Lỗi khi đăng ký: " . $stmt->error . "');</script>";
+        }
+
+        $stmt->close();
     }
+    $conn->close();
+}
 ?>
-
-<script>
-    function hideNav(){
-        const sideBar = document.getElementById("sideBar");
-        sideBar.classList.toggle("active");
-    }
-</script>
