@@ -9,13 +9,13 @@ require("../config/db.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png">
-    <link rel="stylesheet" href="../assets/css/style.css?v=4.10.29.9">
+    <link rel="stylesheet" href="../assets/css/style.css?v=4.10.3">
     <title>Sinh Viên</title>
     <style>
         #content {
             z-index: 1;
             display: grid;
-            padding: 30px 10px;
+            padding: 20px 10px;
             gap: 30px 10px;
             grid-template-rows: auto 30px 1fr 20px;
             grid-template-areas:
@@ -26,15 +26,13 @@ require("../config/db.php");
             ;
             transition: 0.5s;
             background-image: linear-gradient(to bottom, rgba(252, 252, 255, 0.69), rgba(164, 164, 164, 0.55));
+            background-image: url("../assets/images/bg1.jpg");
+            background-size: cover;
+            background-position-y: -0px;
+            background-position-x: 0px;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
-
-
-        @keyframes surf {
-            to {
-                background-position-y: 80svh;
-            }
-        }
-
 
         #content.active {
             transform: translateY(-100px);
@@ -53,7 +51,9 @@ require("../config/db.php");
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
-            background-color: rgba(198, 213, 219, 0.92);
+            background-color: rgba(255, 255, 255, 0.61);
+            width: fit-content;
+            justify-self: center;
         }
 
         #toolBox fieldset * {
@@ -64,17 +64,12 @@ require("../config/db.php");
             width: fit-content;
             text-transform: uppercase;
             font-weight: 800;
-            background-image: linear-gradient(to left, rgb(0, 0, 0), rgba(17, 47, 197, 0.34));
+            background-image: linear-gradient(to left, rgb(0, 0, 0), rgb(85, 113, 255));
             color: transparent;
             background-clip: text;
-            animation: surfing 20s linear infinite;
+            animation: surfing 5s linear infinite;
         }
 
-        /* @keyframes surfing{
-            to{
-
-            }
-        } */
 
         #toolBox #addingForm label {
             display: inline-block;
@@ -83,7 +78,7 @@ require("../config/db.php");
             min-width: fit-content;
             width: 5em;
             color: rgb(0, 0, 0);
-            text-align: right;
+            text-align: left;
         }
 
         #toolBox input,
@@ -93,7 +88,7 @@ require("../config/db.php");
             width: fit-content;
             font-size: 0.85em;
             background: none;
-            color: rgb(26, 9, 155);
+            color: rgb(82, 77, 77);
             border-width: 0px 0px 2px 0px;
             font-weight: 800;
         }
@@ -112,7 +107,9 @@ require("../config/db.php");
 
         #toolBox button:hover {
             transition: 0.2s;
-            transform: scale(1.05);
+            transform: scale(1.1);
+            background-color: black;
+            color:white;
         }
 
         #toolBox div {
@@ -155,10 +152,10 @@ require("../config/db.php");
 
         #anounceBox {
             justify-self: center;
-            background-color: rgba(126, 124, 249, 0.3);
+            background-color: rgba(109, 218, 93, 0.73);
             border: 1px 0px solid rgb(5, 0, 68);
             border-radius: 0.8em;
-            padding: 10px;
+            padding: 5px;
             min-width: fit-content;
             min-height: fit-content;
             width: 10em;
@@ -169,40 +166,35 @@ require("../config/db.php");
 
         }
 
-        #searchingForm label {
-            font-weight: 800;
-            font-size: 1.2em;
-            background-image: linear-gradient(rgb(5, 11, 81), rgb(0, 0, 0));
-            color: transparent;
-            background-clip: text;
-        }
-
         #searchingForm input,
         #searchingForm select {
-            background-color: rgba(169, 169, 179, 0.3);
-            min-width: 10em;
+            background-color: rgba(255, 255, 255, 0.89);
+            min-width: 2em;
             min-height: 2em;
-            border-radius: 0.8em;
-            /* border:none; */
-            border-width: 1px 0px;
+            border-radius: 10em;
+            border-width: 1px 1px;
+            color: black;
         }
 
         #searchingForm button {
-            position: relative;
-            top: 5px;
-            width: 20px;
-            height: 20px;
-            background-image: url("../assets/images/loupe.png");
             background-size: contain;
             background-repeat: no-repeat;
-            background-color: rgba(218, 142, 142, 0);
-            border: none;
+            font-weight: 600;
+            font-size: 0.8em;
+            color: black;
+            padding: 10px;
+            border-radius: 10em;
+            border-width: 1px 1px;
+            background-color: rgba(255, 255, 255, 0.89);
             transition: 0.2s;
+
         }
 
         #searchingForm button:hover {
             transition: 0.2s;
             transform: scale(1.1);
+            background-color: black;
+            color:white;
         }
 
         #container {
@@ -286,9 +278,11 @@ require("../config/db.php");
             grid-area: pagination;
             display: flex;
             justify-self: center;
+            align-self: end;
             gap: 10px;
-            gap: 10px;
-            bottom: 10px;
+            background-color: red;
+
+            /* bottom: 10px; */
         }
 
 
@@ -441,7 +435,6 @@ require("../config/db.php");
             <!-- searchBar -->
             <div id="searchBar">
                 <form method="GET" id="searchingForm">
-                    <label for="searchingField">Tìm kiếm</label>
                     <select id="searchingField" name="searchingField">
                         <option value="MSSV">Mã Số Sinh Viên</option>
                         <option value="hoTen">Họ Tên Sinh Viên</option>
@@ -451,9 +444,11 @@ require("../config/db.php");
                         <option value="khoa">Khóa</option>
                     </select>
                     <input type="text" name="fieldValue" placeholder="...">
-                    <button type="button" onclick="timSinhVien()"></button>
+                    <button type="button" onclick="timSinhVien()">Tìm Kiếm</button>
+                    <button type="button" onclick="window.location.reload()">Xóa</button>
                 </form>
                 <fieldset id="anounceBox">
+                    <h2 style="color:rgb(0,0,0)">Hộp thông báo</h2>
                 </fieldset>
             </div>
 
@@ -466,9 +461,6 @@ require("../config/db.php");
             <!-- Pagination -->
             <div id="nutPhanTrang">
             </div>
-
-
-
 
         </div>
     </main>
@@ -491,14 +483,14 @@ require("../config/db.php");
 <script src="../assets/js/hideNav.js"></script>
 
 <!-- Chức năng lọc các ngành theo tên trường/khoa -->
-<script src="../assets/js/danhSachNganh.js?v=1.9.10.12"></script>
+<script src="../assets/js/danhSachNganh.js?v=1.10.12"></script>
 
 <!-- Các chức năng thêm, sửa, xóa, tìm kiếm sinh viên -->
-<script src="../assets/js/hienThiSinhVien.js?v=0.1.2.13.00"></script>
-<script src="../assets/js/themSinhVien.js?v=1.3.10.12.3"></script>
-<script src="../assets/js/timSinhVien.js?v=13.21.13.0"></script>
-<script src="../assets/js/xoaSinhVien.js?v=120.2.12.3"></script>
-<script src="../assets/js/suaSinhVien.js?v=523.23.9"></script>
+<script src="../assets/js/hienThiSinhVien.js?v=2.13.00"></script>
+<script src="../assets/js/themSinhVien.js?v=1.10.2.12.3"></script>
+<script src="../assets/js/timSinhVien.js?v=13.13.0"></script>
+<script src="../assets/js/xoaSinhVien.js?v=12.12.3"></script>
+<script src="../assets/js/suaSinhVien.js?v=5.23.9"></script>
 
 <!-- Gọi hàm :v -->
 <script>

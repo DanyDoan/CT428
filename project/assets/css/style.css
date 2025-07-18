@@ -24,7 +24,7 @@ header h1 {
     justify-self: center;
     font-size: 3em;
     position: relative;
-    background-image: linear-gradient(to left,rgb(166, 213, 233),rgba(18, 0, 0, 0.342));
+    background-image: linear-gradient(to left,rgb(166, 213, 233),rgba(239, 231, 231, 0.784));
     color: transparent;
     background-clip: text;
     animation: surfing 5s linear infinite;
@@ -41,8 +41,8 @@ header h1 {
 /* Main */
 main {
     width: auto;
+    min-height: 75svh;
     height: fit-content;
-    min-height: 90svh;
     display: flex;
     position: relative;
 }
@@ -146,7 +146,8 @@ main {
 
 /* Footer */
 footer {
-    height: 10svh;
+    min-height: 10svh;
+    height: fit-content;
     width: 100%;
 }
 
@@ -154,11 +155,16 @@ footer {
     * {
         font-size: 12px;
     }
+    #sideBar{
+        width: 42px;
+    }
 }
 
+#sideBar{
+    background-color: #182225;
+}
 header,
-#sideBar,
 footer {
-    background: #13131d;
+    background: 	#23353b;
     z-index: 10;
 }

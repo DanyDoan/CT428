@@ -5,7 +5,7 @@ function phanTrang(danhSachSinhVien) {
         document.getElementById("nutPhanTrang").innerHTML = "";
     }
     else {
-        let theader = "<tr><th>Mã Số Sinh Viên</th><th>Họ Tên Sinh Viên</th><th>Ngày Sinh</th><th>Giới Tính</th><th>Trường / Khoa</th><th>Lớp Học</th><th>Khóa</th></th><th>Lưu Thay Đổi</th><th>Xóa Sinh Viên</th></tr>";
+        let theader = "<tr><th>Mã Số Sinh Viên</th><th>Họ Tên Sinh Viên</th><th>Ngày Sinh</th><th>Giới Tính</th><th>Trường / Khoa</th><th>Ngành Học</th><th>Khóa</th></th><th>Lưu Thay Đổi</th><th>Xóa Sinh Viên</th></tr>";
         document.getElementById("studentList").innerHTML = theader + danhSachSinhVien;
     }
 }
