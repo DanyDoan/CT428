@@ -17,12 +17,12 @@ require("../config/db.php");
 <body>
   <div class="d-flex vh-100">
     <!-- Sidebar -->
-    <?php require("../require/sideBar.php"); ?>
+    <?php require("../shared/sideBar.php"); ?>
 
     <!-- Main content -->
     <div class="flex-grow-1 d-flex flex-column">
       <!-- Header -->
-      <?php require("../require/header.html"); ?>
+      <?php require("../shared/header.html"); ?>
 
       <!-- Main page content -->
       <main class="flex-grow-1 p-4 bg-light">
@@ -30,7 +30,7 @@ require("../config/db.php");
       </main>
 
       <!-- Footer -->
-      <?php require("../require/footer.html"); ?>
+      <?php require("../shared/footer.html"); ?>
     </div>
   </div>
 
