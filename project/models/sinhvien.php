@@ -5,13 +5,14 @@
         private $ngaySinh;
         private $gioiTinh;
         private $tenLop;
-        private $truong;
+        private $tenKhoaTruong;
         private $khoa; //Khóa
 
         function __construct($conn, $mssv)
         {
             $query = "SELECT * 
-                      FROM SINHVIEN 
+                      FROM SINHVIEN JOIN LOP
+                      ON SINHVIEN.maLop = LOP.maLop
                       WHERE MSSV = '$mssv'";
             $result = $conn->query($query);
             $row = $result->fetch_assoc();
@@ -20,7 +21,7 @@
             $this->ngaySinh = $row["ngaySinh"];
             $this->gioiTinh = $row["gioiTinh"];
             $this->tenLop = $row["tenLop"];
-            $this->truong = $row["truong"];
+            $this->tenKhoaTruong = $row["tenKhoaTruong"];
             $this->khoa = $row["khoa"];
         }
 

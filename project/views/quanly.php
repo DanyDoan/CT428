@@ -421,8 +421,8 @@ require("../config/db.php");
                         </div>
                         <div id="col2">
                             <div>
-                                <label for="maTruong">Trường</label>
-                                <select id="maTruong" name="maTruong">
+                                <label for="maKhoaTruong">Trường</label>
+                                <select id="maKhoaTruong" name="maKhoaTruong">
                                     <optgroup label="Trường/Khoa đào tạo">
                                         <option value="DA">Viện Công nghệ Sinh học và thực phẩm</option>
                                         <option value="DI">Trường Công nghệ Thông tin và Truyền thông</option>
@@ -484,7 +484,7 @@ require("../config/db.php");
                     <option value="hoTen">Họ Tên Sinh Viên</option>
                     <option value="gioiTinh">Giới Tính</option>
                     <option value="tenLop">Tên Lớp</option>
-                    <option value="truong">Mã Trường</option>
+                    <option value="maKhoaTruong">Mã Trường</option>
                     <option value="khoa">Khóa</option>
                 </select>
                 <input type="text" name="fieldValue" placeholder="...">
@@ -534,15 +534,15 @@ require("../config/db.php");
 
 
 
-<!-- Chức năng lọc các ngành theo tên trường/khoa -->
-<script src="../assets/js/danhSachNganh.js?v=1.0.1.1232"></script>
 
 <!-- Các chức năng thêm, sửa, xóa, tìm kiếm sinh viên -->
-<script src="../assets/js/hienThiSinhVien.js?v=2.12213..3.12.3.23.0"></script>
-<script src="../assets/js/themSinhVien.js?v=21.12.12.3.1.23.21.33"></script>
-<script src="../assets/js/timSinhVien.js?v=13..12.31.2.31.33"></script>
-<script src="../assets/js/xoaSinhVien.js?v=1212.312.3123.1..21"></script>
-<script src="../assets/js/suaSinhVien.js?v=52.2.2.1.3.1231"></script>
+<script src="../assets/js/hienThiSinhVien.js?v=2.2.123.12312.3.23.0"></script>
+<script src="../assets/js/themSinhVien.js?v=21.12123.123.12.123.33.21.33"></script>
+<script src="../assets/js/timSinhVien.js?v=13.123.1.132.33"></script>
+<script src="../assets/js/xoaSinhVien.js?v=12.123.31.23.1á..21"></script>
+<script src="../assets/js/suaSinhVien.js?v=52.3.123.1"></script>
+<script src="../assets/js/khoaTruong.js?v=121.23.123"></script>
+<script src="../assets/js/lop.js?v=123.123.123"></script>
 
 <!-- Gọi hàm :v -->
 <script>

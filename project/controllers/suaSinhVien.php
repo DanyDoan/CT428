@@ -6,7 +6,9 @@
     $query = "";
     if (empty($data["hoTen"])) {
 
-        $query = "SELECT * FROM SINHVIEN ORDER BY truong, tenLop, khoa, MSSV";
+        $query = "SELECT * FROM SINHVIEN 
+                  JOIN LOP ON SINHVIEN.maLop = LOP.maLop
+                  ORDER BY maTruong, tenLop, khoa, MSSV";
         $result = $conn->query($query);
         $result = $result->fetch_all(MYSQLI_ASSOC);
         $output = ["message" => $message, "danhSachSinhVien" => $result];
@@ -14,7 +16,7 @@
         exit;
     }
     $A = new sinhVien($conn, $data["MSSV"]);
-    $array = ["MSSV", "hoTen", "gioiTinh", "truong", "tenLop", "khoa"];
+    $array = ["MSSV", "hoTen", "gioiTinh", "maTruong", "tenLop", "khoa"];
     $change = 0;
     $data["khoa"] = "K" . $data["khoa"];
     $message = "";
@@ -29,7 +31,9 @@
     if ($message == "")
         $message = "Nothing has been changed!";
 
-    $query = "SELECT * FROM SINHVIEN ORDER BY truong, tenLop, khoa, MSSV";
+    $query = "SELECT * FROM SINHVIEN 
+        JOIN LOP ON SINHVIEN.maLop = LOP.maLop
+        ORDER BY maTruong, tenLop, khoa, MSSV";
     $result = $conn->query($query);
     $result = $result->fetch_all(MYSQLI_ASSOC);
     $output = ["message" => $message, "danhSachSinhVien" => $result];

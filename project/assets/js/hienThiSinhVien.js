@@ -1,48 +1,32 @@
 function phanTrang(danhSachSinhVien, k) {
     const btns = document.getElementsByClassName("pageButton");
-    
 
-    for (let btn of btns){
+    for (let btn of btns) {
         btn.classList.remove('currentPage');
     }
-    btns[k].classList.add('currentPage');
+    if (k != -1)
+        btns[k].classList.add('currentPage');
 
     if (danhSachSinhVien == '') {
         document.getElementById("studentList").innerHTML = "";
         document.getElementById("pagin").innerHTML = "";
     }
     else {
-        let theader = "<thead><tr><th>Mã Số Sinh Viên</th><th>Họ Tên Sinh Viên</th><th>Giới Tính</th><th>Trường / Khoa</th><th>Ngành Học</th><th>Khóa</th></th><th onclick='selectAll("+'"update"'+")'>Lưu Thay Đổi</th><th onclick='selectAll("+'"remove"'+")'>Xóa Sinh Viên</th></tr></thead>";
-        document.getElementById("studentList").innerHTML = theader + "<tbody>"+danhSachSinhVien+"</tbody>";
+        let theader = "<thead><tr><th>Mã Số Sinh Viên</th><th>Họ Tên Sinh Viên</th><th>Giới Tính</th><th>Trường / Khoa</th><th>Ngành Học</th><th>Khóa</th></th><th onclick='selectAll(" + '"update"' + ")'>Lưu Thay Đổi</th><th onclick='selectAll(" + '"remove"' + ")'>Xóa Sinh Viên</th></tr></thead>";
+        document.getElementById("studentList").innerHTML = theader + "<tbody>" + danhSachSinhVien + "</tbody>";
     }
 }
 
 function hienThiSinhVien(danhSachSinhVien) {
-    if(danhSachSinhVien.length == 0){
-        phanTrang('',0);
-        exit();
+    if (danhSachSinhVien.length == 0) {
+        phanTrang('', -1);
+        return;
     }
     let pages = [];
     let stack = [];
     let count = 0;
 
-    let obj = {
-        "DI" : "Trường CNTT&TT",
-        "DA" : "Viện CNSH&TP",
-        "KT" : "Trường Kinh Tế",
-        "FL" : "Khoa Ngoại Ngữ",
-        "HG" : "Khoa PTNT",
-        "KH" : "Khoa KHTN",
-        "XH" : "Khoa KHXH&NV",
-        "LK" : "Khoa Luật",
-        "MT" : "Khoa MT&TNTN",
-        "ML" : "Khoa Chính Trị",
-        "NN" : "Trường Nông Nghiệp",
-        "SP" : "Trường Sư Phạm",
-        "TD" : "Khoa Thể Chất",
-        "TN" : "Trường Bách Khoa",
-        "TS" : "Trường Thủy Sản"
-    }
+    let obj = danhSachKhoaTruong().data;
     for (let sinhVien of danhSachSinhVien) {
         let row = "<tr>";
         row += "<td><input type='text' value='" + sinhVien["MSSV"] + "' disabled></td>";
@@ -61,24 +45,33 @@ function hienThiSinhVien(danhSachSinhVien) {
         }
         row += "</select></td>";
 
+
+
+
         //School field
-        row += "<td><select name='truong' onchange='ganDanhSachNganhV2(this)'>";
-        for (let key in maTruong) {
-            if (key == sinhVien["truong"])
-                row += "<option value='" + key + "' selected>" + obj[key] + "</option>"
+        row += "<td><select name='maKhoaTruong' onchange='ganDanhSachLopV2(this)'>";
+        for (let truong of obj) {
+            if (truong.maKhoaTruong == sinhVien["maKhoaTruong"])
+                row += "<option value='" + truong.maKhoaTruong + "' selected>" + truong.tenKhoaTruong + "</option>"
             else
-                row += "<option value='" + key + "'>" + obj[key] + "</option>"
+                row += "<option value='" + truong.maKhoaTruong + "'>" + truong.tenKhoaTruong + "</option>"
         }
         row += "</select></td>";
 
+
+
+
+
         //Class field
-        let lop = layTenNganh(sinhVien["truong"]);
-        row += "<td><select name='tenLop'>";
-        for (let i = 0; i < lop.length; i++) {
-            if (lop[i].toUpperCase() == sinhVien["tenLop"].toUpperCase())
-                row += "<option value='" + lop[i] + "' selected>" + lop[i] + "</option>";
+        let tenLop = danhSachLop(sinhVien["maKhoaTruong"]);
+        row += "<td><select name='maLop'>";
+        for (let lop of tenLop) {
+            if (lop.tenLop == sinhVien["tenLop"])
+                row += "<option value='" + lop.maLop + "' selected>" + lop.tenLop+ "</option>";
             else
-                row += "<option value='" + lop[i] + "'>" + lop[i] + "</option>";
+                row += "<option value='" + lop.maLop + "'>" + lop.tenLop+ "</option>";
+
+
         }
         row += "</select></td>";
 
@@ -117,12 +110,12 @@ function hienThiSinhVien(danhSachSinhVien) {
 
 }
 
-function toggle(target){
+function toggle(target) {
     const btn = target.querySelector('input[type="checkbox"]');
     btn.checked = !btn.checked;
 }
 
-function selectAll(act_type){
+function selectAll(act_type) {
     const cols = document.getElementsByName(act_type);
     for (let col of cols)
         col.checked = true;

@@ -9,21 +9,24 @@ if (
     die(json_encode(["status" => "fail"]));
 }
 
+$query = "SELECT maLop FROM LOP WHERE tenLop = '".$_POST['tenLop']."'";
+$maLop = $conn->query($query)->fetch_assoc();
+
 $stm = $conn->prepare("INSERT INTO SINHVIEN 
-                             (MSSV, hoTen, ngaySinh, gioiTinh, truong, maLop)
-                             VALUES ( ?, ?, ?, ?, ?, ?, ?)");
-$stm->bind_param("sssssss", $_POST["MSSV"], $_POST["hoTen"], $_POST["ngaySinh"], $_POST["gioiTinh"],  $_POST["tenTruong"], $_POST["maLop"], $_POST["khoa"]);
+                             (MSSV, hoTen, ngaySinh, gioiTinh, maLop, khoa)
+                             VALUES ( ?, ?, ?, ?, ?, ?)");
+$stm->bind_param("ssssss", $_POST["MSSV"], $_POST["hoTen"], $_POST["ngaySinh"], $_POST["gioiTinh"], $maLop, $_POST["khoa"]);
 
 
 
 try {
     $stm->execute();
-    $query = "SELECT * FROM SINHVIEN";
+    $query = "SELECT * FROM SINHVIEN JOIN LOP ON SINHVIEN.maLop = LOP.maLop";
     $result = $conn->query($query);
     $output = $result->fetch_all(MYSQLI_ASSOC);
     echo json_encode(["status" => "success", "data" => $output]);
 } catch (mysqli_sql_exception) {
-    $query = "SELECT * FROM SINHVIEN";
+    $query = "SELECT * FROM SINHVIEN JOIN LOP ON SINHVIEN.maLop = LOP.maLop";
     $result = $conn->query($query);
     $output = $result->fetch_all(MYSQLI_ASSOC);
     if ($stm->errno == 1062)

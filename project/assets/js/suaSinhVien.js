@@ -28,12 +28,11 @@ function danhSachSua() {
                 MSSV: inputs[0].value,
                 hoTen: inputs[1].value,
                 gioiTinh: selects[0].value,
-                truong: selects[1].value,
+                maTruong: selects[1].value,
                 tenLop: selects[2].value,
                 khoa: selects[3].value
             }
             suaSinhVien(JSON.stringify(data));
         }
     }
-    // alert(count(target));
 }
