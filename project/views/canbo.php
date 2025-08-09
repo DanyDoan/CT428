@@ -198,11 +198,11 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
                     <div onclick="showModal()" class="box user-profile">
                         <span class="material-symbols-outlined" style="color:#1E88E5">account_circle</span>
                         <span class="main-title-box">Thông tin cá nhân</span>
-                        <?php echo $row['hoTen']; ?>
+                        <?php echo  htmlspecialchars($row['hoTen']); ?>
                         <span class="sub-title-box">Nơi công tác</span>
-                        <?php echo $row['noiCongTac']; ?>
+                        <?php echo  htmlspecialchars($row['noiCongTac']); ?>
                         <span class="sub-title-box">Lớp hiện tại</span>
-                        <?php echo $row['maLop']; ?>
+                        <?php echo htmlspecialchars( $row['maLop']); ?>
                     </div>
 
                     <a href="updatecanbo.php" class="box edit-profile">
