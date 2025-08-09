@@ -255,17 +255,17 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             <span class="material-symbols-outlined button" onclick="closeModal()">close</span>
             <span class="main-title-box">Thông tin chi tiết</span>
             <span class="sub-title-box">Mã số cán bộ</span>
-            <?php echo $row['MSCB']; ?>
+            <?php echo htmlspecialchars($row['MSCB']); ?>
             <span class="sub-title-box">Họ tên</span>
-            <?php echo $row['hoTen']; ?>
+            <?php echo htmlspecialchars($row['hoTen']); ?>
             <span class="sub-title-box">Ngày sinh</span>
-            <?php echo $row['ngaySinh']; ?>
+            <?php echo htmlspecialchars($row['ngaySinh']); ?>
             <span class="sub-title-box">Giới tính</span>
-            <?php echo $row['gioiTinh']; ?>
+            <?php echo htmlspecialchars($row['gioiTinh']); ?>
             <span class="sub-title-box">Nơi công tác</span>
-            <?php echo $row['noiCongTac']; ?>
+            <?php echo htmlspecialchars($row['noiCongTac']); ?>
             <span class="sub-title-box">Lớp hiện tại</span>
-            <?php echo $row['maLop']; ?>
+            <?php echo htmlspecialchars($row['maLop']); ?>
         </div>
     </div>
 </body>
