@@ -174,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="mb-3">
                     <label for="maLopCoVan" class="form-label">Mã lớp cố vấn</label>
-                    <input type="text" class="form-control" id="maLopCoVan" name="maLopCoVan" value="<?= htmlspecialchars($user['maLopCoVan']) ?>" required>
+                    <input type="text" class="form-control" id="lopCoVan" name="lopCoVan" value="<?= htmlspecialchars($user['lopCoVan']) ?>" required>
                 </div>
 
                 <div class="mb-3 form-check">

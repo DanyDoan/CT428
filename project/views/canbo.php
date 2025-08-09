@@ -15,7 +15,25 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
     exit;
 }
 ?>
-
+<?php
+$dsTenKhoa = [
+    "DI" => "Trường CNTT&TT",
+    "DA" => "Viện CNSH&TP",
+    "KT" => "Trường Kinh Tế",
+    "FL" => "Khoa Ngoại Ngữ",
+    "HG" => "Khoa PTNT",
+    "KH" => "Khoa KHTN",
+    "XH" => "Khoa KHXH&NV",
+    "LK" => "Khoa Luật",
+    "MT" => "Khoa MT&TNTN",
+    "ML" => "Khoa Chính Trị",
+    "NN" => "Trường Nông Nghiệp",
+    "SP" => "Trường Sư Phạm",
+    "TD" => "Khoa Thể Chất",
+    "TN" => "Trường Bách Khoa",
+    "TS" => "Trường Thủy Sản"
+];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +42,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="../assets/css/style.css?v=1.6.7">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -131,13 +150,13 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.4);
-            z-index: 999;
+            z-index: 9999;
         }
 
         .modal {
             position: fixed;
             width: 50%;
-            height: autox;
+            height: auto;
             top: 15%;
             left: 50%;
             transform: translateX(-50%);
@@ -145,7 +164,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             border: 1px solid #ddd;
             box-shadow: 0 4px 8px 6px rgba(0, 0, 0, 0.2);
             border-radius: 12px;
-            z-index: 1000;
+            z-index: 10000;
         }
 
         .modal-content {
@@ -190,54 +209,57 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
 
         <!-- Main -->
 
-            <!-- Content -->
-            <div id="content" class="flex-grow-1 overflow-auto">
-                <br>
-                <br>
-                <div class="container">
-                    <div onclick="showModal()" class="box user-profile">
-                        <span class="material-symbols-outlined" style="color:#1E88E5">account_circle</span>
-                        <span class="main-title-box">Thông tin cá nhân</span>
-                        <?php echo  htmlspecialchars($row['hoTen']); ?>
-                        <span class="sub-title-box">Nơi công tác</span>
-                        <?php echo  htmlspecialchars($row['noiCongTac']); ?>
-                        <span class="sub-title-box">Lớp hiện tại</span>
-                        <?php echo $row['lopCoVan']; ?>
-                        <?php echo htmlspecialchars( $row['maLop']); ?>
-                    </div>
-
-                    <a href="updatecanbo.php" class="box edit-profile">
-                        <span class="material-symbols-outlined" style="color:#43A047">manage_accounts</span>
-                        <span class="main-title-box">Cập nhật thông tin</span>
-                    </a>
-
-                    <a href="#" onclick="showComingSoon()" class="box feedback">
-                        <span class="material-symbols-outlined" style="color:#FB8C00">feedback</span>
-                        <span class="main-title-box">Góp ý hệ thống</span>
-                    </a>
+        <!-- Content -->
+        <div id="content" class="flex-grow-1 overflow-auto">
+            <br>
+            <br>
+            <div class="container">
+                <div onclick="showModal()" class="box user-profile">
+                    <span class="material-symbols-outlined" style="color:#1E88E5">account_circle</span>
+                    <span class="main-title-box">Thông tin cá nhân</span>
+                    <?php echo  htmlspecialchars($row['hoTen']); ?>
+                    <span class="sub-title-box">Nơi công tác</span>
                     <?php
-                        echo '<div onclick="setLocalStorage('."'".$row["lopCoVan"]."'".')" class="box advisor-class-meeting-info">'
+                    $maKhoa = $row['noiCongTac'] ?? '';
+
+                    echo htmlspecialchars($dsTenKhoa[$maKhoa] ?? $maKhoa);
                     ?>
-                        <span class="material-symbols-outlined" style="color:#8E24AA">diversity_3</span>
-                        <span class="main-title-box">Thông tin họp lớp cố vấn</span>
-                    </div>
-
-                    <a href="https://mail.google.com" target="_blank" class="box fact_check">
-                        <span class="material-symbols-outlined" style="color:#546E7A">mail</span>
-                        <span class="main-title-box">Hộp thư đến</span>
-                    </a>
-
-                    <a href="https://www.cit.ctu.edu.vn/index.php/2023-04-21-07-01-51" target="_blank" class="box calendar_month">
-                        <span class="material-symbols-outlined" style="color:#E53935">calendar_month</span>
-                        <span class="main-title-box">Lịch công tác</span>
-                    </a>
-
+                    <span class="sub-title-box">Lớp hiện tại</span>
+                    <?php echo htmlspecialchars($row['lopCoVan']); ?>
                 </div>
 
+                <a href="updatecanbo.php" class="box edit-profile">
+                    <span class="material-symbols-outlined" style="color:#43A047">manage_accounts</span>
+                    <span class="main-title-box">Cập nhật thông tin</span>
+                </a>
+
+                <a href="#" onclick="showComingSoon()" class="box feedback">
+                    <span class="material-symbols-outlined" style="color:#FB8C00">feedback</span>
+                    <span class="main-title-box">Góp ý hệ thống</span>
+                </a>
+                <?php
+                echo '<div onclick="setLocalStorage(' . "'" . $row["lopCoVan"] . "'" . ')" class="box advisor-class-meeting-info">'
+                ?>
+                <span class="material-symbols-outlined" style="color:#8E24AA">diversity_3</span>
+                <span class="main-title-box">Thông tin lớp cố vấn</span>
             </div>
 
-        <!-- Footer -->
-        <?php require("../shared/footer.html"); ?>
+            <a href="https://mail.google.com" target="_blank" class="box fact_check">
+                <span class="material-symbols-outlined" style="color:#546E7A">mail</span>
+                <span class="main-title-box">Hộp thư đến</span>
+            </a>
+
+            <a href="https://www.cit.ctu.edu.vn/index.php/2023-04-21-07-01-51" target="_blank" class="box calendar_month">
+                <span class="material-symbols-outlined" style="color:#E53935">calendar_month</span>
+                <span class="main-title-box">Lịch công tác</span>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <?php require("../shared/footer.html"); ?>
     </div>
 
     <div id="overlay" class="overlay hidden"></div>
@@ -254,9 +276,13 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             <span class="sub-title-box">Giới tính</span>
             <?php echo htmlspecialchars($row['gioiTinh']); ?>
             <span class="sub-title-box">Nơi công tác</span>
-            <?php echo htmlspecialchars($row['noiCongTac']); ?>
+            <?php
+                    $maKhoa = $row['noiCongTac'] ?? '';
+
+                    echo htmlspecialchars($dsTenKhoa[$maKhoa] ?? $maKhoa);
+                    ?>
             <span class="sub-title-box">Lớp hiện tại</span>
-            <?php echo htmlspecialchars($row['maLop']); ?>
+            <?php echo htmlspecialchars($row['lopCoVan']); ?>
         </div>
     </div>
 </body>
@@ -270,21 +296,35 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
     }
 
     function showModal() {
-        document.getElementById("overlay").classList.remove("hidden");
-        document.getElementById("modal").classList.remove("hidden");
+        const overlay = document.getElementById("overlay");
+        const modal = document.getElementById("modal");
+
+        overlay.classList.remove("hidden");
+        modal.classList.remove("hidden");
+
+        // Ép hiển thị
+        overlay.style.display = "block";
+        modal.style.display = "block";
     }
 
     function closeModal() {
-        document.getElementById("overlay").classList.add("hidden");
-        document.getElementById("modal").classList.add("hidden");
+        const overlay = document.getElementById("overlay");
+        const modal = document.getElementById("modal");
+
+        overlay.classList.add("hidden");
+        modal.classList.add("hidden");
+
+        overlay.style.display = "none";
+        modal.style.display = "none";
     }
+
 
     function showComingSoon() {
         alert("Tính năng đang trong quá trình phát triển!");
     }
 
-    function setLocalStorage(tenLop){
+    function setLocalStorage(tenLop) {
         localStorage.setItem("tenLop", JSON.stringify(tenLop));
-        window.location.href="./quanly.php";
+        window.location.href = "./quanly.php";
     }
 </script>

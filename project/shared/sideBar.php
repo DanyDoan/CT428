@@ -30,6 +30,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <span class="menu-text">Cán bộ</span>
                 </a>
             </li>
+             <li class="nav-item <?= $current_page == 'dscanbo.php' ? 'bg-primary' : '' ?>">
+                <a href="dscanbo.php" class="nav-link text-white d-flex align-items-center">
+                    <i class="bi bi-list me-2"></i>
+                    <span class="menu-text">Danh sách cán bộ</span>
+                </a>
+            </li>
         </ul>
 
         <div class="mt-auto p-3 d-flex align-items-center">
