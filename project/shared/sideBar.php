@@ -18,10 +18,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <span class="menu-text">Trang chủ</span>
                 </a>
             </li>
-            <li class="nav-item <?= $current_page == 'sinhvien.php' ? 'bg-primary' : '' ?>">
-                <a href="sinhvien.php" class="nav-link text-white d-flex align-items-center">
+            <li class="nav-item <?= $current_page == 'quanly.php' ? 'bg-primary' : '' ?>">
+                <a href="quanly.php" class="nav-link text-white d-flex align-items-center">
                     <i class="bi bi-people me-2"></i>
-                    <span class="menu-text">Sinh viên</span>
+                    <span class="menu-text">Quản lý</span>
                 </a>
             </li>
             <li class="nav-item <?= $current_page == 'canbo.php' ? 'bg-primary' : '' ?>">

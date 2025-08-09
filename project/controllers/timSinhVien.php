@@ -1,11 +1,11 @@
 <?php
-    header("Content-type: application/json");
     require("../config/db.php");
+    header("Content-type: application/json");
 
     $query = "";
     $output = [];
     if (empty($_POST["fieldValue"])){
-        $query = "SELECT * FROM SINHVIEN ORDER BY MSSV";
+        $query = "SELECT * FROM SINHVIEN ORDER BY truong, tenLop, khoa, MSSV";
         $result = $conn->query($query);
         $output = $result->fetch_all(MYSQLI_ASSOC);
     }

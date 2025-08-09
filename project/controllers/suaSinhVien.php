@@ -3,21 +3,33 @@
     require_once("../models/sinhvien.php");
     $data = json_decode(file_get_contents("php://input"), true);
 
+    $query = "";
+    if (empty($data["hoTen"])) {
+
+        $query = "SELECT * FROM SINHVIEN ORDER BY truong, tenLop, khoa, MSSV";
+        $result = $conn->query($query);
+        $result = $result->fetch_all(MYSQLI_ASSOC);
+        $output = ["message" => $message, "danhSachSinhVien" => $result];
+        echo json_encode($output);
+        exit;
+    }
     $A = new sinhVien($conn, $data["MSSV"]);
-    $array = ["MSSV", "hoTen", "ngaySinh", "gioiTinh", "truong", "tenLop", "khoa"];
+    $array = ["MSSV", "hoTen", "gioiTinh", "truong", "tenLop", "khoa"];
     $change = 0;
-    $data["khoa"] = "K".$data["khoa"];
-    $message = "nothing to change!";
-    foreach ($array as $muc){
-        if ($A->lay($muc) != $data[$muc])
-        {
+    $data["khoa"] = "K" . $data["khoa"];
+    $message = "";
+    foreach ($array as $muc) {
+        if ($A->lay($muc) != $data[$muc]) {
             $A->sua($conn, $muc, $data[$muc]);
             $change++;
-            $message = "changed successfully";
-        }
-        else;
+            $message = $message."- changed ".$muc."<br>";
+        } else;
     }
-    $query = "SELECT * FROM SINHVIEN";
+
+    if ($message == "")
+        $message = "Nothing has been changed!";
+
+    $query = "SELECT * FROM SINHVIEN ORDER BY truong, tenLop, khoa, MSSV";
     $result = $conn->query($query);
     $result = $result->fetch_all(MYSQLI_ASSOC);
     $output = ["message" => $message, "danhSachSinhVien" => $result];

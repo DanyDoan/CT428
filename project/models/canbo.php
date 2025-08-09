@@ -26,7 +26,7 @@ class canbo
         $this->hoTen = $row["hoTen"];
         $this->ngaySinh = $row["ngaySinh"];
         $this->gioiTinh = $row["gioiTinh"];
-        $this->tenLop = $row["tenLop"];
+        $this->tenLop = $row["maLopCoVan"];
         $this->noiCongTac = $row["noiCongTac"];
     }
 

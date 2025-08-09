@@ -1,23 +1,26 @@
-let load = 0;
-function phanTrang(danhSachSinhVien) {
+function phanTrang(danhSachSinhVien, k) {
+    alert("Dô ");
+    const btns = document.getElementsByClassName("pageButton");
+    
+
+    for (let btn of btns){
+        btn.classList.remove('currentPage');
+    }
+    btns[k].classList.add('currentPage');
+
     if (danhSachSinhVien == '') {
         document.getElementById("studentList").innerHTML = "";
-        document.getElementById("nutPhanTrang").innerHTML = "";
+        document.getElementById("pagin").innerHTML = "";
     }
     else {
-        let theader = "<tr><th>Mã Số Sinh Viên</th><th>Họ Tên Sinh Viên</th><th>Ngày Sinh</th><th>Giới Tính</th><th>Trường / Khoa</th><th>Ngành Học</th><th>Khóa</th></th><th>Lưu Thay Đổi</th><th>Xóa Sinh Viên</th></tr>";
-        document.getElementById("studentList").innerHTML = theader + danhSachSinhVien;
+            alert("xong");
+        let theader = "<thead><tr><th>Mã Số Sinh Viên</th><th>Họ Tên Sinh Viên</th><th>Giới Tính</th><th>Trường / Khoa</th><th>Ngành Học</th><th>Khóa</th></th><th onclick='selectAll("+'"update"'+")'>Lưu Thay Đổi</th><th onclick='selectAll("+'"remove"'+")'>Xóa Sinh Viên</th></tr></thead>";
+        document.getElementById("studentList").innerHTML = theader + "<tbody>"+danhSachSinhVien+"</tbody>";
     }
 }
 
 function hienThiSinhVien(danhSachSinhVien) {
 
-    
-    if (danhSachSinhVien == '' && load != 0) {
-        phanTrang('');
-        exit;
-    }
-    load++;
     let pages = [];
     let stack = [];
     let count = 0;
@@ -44,7 +47,7 @@ function hienThiSinhVien(danhSachSinhVien) {
         row += "<td><input type='text' value='" + sinhVien["MSSV"] + "' disabled></td>";
         row += "<td><input type='text' value='" + sinhVien["hoTen"] + "'></td>";
 
-        row += "<td><input type='date' value='" + sinhVien["ngaySinh"] + "'></td>";
+        // row += "<td><input type='date' value='" + sinhVien["ngaySinh"] + "'></td>";
 
         // Gender field
         row += "<td><select name='gioiTinh'>";
@@ -87,9 +90,8 @@ function hienThiSinhVien(danhSachSinhVien) {
         }
 
         row += "</select></td>";
-        row += `<td><button type='button' onclick="suaSinhVien(this)" class='icon'></button></td>`
-        row += `<td><button type='button' onclick="xoaSinhVien('${sinhVien["MSSV"]}')" class='icon'></button></td></tr>`;
-
+        row += `<td onclick='toggle(this)'><input type='checkbox' class='checkBox' name='update' value=${sinhVien["MSSV"]}></td>`
+        row += `<td onclick='toggle(this)'><input type='checkbox' class='checkBox' name='remove' value=${sinhVien["MSSV"]}></td></tr>`;
         stack.push(row);
         count++;
         if (count % 10 == 0) {
@@ -101,16 +103,27 @@ function hienThiSinhVien(danhSachSinhVien) {
         pages.push(stack.join(""));
     }
 
-    document.getElementById("nutPhanTrang").innerHTML = "";
+    document.getElementById("pagin").innerHTML = "";
     for (let i = 0; i < pages.length; i++) {
         const button = document.createElement("button");
-        button.addEventListener("click", () => phanTrang(pages[i]));
+        button.addEventListener("click", () => phanTrang(pages[i], i));
         button.innerText = `${i + 1}`;
         button.classList.add("pageButton");
-        document.getElementById("nutPhanTrang").appendChild(button);
+        document.getElementById("pagin").appendChild(button);
     }
     if (pages.length > 0)
-        phanTrang(pages[0]);
+        phanTrang(pages[0], 0);
 
+}
+
+function toggle(target){
+    const btn = target.querySelector('input[type="checkbox"]');
+    btn.checked = !btn.checked;
+}
+
+function selectAll(act_type){
+    const cols = document.getElementsByName(act_type);
+    for (let col of cols)
+        col.checked = true;
 }
 

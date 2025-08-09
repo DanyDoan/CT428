@@ -27,7 +27,7 @@ body {
 #main {
     grid-area: main;
     display: grid;
-    grid-template-rows: 10svh 80svh 10svh;
+    grid-template-rows: 10svh 80svh 5svh;
     grid-template-areas:
         "header"
         "content"
@@ -54,10 +54,10 @@ body {
 
 #footer {
     grid-area: footer;
-    height: 10svh;
     background-color: #f5f5f5;
     color: #001528;
     font-size: 14px;
+    display:flex;
     text-align: center;
     align-items: center;
     justify-content: center;

@@ -59,6 +59,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             cursor: pointer;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             border: 2px solid #ddd;
+            transition: 0.4s;
         }
 
         .box:hover {
@@ -188,12 +189,11 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
         <?php require("../shared/header.html"); ?>
 
         <!-- Main -->
-        <div id="content">
 
             <!-- Content -->
             <div id="content" class="flex-grow-1 overflow-auto">
-                <h2>Đây là trang thông tin cán bộ</h2>
-
+                <br>
+                <br>
                 <div class="container">
                     <div onclick="showModal()" class="box user-profile">
                         <span class="material-symbols-outlined" style="color:#1E88E5">account_circle</span>
@@ -202,6 +202,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
                         <span class="sub-title-box">Nơi công tác</span>
                         <?php echo  htmlspecialchars($row['noiCongTac']); ?>
                         <span class="sub-title-box">Lớp hiện tại</span>
+                        <?php echo $row['lopCoVan']; ?>
                         <?php echo htmlspecialchars( $row['maLop']); ?>
                     </div>
 
@@ -214,11 +215,12 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
                         <span class="material-symbols-outlined" style="color:#FB8C00">feedback</span>
                         <span class="main-title-box">Góp ý hệ thống</span>
                     </a>
-
-                    <a href="#" onclick="showComingSoon()" class="box advisor-class-meeting-info">
+                    <?php
+                        echo '<div onclick="setLocalStorage('."'".$row["lopCoVan"]."'".')" class="box advisor-class-meeting-info">'
+                    ?>
                         <span class="material-symbols-outlined" style="color:#8E24AA">diversity_3</span>
                         <span class="main-title-box">Thông tin họp lớp cố vấn</span>
-                    </a>
+                    </div>
 
                     <a href="https://mail.google.com" target="_blank" class="box fact_check">
                         <span class="material-symbols-outlined" style="color:#546E7A">mail</span>
@@ -233,21 +235,10 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
                 </div>
 
             </div>
-        </div>
 
         <!-- Footer -->
         <?php require("../shared/footer.html"); ?>
     </div>
-
-
-
-
-
-
-
-
-
-
 
     <div id="overlay" class="overlay hidden"></div>
     <div id="modal" class="modal hidden">
@@ -290,5 +281,10 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
 
     function showComingSoon() {
         alert("Tính năng đang trong quá trình phát triển!");
+    }
+
+    function setLocalStorage(tenLop){
+        localStorage.setItem("tenLop", JSON.stringify(tenLop));
+        window.location.href="./quanly.php";
     }
 </script>
