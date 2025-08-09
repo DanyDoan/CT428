@@ -1,11 +1,11 @@
 <?php
 
-// session_start();
+session_start();
 
-// if (!isset($_SESSION['MSCB'])) {
-//     header("Location: login.php");
-//     exit;
-// }
+if (!isset($_SESSION['MSCB'])) {
+    header("Location: login.php");
+    exit;
+}
 
 ?>
 
@@ -24,9 +24,11 @@
 </head>
 
 <body>
-    <!-- Sidebar -->
-    <?php require("../shared/sideBar.php"); ?>
 
+    <!-- Sidebar -->
+    <div id="sideBar">
+        <?php require("../shared/sideBar.php"); ?>
+    </div>
     <!-- Main -->
     <div id="main">
 
@@ -34,11 +36,16 @@
         <?php require("../shared/header.html"); ?>
 
         <!-- Content -->
-        <div id="content" class="d-flex flex-column">
+        <div id="content">
+
+
         </div>
 
         <!-- Footer -->
-        <?php require("../shared/footer.html"); ?>
+        <?php
+        require("../shared/footer.html");
+        ?>
+
     </div>
 
 </body>

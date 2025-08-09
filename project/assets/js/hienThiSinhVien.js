@@ -1,5 +1,4 @@
 function phanTrang(danhSachSinhVien, k) {
-    alert("Dô ");
     const btns = document.getElementsByClassName("pageButton");
     
 
@@ -13,14 +12,16 @@ function phanTrang(danhSachSinhVien, k) {
         document.getElementById("pagin").innerHTML = "";
     }
     else {
-            alert("xong");
         let theader = "<thead><tr><th>Mã Số Sinh Viên</th><th>Họ Tên Sinh Viên</th><th>Giới Tính</th><th>Trường / Khoa</th><th>Ngành Học</th><th>Khóa</th></th><th onclick='selectAll("+'"update"'+")'>Lưu Thay Đổi</th><th onclick='selectAll("+'"remove"'+")'>Xóa Sinh Viên</th></tr></thead>";
         document.getElementById("studentList").innerHTML = theader + "<tbody>"+danhSachSinhVien+"</tbody>";
     }
 }
 
 function hienThiSinhVien(danhSachSinhVien) {
-
+    if(danhSachSinhVien.length == 0){
+        phanTrang('',0);
+        exit();
+    }
     let pages = [];
     let stack = [];
     let count = 0;

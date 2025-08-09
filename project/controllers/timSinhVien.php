@@ -5,7 +5,7 @@
     $query = "";
     $output = [];
     if (empty($_POST["fieldValue"])){
-        $query = "SELECT * FROM SINHVIEN ORDER BY truong, tenLop, khoa, MSSV";
+        $query = "SELECT * FROM SINHVIEN ORDER BY truong, maLop, MSSV";
         $result = $conn->query($query);
         $output = $result->fetch_all(MYSQLI_ASSOC);
     }

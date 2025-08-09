@@ -7,5 +7,5 @@
     $query = "SELECT * FROM SINHVIEN ORDER BY truong, tenLop, khoa, MSSV";
     $result = $conn->query($query);
     $output = $result->fetch_all(MYSQLI_ASSOC);
-    echo json_encode($output);
+    echo json_encode(["data" => $output]);
 ?>
