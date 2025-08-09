@@ -111,8 +111,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="maLopCoVan" class="form-label">Mã lớp cố vấn</label>
-                                <input type="text" id="maLopCoVan" name="maLopCoVan" class="form-control">
+                                <label for="lopCoVan" class="form-label">Lớp cố vấn</label>
+                                <input type="text" id="lopCoVan" name="lopCoVan" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label for="MSCB" class="form-label">Mã tài khoản</label>
@@ -268,7 +268,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $ngaySinh = $_POST['ngaySinh'];
     $gioiTinh = $_POST['gioiTinh'];
     $noiCongTac = $_POST['noiCongTac'];
-    $maLopCoVan = $_POST['maLopCoVan'] ?? '';
+    $lopCoVan = $_POST['lopCoVan'] ?? '';
     $matKhau = $_POST['matKhau'];
     $matKhauXacNhan = $_POST['matKhauXacNhan'];
     $key = $_POST['key'] ?? '';
@@ -287,8 +287,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         $hashedPassword = password_hash($matKhau, PASSWORD_DEFAULT);
 
-        $stmt = $conn->prepare("INSERT INTO CANBO (MSCB, matKhau, hoTen, ngaySinh, gioiTinh, noiCongTac, maLopCoVan) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssss", $MSCB, $hashedPassword, $hoTen, $ngaySinh, $gioiTinh, $noiCongTac, $maLopCoVan);
+        $stmt = $conn->prepare("INSERT INTO CANBO (MSCB, matKhau, hoTen, ngaySinh, gioiTinh, noiCongTac, lopCoVan) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $MSCB, $hashedPassword, $hoTen, $ngaySinh, $gioiTinh, $noiCongTac, $lopCoVan);
 
         if ($stmt->execute()) {
             $_SESSION['generatedKey'] = generateSecurityKey(8);

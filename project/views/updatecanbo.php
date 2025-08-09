@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">Cập nhật</button>
-                    <a href="profile.php" class="btn btn-outline-secondary">Quay lại</a>
+                    <a href="canbo.php" class="btn btn-outline-secondary">Quay lại</a>
                 </div>
             </form>
         </div>

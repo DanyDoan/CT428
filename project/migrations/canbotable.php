@@ -5,7 +5,7 @@
               matKhau varchar(255),
               ngaySinh date,
               gioiTinh varchar(5),
-              tenLop varchar(10),
+              lopCoVan varchar(50),
               noiCongTac varchar(50));";
     try{
         $conn->query($query);

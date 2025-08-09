@@ -14,20 +14,15 @@ function themSinhVien() {
 
     xhttp.onload = function () {
         document.getElementById("anounceBox").innerHTML = "";
-        try {
-            let danhSachSinhVien = JSON.parse(this.responseText);
-            if (danhSachSinhVien["status"] == "fail") {
-                document.getElementById("anounceBox").innerHTML = "<h4 class='message'>Không được bỏ trống dữ liệu</h4>";
-            } else if (danhSachSinhVien["status"] == "existed") {
-                document.getElementById("anounceBox").innerHTML = "<h4 class='message'>Mã số sinh viên đã tồn tại</h4>";
-            } else {
-                document.getElementById("anounceBox").innerHTML = "<h4 class='message'>Thêm thành công</h4>";
-                hienThiSinhVien(danhSachSinhVien.data);
-            }
-        } catch (e) {
-            document.getElementById("anounceBox").innerHTML = "<h4 class='message text-danger'>Lỗi hệ thống hoặc JSON không hợp lệ</h4>";
-            console.error("Lỗi khi parse JSON:", this.responseText);
+        let danhSachSinhVien = JSON.parse(this.responseText);
+        if (danhSachSinhVien["status"] == "fail") {
+            document.getElementById("anounceBox").innerHTML = "<h2>Không được bỏ trống dữ liệu</h2>";
+        } else if (danhSachSinhVien["status"] == "existed") {
+            document.getElementById("anounceBox").innerHTML = "<h2>Mã số sinh viên đã tồn tại</h2>";
+        } else {
+            document.getElementById("anounceBox").innerHTML = "<h2>Thêm thành công</h2>";
         }
+        hienThiSinhVien(danhSachSinhVien.data);
     }
 
     xhttp.open("POST", "../controllers/themSinhVien.php");
