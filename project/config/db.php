@@ -16,8 +16,10 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // important!
     }
 
     $conn->select_db($name);
+    require("../migrations/khoatruongtable.php");
+    require("../migrations/loptable.php");
     require("../migrations/canbotable.php");
     require("../migrations/sinhvientable.php");
-    require("../migrations/truongtable.php");
     require("../migrations/logtable.php");
+
 ?>

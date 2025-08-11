@@ -4,9 +4,12 @@
                 hoTen varchar(50) NOT NULL,
                 ngaySinh date NOT NULL,
                 gioiTinh varchar(5) NOT NULL,
-                tenLop varchar(50) NOT NULL,
-                truong varchar(50) NOT NULL,
-                khoa varchar(5) NOT NULL)"; #Khóa
+                maLop varchar(50) NOT NULL,
+                khoa varchar(5) NOT NULL,
+                diaChi varchar(50),
+                soDienThoai varchar(50),
+                email varchar(50),
+                FOREIGN KEY (maLop) REFERENCES lop(maLop));"; 
     try {
         $conn->query($query);
         // echo "Table SinhVien created<br>";

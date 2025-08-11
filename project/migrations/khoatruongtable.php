@@ -1,8 +1,7 @@
  <?php
-
-    $query = "CREATE TABLE TRUONG(
-                maTruong varchar(5) PRIMARY KEY,
-                tenTruong varchar(50)
+    $query = "CREATE TABLE KHOATRUONG(
+                maKhoaTruong varchar(5) PRIMARY KEY,
+                tenKhoaTruong varchar(50)
             );";
     try{
         $conn->query($query);

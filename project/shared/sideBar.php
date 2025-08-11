@@ -1,5 +1,6 @@
-<?php 
+<?php
 $current_page = basename($_SERVER['PHP_SELF']);
+// SESSION_start();
 ?>
 
 <div id="sidebar" class="d-flex flex-column text-white vh-100 shadow" style="width: 200px; background-color: #001528; transition: width 0.6s;">
@@ -24,13 +25,28 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <span class="menu-text">Quản lý</span>
                 </a>
             </li>
-            <li class="nav-item <?= $current_page == 'canbo.php' ? 'bg-primary' : '' ?>">
-                <a href="canbo.php" class="nav-link text-white d-flex align-items-center">
-                    <i class="bi bi-person-badge me-2"></i>
-                    <span class="menu-text">Cán bộ</span>
-                </a>
-            </li>
-             <li class="nav-item <?= $current_page == 'dscanbo.php' ? 'bg-primary' : '' ?>">
+            <?php
+            if (isset($_SESSION['MSCB']) && $_SESSION['MSCB'] == 0) {
+            ?>
+                <li class="nav-item <?= $current_page == 'logfile.php' ? 'bg-primary' : '' ?>">
+                    <a href="logfile.php" class="nav-link text-white d-flex align-items-center">
+                        <i class="bi bi-person-badge me-2"></i>
+                        <span class="menu-text">Log File</span>
+                    </a>
+                </li>
+            <?php
+            } else {
+            ?>
+                <li class="nav-item <?= $current_page == 'canbo.php' ? 'bg-primary' : '' ?>">
+                    <a href="canbo.php" class="nav-link text-white d-flex align-items-center">
+                        <i class="bi bi-person-badge me-2"></i>
+                        <span class="menu-text">Cán bộ</span>
+                    </a>
+                </li>   
+            <?php
+            }
+            ?>
+              <li class="nav-item <?= $current_page == 'dscanbo.php' ? 'bg-primary' : '' ?>">
                 <a href="dscanbo.php" class="nav-link text-white d-flex align-items-center">
                     <i class="bi bi-list me-2"></i>
                     <span class="menu-text">Danh sách cán bộ</span>

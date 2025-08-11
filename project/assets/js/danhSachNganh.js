@@ -22,7 +22,6 @@ const maTruong = {
     ],
     "HG": [
         "Quản trị kinh doanh - học tại Hòa An",
-        "Luật - học tại Hòa An",
         "Công nghệ thông tin - học tại Hòa An",
         "Kinh doanh nông nghiệp - học tại Hòa An",
         "Kinh tế nông nghiệp - học tại Hòa An",
@@ -49,9 +48,10 @@ const maTruong = {
         "Quản trị dịch vụ du lịch và lữ hành",
         "Kinh tế tài nguyên thiên nhiên"
     ],
-    "LK": [
+    "KL": [
         "Luật",
-        "Luật kinh tế"
+        "Luật kinh tế",
+        "Luật dân sự và tố tụng dân sự"
     ],
     "ML": [
         "Giáo dục Công dân",
@@ -63,8 +63,7 @@ const maTruong = {
         "Kỹ thuật môi trường",
         "Quy hoạch vùng và đô thị",
         "Kỹ thuật cấp thoát nước",
-        "Quản lý tài nguyên và môi trường",
-        "Quản lý đất đai"
+        "Quản lý tài nguyên và môi trường"
     ],
     "NN": [
         "Sinh học ứng dụng",
@@ -128,7 +127,7 @@ const maTruong = {
 // Bắt sự kiện khi người dùng thay đổi lựa chọn tên trường/khoa
 ganDanhSachNganh();
 
-document.getElementById("tenTruong").onchange = function () {
+document.getElementById("maTruong").onchange = function () {
     ganDanhSachNganh();
 }
 
@@ -139,7 +138,7 @@ function layTenNganh(ma) {
 
 // Gán danh sách ngành phù hợp với tên trường/khoa mà người dùng chọn
 function ganDanhSachNganh() {
-    let danhSachNganh = layTenNganh(document.getElementById("tenTruong").value);
+    let danhSachNganh = layTenNganh(document.getElementById("maTruong").value);
     let output = "";
     for (let i = 0; i < danhSachNganh.length; i++) {
         if (i == 0)
