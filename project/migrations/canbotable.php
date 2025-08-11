@@ -6,7 +6,6 @@
               ngaySinh date,
               gioiTinh varchar(5),
               maLop varchar(50),
-              noiCongTac varchar(50),
               diaChi varchar(255),
               chucVu varchar(50),
               soDienThoai varchar(50),

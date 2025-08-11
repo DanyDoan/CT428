@@ -5,14 +5,17 @@
     $query = "";
     $output = [];
     if (empty($_POST["fieldValue"])){
-        $query = "SELECT * FROM canbo ORDER BY noiCongTac";
+        $query = "SELECT * FROM CANBO 
+                  JOIN LOP ON LOP.maLop = CANBO.maLop 
+                  ORDER BY maKhoaTruong, MSCB";
         $result = $conn->query($query);
         $output = $result->fetch_all(MYSQLI_ASSOC);
     }
     else{
         $field = $_POST["searchingField"];
         $fieldValue = "%".$_POST["fieldValue"]."%";
-        $stm = $conn->prepare("SELECT * FROM canbo
+        $stm = $conn->prepare("SELECT * FROM CANBO 
+                               JOIN LOP ON LOP.maLop = CANBO.maLop 
                                WHERE $field LIKE ?");
 
         $stm->bind_param("s", $fieldValue);

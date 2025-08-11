@@ -87,32 +87,31 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                                     <label class="form-check-label">Nữ</label>
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label for="noiCongTac" class="form-label">Công tác tại</label>
                                 <select id="noiCongTac" name="noiCongTac" class="form-select">
                                     <optgroup label="Cấp Trường">
                                         <option value="DI">Trường CNTT&TT</option>
-                                        <option value="CN">Trường Bách Khoa</option>
+                                        <option value="TN">Trường Bách Khoa</option>
                                         <option value="KT">Trường Kinh Tế</option>
                                         <option value="NN">Trường Nông Nghiệp</option>
                                         <option value="SP">Trường Sư Phạm</option>
                                         <option value="TS">Trường Thủy Sản</option>
                                     </optgroup>
                                     <optgroup label="Cấp Khoa">
-                                        <option value="DB">Khoa Dự Bị Dân Tộc</option>
                                         <option value="MT">Khoa Chính Trị</option>
-                                        <option value="TN">Khoa Khoa Học Tự Nhiên</option>
+                                        <option value="KH">Khoa Khoa Học Tự Nhiên</option>
                                         <option value="XH">Khoa KHXH&NV</option>
                                         <option value="KL">Khoa Luật</option>
-                                        <option value="MTN">Khoa MT&TNTN</option>
+                                        <option value="MT">Khoa MT&TNTN</option>
                                         <option value="FL">Khoa Ngoại Ngữ</option>
-                                        <option value="TC">Khoa Giáo Dục Thể Chất</option>
+                                        <option value="TD">Khoa Giáo Dục Thể Chất</option>
                                     </optgroup>
                                 </select>
-                            </div>
+                            </div> -->
                             <div class="mb-3">
-                                <label for="lopCoVan" class="form-label">Lớp cố vấn</label>
-                                <input type="text" id="lopCoVan" name="lopCoVan" class="form-control">
+                                <label for="maLop" class="form-label">Lớp cố vấn</label>
+                                <input type="text" id="maLop" name="maLop" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label for="MSCB" class="form-label">Mã tài khoản</label>
@@ -267,8 +266,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $hoTen = $_POST['hoTen'];
     $ngaySinh = $_POST['ngaySinh'];
     $gioiTinh = $_POST['gioiTinh'];
-    $noiCongTac = $_POST['noiCongTac'];
-    $lopCoVan = $_POST['lopCoVan'] ?? '';
+    // $noiCongTac = $_POST['noiCongTac'];
+    $maLop = $_POST['maLop'] ?? '';
     $matKhau = $_POST['matKhau'];
     $matKhauXacNhan = $_POST['matKhauXacNhan'];
     $key = $_POST['key'] ?? '';
@@ -287,8 +286,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         $hashedPassword = password_hash($matKhau, PASSWORD_DEFAULT);
 
-        $stmt = $conn->prepare("INSERT INTO CANBO (MSCB, matKhau, hoTen, ngaySinh, gioiTinh, noiCongTac, lopCoVan) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssss", $MSCB, $hashedPassword, $hoTen, $ngaySinh, $gioiTinh, $noiCongTac, $lopCoVan);
+        $stmt = $conn->prepare("INSERT INTO CANBO (MSCB, matKhau, hoTen, ngaySinh, gioiTinh, maLop) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssss", $MSCB, $hashedPassword, $hoTen, $ngaySinh, $gioiTinh, $maLop);
 
         if ($stmt->execute()) {
             $_SESSION['generatedKey'] = generateSecurityKey(8);

@@ -1,10 +1,11 @@
 <?php
+require("../config/db.php");
 session_start();
 if (!isset($_SESSION['MSCB'])) {
     header("Location: login.php");
     exit;
 }
-require("../config/db.php");
+
 
 $stmt = $conn->prepare("SELECT * FROM CANBO WHERE MSCB = ?");
 $stmt->bind_param("s", $_SESSION['MSCB']);

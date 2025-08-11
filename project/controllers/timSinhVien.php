@@ -5,7 +5,14 @@
     $query = "";
     $output = [];
     if (empty($_POST["fieldValue"])){
-        $query = "SELECT * FROM SINHVIEN ORDER BY truong, maLop, MSSV";
+
+        //Chân lý cột đời 
+        $query = "SELECT * FROM SINHVIEN a
+                  JOIN LOP b ON a.maLop = b.maLop
+                  JOIN KHOATRUONG c ON c.maKhoaTruong = b.maKhoaTruong
+                  ORDER BY c.maKhoaTruong, a.maLop, a.khoa, a.MSSV";
+        // 
+
         $result = $conn->query($query);
         $output = $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -13,6 +20,7 @@
         $field = $_POST["searchingField"];
         $fieldValue = "%".$_POST["fieldValue"]."%";
         $stm = $conn->prepare("SELECT * FROM SINHVIEN
+                               JOIN LOP ON LOP.maLop = SINHVIEN.maLop
                                WHERE $field LIKE ?");
 
         $stm->bind_param("s", $fieldValue);
@@ -20,5 +28,5 @@
         $result = $stm->get_result();
         $output = $result->fetch_all(MYSQLI_ASSOC);
     }
-    echo json_encode($output);
+    echo json_encode(["data" => $output]);
 ?>

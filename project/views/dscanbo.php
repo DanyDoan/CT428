@@ -27,7 +27,6 @@ if (!isset($_SESSION['MSCB'])) {
             margin-top: 16px;
         }
         table {
-            width: 75%;
             margin-top: 16px;
             border-collapse: collapse;
         }
@@ -74,9 +73,9 @@ if (!isset($_SESSION['MSCB'])) {
             background-color: rgba(252, 255, 159, 1);
         }
 
-        #canBoList tr:nth-child(2n) {
+        /* #canBoList tr:nth-child(2n) {
             background-color: rgba(255, 255, 255, 1);
-        }
+        } */
 
         #canBoList tbody tr:hover{
             filter: brightness(0.9);
@@ -99,7 +98,7 @@ if (!isset($_SESSION['MSCB'])) {
 
    <form method="GET" id="searchBar">
                 <select id="searchingField" name="searchingField">
-                    <option value="noiCongTac">Mã Khoa</option>
+                    <option value="maKhoaTruong">Mã Khoa</option>
                 </select>
                 <input type="text" name="fieldValue" placeholder="...">
                 <button type="button" onclick="timCanBo()">Tìm Kiếm</button>

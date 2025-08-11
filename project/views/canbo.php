@@ -6,7 +6,7 @@ if (!isset($_SESSION['MSCB'])) {
 }
 require("../config/db.php");
 
-$stmt = $conn->prepare("SELECT * FROM CANBO WHERE MSCB = ?");
+$stmt = $conn->prepare("SELECT * FROM CANBO JOIN LOP ON CANBO.maLop = LOP.maLop JOIN KHOATRUONG ON LOP.maKhoaTruong = KHOATRUONG.maKhoaTruong WHERE MSCB = ?");
 $stmt->bind_param("s", $_SESSION['MSCB']);
 if ($stmt->execute() && ($result = $stmt->get_result())) {
     $row = $result->fetch_assoc();
@@ -15,25 +15,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
     exit;
 }
 ?>
-<?php
-$dsTenKhoa = [
-    "DI" => "Trường CNTT&TT",
-    "DA" => "Viện CNSH&TP",
-    "KT" => "Trường Kinh Tế",
-    "FL" => "Khoa Ngoại Ngữ",
-    "HG" => "Khoa PTNT",
-    "KH" => "Khoa KHTN",
-    "XH" => "Khoa KHXH&NV",
-    "LK" => "Khoa Luật",
-    "MT" => "Khoa MT&TNTN",
-    "ML" => "Khoa Chính Trị",
-    "NN" => "Trường Nông Nghiệp",
-    "SP" => "Trường Sư Phạm",
-    "TD" => "Khoa Thể Chất",
-    "TN" => "Trường Bách Khoa",
-    "TS" => "Trường Thủy Sản"
-];
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -157,7 +139,7 @@ $dsTenKhoa = [
             position: fixed;
             width: 50%;
             height: auto;
-            top: 15%;
+            top: 7%;
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(250, 250, 250, 1);
@@ -217,15 +199,14 @@ $dsTenKhoa = [
                 <div onclick="showModal()" class="box user-profile">
                     <span class="material-symbols-outlined" style="color:#1E88E5">account_circle</span>
                     <span class="main-title-box">Thông tin cá nhân</span>
+                    <span class="sub-title-box">MSCB</span>
+                    <?php echo  htmlspecialchars($row['MSCB']); ?>
+                    <span class="sub-title-box">Họ tên</span>
                     <?php echo  htmlspecialchars($row['hoTen']); ?>
-                    <span class="sub-title-box">Nơi công tác</span>
-                    <?php
-                    $maKhoa = $row['noiCongTac'] ?? '';
-
-                    echo htmlspecialchars($dsTenKhoa[$maKhoa] ?? $maKhoa);
-                    ?>
-                    <span class="sub-title-box">Lớp hiện tại</span>
-                    <?php echo htmlspecialchars($row['lopCoVan']); ?>
+                    <span class="sub-title-box">Khoa / Trường</span>
+                    <?php echo htmlspecialchars($row['tenKhoaTruong']); ?>
+                    <span class="sub-title-box">Lớp cố vấn</span>
+                    <?php echo htmlspecialchars($row['tenLop']); ?>
                 </div>
 
                 <a href="updatecanbo.php" class="box edit-profile">
@@ -238,7 +219,7 @@ $dsTenKhoa = [
                     <span class="main-title-box">Góp ý hệ thống</span>
                 </a>
                 <?php
-                echo '<div onclick="setLocalStorage(' . "'" . $row["lopCoVan"] . "'" . ')" class="box advisor-class-meeting-info">'
+                echo '<div onclick="setLocalStorage(' . "'" . $row["maLop"] . "'" . ')" class="box advisor-class-meeting-info">'
                 ?>
                 <span class="material-symbols-outlined" style="color:#8E24AA">diversity_3</span>
                 <span class="main-title-box">Thông tin lớp cố vấn</span>
@@ -275,14 +256,18 @@ $dsTenKhoa = [
             <?php echo htmlspecialchars($row['ngaySinh']); ?>
             <span class="sub-title-box">Giới tính</span>
             <?php echo htmlspecialchars($row['gioiTinh']); ?>
-            <span class="sub-title-box">Nơi công tác</span>
-            <?php
-                    $maKhoa = $row['noiCongTac'] ?? '';
-
-                    echo htmlspecialchars($dsTenKhoa[$maKhoa] ?? $maKhoa);
-                    ?>
-            <span class="sub-title-box">Lớp hiện tại</span>
-            <?php echo htmlspecialchars($row['lopCoVan']); ?>
+            <span class="sub-title-box">Khoa / Trường</span>
+            <?php echo htmlspecialchars($row['tenKhoaTruong']); ?>
+            <span class="sub-title-box">Chức vụ</span>
+            <?php echo htmlspecialchars($row['chucVu']??"(chưa cập nhật)"); ?>
+            <span class="sub-title-box">Lớp cố vấn</span>
+            <?php echo htmlspecialchars($row['tenLop']??"(chưa cập nhật)"); ?>
+            <span class="sub-title-box">Địa chỉ liên hệ</span>
+            <?php echo htmlspecialchars($row['diaChi']??"(chưa cập nhật)");?>
+            <span class="sub-title-box">SĐT</span>
+            <?php echo htmlspecialchars($row['soDienThoai']??"(chưa cập nhật)");?>
+            <span class="sub-title-box">Email</span>
+            <?php echo htmlspecialchars($row['email']??"(chưa cập nhật)");?>
         </div>
     </div>
 </body>

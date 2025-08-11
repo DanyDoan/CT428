@@ -1,0 +1,323 @@
+<?php
+require("../config/db.php");
+?>
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png">
+    <link rel="stylesheet" href="../assets/sidebar-style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <title>Trang chủ</title>
+    <style>
+        #sideBar {
+            background-color: red !important;
+        }
+
+        #content {
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: auto;
+            grid-template-areas:
+                "a1 a2"
+                "a1 a3"
+
+            ;
+            gap: 10%;
+            padding: 10px 50px;
+        }
+
+        #a1 {
+            grid-area: a1;
+        }
+
+        #a2 {
+            grid-area: a2;
+        }
+
+        #a3 {
+            grid-area: a3;
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        #a3 button {
+            border: 1px solid white;
+            border-radius: 10px;
+            ;
+            padding: 5px;
+            background: linear-gradient(to right, rgba(173, 207, 230, 1), rgba(54, 110, 221, 0.64));
+            color: white;
+            transition: 0.2s;
+        }
+
+        #a3 button:hover {
+            transition: 0.2s;
+            transform: scale(1.1);
+            background: linear-gradient(to left, rgba(173, 207, 230, 1), rgba(54, 110, 221, 0.64));
+        }
+
+        .box {
+            width: 100%;
+            height: 100%;
+            min-width: fit-content;
+            min-height: fit-content;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: #eee;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input,
+        textarea,
+        select,
+        option {
+            width: fit-content;
+            max-width: 200px;
+            background: rgba(110, 255, 74, 0.41);
+            border: 1px solid black;
+            border-width: 0px 0px 1px 0px;
+            border-radius: 5px;
+        }
+
+        td {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div id="sideBar">
+        <?php require("../shared/sideBar.php"); ?>
+    </div>
+    <!-- Main -->
+    <div id="main">
+
+        <!-- Header -->
+        <?php require("../shared/header.html"); ?>
+
+        <!-- Content -->
+        <div id="content">
+            <div id="a1" class="box">
+                <h2>Thông tin sinh viên</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label for="hoTen">Họ tên đầy đủ: </label></td>
+                            <td><input type="text" id="hoTen" name="hoTen"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="MSSV">Mã số sinh viên: </label></td>
+                            <td><input type="text" id="MSSV" name="MSSV"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="ngaySinh">Ngày sinh: </label></td>
+                            <td><input type="date" id="ngaySinh" name="ngaySinh"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="gioiTinh">Giới tính: </td>
+                            <td>
+                                <input type="radio" value="Nam" id="Nam" name="gioiTinh">Nam
+                                <input type="radio" value="Nữ" id="Nữ" name="gioiTinh">Nữ
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="soDienThoai">Số điện thoại: </label></td>
+                            <td><input type="number" id="soDienThoai" name="soDienThoai"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="email">Email: </label></td>
+                            <td><input type="email" id="email" name="email"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="diaChi">Địa chỉ thường trú: </td>
+                            <td><textarea id="diaChi" id="diaChi" name="diaChi"></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="a2" class="box">
+                <h2>Chương trình đào tạo</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label for="maKhoaTruong">Khoa/Trường: </label></td>
+                            <td>
+                                <select id="maKhoaTruong" name="maKhoaTruong" onchange="ganDanhSachLop(this.value)">
+                                    <!-- Mã nhúng -->
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="maLop">Ngành đào tạo: </label></td>
+                            <td>
+                                <select id="maLop" name="maLop">
+                                    <!-- Mã nhúng -->
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="khoa">Khóa: </label></td>
+                            <td>
+                                <select id="khoa" name="khoa">
+                                    <!-- Mã nhúng -->
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="MSCB">Cố vấn học tập: </label></td>
+                            <td><span id="MSCB" name="MSCB"> Thầy </span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="emailCB">Email cố vấn: </label></td>
+                            <td><span id="emailCB" name="emailCB">@thay</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="a3">
+                <button type="button" onclick="capNhat()">Cập nhật</button>
+                <button type="button" onclick="huy()">Hủy</button>
+                <button type="button" onclick="window.location.href='./quanly.php'">Quay về</button>
+                <button type="button" onclick="xoaSinhVien(document.getElementById('MSSV').value); alert('Xóa thành công');window.location.href='./quanly.php'">Xóa sinh viên</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <?php
+        require("../shared/footer.html");
+        ?>
+
+    </div>
+
+
+    <!-- Các hàm thêm, sửa, xóa sinh viên -->
+    <script src="../assets/js/xoaSinhVien.js?v=12.23..21"></script>
+    <script src="../assets/js/suaSinhVien.js?v=52.123.1"></script>
+    <script src="../assets/js/khoaTruong.js?v=121.123.90.23.123"></script>
+    <script src="../assets/js/lop.js?v=123.1233.345"></script>
+
+
+    <!-- script chính -->
+    <script>
+        const MSSV = localStorage.getItem("MSSV");
+
+        ganThongTin();
+
+
+        function ganThongTin() {
+            const data = layThongTin();
+
+            //Xử lý input
+            document.getElementById("hoTen").value = data.hoTen;
+            document.getElementById("MSSV").value = data.MSSV;
+            document.getElementById("soDienThoai").value = data.soDienThoai;
+            document.getElementById("email").value = data.email;
+            document.getElementById("diaChi").value = data.diaChi;
+            document.getElementById("ngaySinh").value = data.ngaySinh;
+            //Xử lý radio
+            if (data.gioiTinh == "Nam")
+                document.getElementById("Nam").checked = true;
+            else
+                document.getElementById("Nữ").checked = true;
+
+            //Xử lý select
+
+            //Khoa/Trường
+            const khoaTruong = JSON.parse((localStorage.getItem("danhSachKhoaTruong")));
+            let row = "";
+            let MKT;
+            for (let truong of khoaTruong) {
+                if (truong.maKhoaTruong == data.maKhoaTruong) {
+                    row += "<option value='" + truong.maKhoaTruong + "' selected>" + truong.tenKhoaTruong + "</option>";
+                    MKT = truong.maKhoaTruong;
+                } else
+                    row += "<option value='" + truong.maKhoaTruong + "'>" + truong.tenKhoaTruong + "</option>";
+            }
+            document.getElementById("maKhoaTruong").innerHTML = row;
+ 
+            //Lớp
+            const lop = JSON.parse(localStorage.getItem("lop" + MKT));
+            row = "";
+            for (let l of lop) {
+                if (l.maLop == data.maLop)
+                    row += "<option value='" + l.maLop + "' selected>" + l.tenLop + "</option>";
+                else
+                    row += "<option value='" + l.maLop + "'>" + l.tenLop + "</option>";
+            }
+            document.getElementById("maLop").innerHTML = row;
+
+            //Khóa
+            row = "";
+            for (let i = 45; i <= 50; i++) {
+                if (("K" + i).toUpperCase() == data.khoa)
+                    row += "<option value='K" + i + "' selected>K" + i + "</option>"
+                else
+                    row += "<option value='K" + i + "'>K" + i + "</option>"
+            }
+            document.getElementById("khoa").innerHTML = row;
+
+        }
+
+        function layThongTin() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "../controllers/laySinhVien.php?MSSV=" + MSSV, false);
+            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhttp.send();
+
+            const sv = JSON.parse(xhttp.responseText);
+            return sv.data;
+        }
+
+
+
+
+        function capNhat() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                alert(this.responseText);
+                const response = JSON.parse(this.responseText);
+            }
+
+            let gender = document.getElementById("Nam").checked == true ? "Nam" : "Nữ";
+            const data = {
+                type: 1,
+                //inputs
+                hoTen: document.getElementById("hoTen").value,
+                MSSV: document.getElementById("MSSV").value,
+                ngaySinh: document.getElementById("ngaySinh").value,
+                soDienThoai: document.getElementById("soDienThoai").value,
+                email: document.getElementById("email").value,
+                diaChi: document.getElementById("diaChi").value,
+
+                //selects
+                gioiTinh: gender,
+                maLop: document.getElementById("maLop").value,
+                khoa: document.getElementById("khoa").value
+            }
+            xhttp.open("POST", "../controllers/suaSinhVien.php");
+            xhttp.send(JSON.stringify(data));
+        }
+
+        function huy() {
+            ganThongTin()
+        }
+    </script>
+</body>
+
+</html>

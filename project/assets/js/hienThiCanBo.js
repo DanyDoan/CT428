@@ -23,7 +23,10 @@ function phanTrang(htmlRows, pageIndex) {
                 <th>Mã Số Cán Bộ</th>
                 <th>Họ Tên Cán Bộ</th>
                 <th>Giới Tính</th>
-                <th>Trường / Khoa</th>
+                <th>Khoa / Trường </th>
+                <th>Lớp cố vấn</th>
+                <th>Email</th>
+                <th>SĐT</th>
             </tr>
         </thead>
     `;
@@ -31,35 +34,41 @@ function phanTrang(htmlRows, pageIndex) {
 }
 
 function hienThiCanBo(danhSachCanBo) {
+    if (danhSachCanBo.length == 0) {
+        phanTrang('', -1);
+        return;
+    }
     let pages = [];
     let stack = [];
     let count = 0;
 
-    const obj = {
-        "DI": "Trường CNTT&TT",
-        "DA": "Viện CNSH&TP",
-        "KT": "Trường Kinh Tế",
-        "FL": "Khoa Ngoại Ngữ",
-        "HG": "Khoa PTNT",
-        "KH": "Khoa KHTN",
-        "XH": "Khoa KHXH&NV",
-        "LK": "Khoa Luật",
-        "MT": "Khoa MT&TNTN",
-        "ML": "Khoa Chính Trị",
-        "NN": "Trường Nông Nghiệp",
-        "SP": "Trường Sư Phạm",
-        "TD": "Khoa Thể Chất",
-        "TN": "Trường Bách Khoa",
-        "TS": "Trường Thủy Sản"
-    };
+    let khoaTruong;
+    if (JSON.parse(localStorage.getItem("danhSachKhoaTruong"))) {
+        khoaTruong = JSON.parse((localStorage.getItem("danhSachKhoaTruong")));
+    }
+    else {
+        khoaTruong = danhSachKhoaTruong();
+        khoaTruong = khoaTruong.data;
+        localStorage.setItem("danhSachKhoaTruong", JSON.stringify(khoaTruong));
+    }
+    //end cache
 
     for (let canBo of danhSachCanBo) {
         let row = "<tr>";
         row += `<td>${canBo["MSCB"]}</td>`;
         row += `<td>${canBo["hoTen"]}</td>`;
         row += `<td>${canBo["gioiTinh"]}</td>`;
+        for (let truong of khoaTruong) {
+            if (truong.maKhoaTruong == canBo["maKhoaTruong"]){
+                row += "<td>" + truong.tenKhoaTruong + "</td>";
+                MKT = truong.maKhoaTruong;
+            }
+        }
+        
+        row += `<td>${canBo["tenLop"] ?? "..."}</td>`;
+        row += `<td>${canBo["email"] ?? "..."}</td>`;
+        row += `<td>${canBo["soDienThoai"] ?? "..."}</td>`;
 
-        row += `<td>${obj[canBo["noiCongTac"]] || ""} (${canBo["noiCongTac"]})</td>`;
         row += "</tr>";
 
         stack.push(row);
