@@ -5,10 +5,7 @@ function themSinhVien() {
         alert("Mã số sinh viên không hợp lệ");
         return;
     }
-    if (formData.get("ngaySinh").substring(0, 4) < 1975 || formData.get("ngaySinh").substring(0, 4) > 2006) {
-        alert("Năm sinh không hợp lệ");
-        return;
-    }
+
     const xhttp = new XMLHttpRequest();
 
 
@@ -16,12 +13,14 @@ function themSinhVien() {
         document.getElementById("anounceBox").innerHTML = "";
         alert(this.responseText);
         let danhSachSinhVien = JSON.parse(this.responseText);
-        if (danhSachSinhVien["status"] == "fail") {
+        if (danhSachSinhVien["status"] == "null") {
             document.getElementById("anounceBox").innerHTML = "<h2>Không được bỏ trống dữ liệu</h2>";
         } else if (danhSachSinhVien["status"] == "existed") {
             document.getElementById("anounceBox").innerHTML = "<h2>Mã số sinh viên đã tồn tại</h2>";
-        } else {
+        } else if (danhSachSinhVien["status"] == "success") {
             document.getElementById("anounceBox").innerHTML = "<h2>Thêm thành công</h2>";
+        }  else{
+            document.getElementById("anounceBox").innerHTML = "<h2>"+danhSachSinhVien.status+"/h2>";
         }
         hienThiSinhVien(danhSachSinhVien.data);
     }

@@ -187,10 +187,10 @@ require("../config/db.php");
             color: white;
         }
 
-        .currentPage{
+        .currentPage {
             transform: scale(1.1);
             background-color: black;
-            color: white; 
+            color: white;
         }
 
         #anounceBox {
@@ -234,6 +234,7 @@ require("../config/db.php");
         #studentList {
             max-width: 100%;
             min-width: 95%;
+            margin: 10px;
             border-collapse: collapse;
             background-color: red;
         }
@@ -249,15 +250,20 @@ require("../config/db.php");
         #studentList td {
             width: fit-content;
             min-width: 80px;
-            max-width: fit-content;
+            max-width: 150px;
             padding: 5px 0px;
         }
+
 
         #studentList th {
             background-color: rgb(47, 79, 172);
             color: white;
             font-size: 0.8em;
 
+        }
+
+        .MSSV {
+            pointer-events: none;
         }
 
         #studentList .icon {
@@ -284,7 +290,7 @@ require("../config/db.php");
             background-color: rgba(255, 255, 255, 1);
         }
 
-        #studentList tbody tr:hover{
+        #studentList tbody tr:hover {
             filter: brightness(0.9);
         }
 
@@ -359,7 +365,7 @@ require("../config/db.php");
         #modify {
             justify-content: center;
         }
-        
+
 
 
 
@@ -407,10 +413,10 @@ require("../config/db.php");
                                 <label for="hoTen">Họ Tên:</label>
                                 <input type="text" id="hoTen" name="hoTen" placeholder="Họ Tên Sinh Viên">
                             </div>
-                            <div>
+                            <!-- <div>
                                 <label for="ngaySinh">Ngày sinh: </label>
                                 <input type="date" id="ngaySinh" name="ngaySinh">
-                            </div>
+                            </div> -->
                             <div>
                                 <label for="gioiTinh">Giới tính: </label>
 
@@ -426,25 +432,25 @@ require("../config/db.php");
                                     <optgroup label="Trường/Khoa đào tạo">
                                         <option value="DA">Viện Công nghệ Sinh học và thực phẩm</option>
                                         <option value="DI">Trường Công nghệ Thông tin và Truyền thông</option>
+                                        <option value="KT">Trường Kinh tế</option>
+                                        <option value="TN">Trường Bách khoa</option>
+                                        <option value="NN">Trường Nông nghiệp</option>
+                                        <option value="TS">Trường Thủy sản</option>
                                         <option value="FL">Khoa Ngoại ngữ</option>
                                         <option value="HG">Khoa Phát triển Nông thôn</option>
                                         <option value="KH">Khoa Khoa học Tự nhiên</option>
-                                        <option value="KT">Trường Kinh tế</option>
-                                        <option value="LK">Khoa Luật</option>
+                                        <option value="KL">Khoa Luật</option>
                                         <option value="ML">Khoa Khoa học Chính trị</option>
                                         <option value="MT">Khoa Môi trường và Tài nguyên thiên nhiên</option>
-                                        <option value="NN">Trường Nông nghiệp</option>
                                         <option value="SP">Khoa Sư phạm</option>
                                         <option value="TD">Khoa Giáo dục thể chất</option>
-                                        <option value="TN">Trường Bách khoa</option>
-                                        <option value="TS">Trường Thủy sản</option>
                                         <option value="XH">Khoa Khoa học Xã hội và Nhân văn</option>
                                     </optgroup>
                                 </select>
                             </div>
                             <div>
-                                <label for="tenLop">Lớp</label>
-                                <select id="tenLop" name="tenLop">
+                                <label for="maLop">Lớp</label>
+                                <select id="maLop" name="maLop">
                                     <!-- asd -->
                                 </select>
 
@@ -496,6 +502,7 @@ require("../config/db.php");
             <div id="pagin">
             </div>
 
+
             <!-- modify -->
             <div id="modify">
                 <div>
@@ -526,7 +533,6 @@ require("../config/db.php");
         ?>
 
     </div>
-
 </body>
 
 
@@ -535,16 +541,75 @@ require("../config/db.php");
 
 
 
+
 <!-- Các chức năng thêm, sửa, xóa, tìm kiếm sinh viên -->
-<script src="../assets/js/hienThiSinhVien.js?v=2.2.123.12312.3.23.0"></script>
-<script src="../assets/js/themSinhVien.js?v=21.12123.123.12.123.33.21.33"></script>
-<script src="../assets/js/timSinhVien.js?v=13.123.1.132.33"></script>
-<script src="../assets/js/xoaSinhVien.js?v=12.123.31.23.1á..21"></script>
-<script src="../assets/js/suaSinhVien.js?v=52.3.123.1"></script>
-<script src="../assets/js/khoaTruong.js?v=121.23.123"></script>
-<script src="../assets/js/lop.js?v=123.123.123"></script>
+<script src="../assets/js/hienThiSinhVien.js?v=2.2.123312.3.23.0"></script>
+<script src="../assets/js/themSinhVien.js?v=21.1223.12.123.33.21.33"></script>
+<script src="../assets/js/timSinhVien.js?v=133.1.132.33"></script>
+<script src="../assets/js/xoaSinhVien.js?v=12..23.1á..21"></script>
+<script src="../assets/js/suaSinhVien.js?v=52.123.1"></script>
+<script src="../assets/js/khoaTruong.js?v=121.123.90.23.123"></script>
+<script src="../assets/js/lop.js?v=123.1233.345"></script>
 
 <!-- Gọi hàm :v -->
 <script>
+    // Gán danh sách lớp cho hộp công cụ thêm sinh viên
+    ganDanhSachLop(document.getElementById('maKhoaTruong').value);
     timSinhVien();
+
+    // Bắt sự kiện khi người dùng thay đổi lựa chọn tên trường/khoa sẽ thay đổi các lựa chọn lớp
+    document.getElementById("maKhoaTruong").onchange = function() {
+        ganDanhSachLop(document.getElementById('maKhoaTruong').value);
+    }
+
+    function chiTiet(MSSV) {
+        localStorage.setItem("MSSV", MSSV);
+        window.location.href = "./chiTiet.php";
+    }
+
+    // Gán danh sách lớp dựa trên Khoa/Trường của sinh viên
+    function ganDanhSachLopV2(selectTag) {
+        let maLopField = selectTag.closest('td').nextElementSibling.children[0];
+        let ds = danhSachLop(selectTag.value);
+        let output = "";
+        for (let lop of ds) {
+            output += "<option value='" + lop.maLop + "'>" + lop.tenLop + "</option>";
+        }
+        maLopField.innerHTML = output;
+    }
+
+    //Truy vết những sinh viên cần sửa
+    function danhSachSua() {
+        const targets = document.getElementsByName('update');
+        for (let sv of targets) {
+            if (sv.checked === true) {
+                let row = sv.closest('tr');
+                let inputs = row.querySelectorAll('input');
+                let selects = row.querySelectorAll('select');
+                let data = {
+                    type: 0,
+                    MSSV: inputs[0].value,
+                    hoTen: inputs[1].value,
+                    gioiTinh: selects[0].value,
+                    maKhoaTruong: selects[1].value,
+                    maLop: selects[2].value,
+                    khoa: selects[3].value
+                }
+                suaSinhVien(JSON.stringify(data));
+            }
+        }
+    }
+
+    //Truy vết những sinh viên cần xóa
+    function danhSachXoa(){
+    const targets = document.getElementsByName("remove");
+    for (let sv of targets){
+        if (sv.checked === true){
+            let row = sv.parentElement.parentElement;
+            let MSSV = row.querySelectorAll('input')[0].value;
+            xoaSinhVien(MSSV);
+        }
+    }
+}
+</script>
 </script>

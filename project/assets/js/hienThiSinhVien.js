@@ -26,13 +26,22 @@ function hienThiSinhVien(danhSachSinhVien) {
     let stack = [];
     let count = 0;
 
-    let obj = danhSachKhoaTruong().data;
+    //Cache bảng KHOATRUONG về localStorage => Truy xuất nhanh hơn do không cần yêu cầu đến phía server
+    let khoaTruong;
+    if (JSON.parse(localStorage.getItem("danhSachKhoaTruong"))) {
+        khoaTruong = JSON.parse((localStorage.getItem("danhSachKhoaTruong")));
+    }
+    else {
+        khoaTruong = danhSachKhoaTruong();
+        khoaTruong = khoaTruong.data;
+        localStorage.setItem("danhSachKhoaTruong", JSON.stringify(khoaTruong));
+    }
+    //end cache
+
     for (let sinhVien of danhSachSinhVien) {
         let row = "<tr>";
-        row += "<td><input type='text' value='" + sinhVien["MSSV"] + "' disabled></td>";
+        row += "<td  onclick='chiTiet(\"" + sinhVien["MSSV"] + "\")'><input type='text' value='" + sinhVien["MSSV"] + "' class='MSSV' disabled></td>";
         row += "<td><input type='text' value='" + sinhVien["hoTen"] + "'></td>";
-
-        // row += "<td><input type='date' value='" + sinhVien["ngaySinh"] + "'></td>";
 
         // Gender field
         row += "<td><select name='gioiTinh'>";
@@ -50,37 +59,45 @@ function hienThiSinhVien(danhSachSinhVien) {
 
         //School field
         row += "<td><select name='maKhoaTruong' onchange='ganDanhSachLopV2(this)'>";
-        for (let truong of obj) {
-            if (truong.maKhoaTruong == sinhVien["maKhoaTruong"])
-                row += "<option value='" + truong.maKhoaTruong + "' selected>" + truong.tenKhoaTruong + "</option>"
+        let MKT;
+        for (let truong of khoaTruong) {
+            if (truong.maKhoaTruong == sinhVien["maKhoaTruong"]){
+                row += "<option value='" + truong.maKhoaTruong + "' selected>" + truong.tenKhoaTruong + "</option>";
+                MKT = truong.maKhoaTruong;
+            }
             else
-                row += "<option value='" + truong.maKhoaTruong + "'>" + truong.tenKhoaTruong + "</option>"
+                row += "<option value='" + truong.maKhoaTruong + "'>" + truong.tenKhoaTruong + "</option>";
         }
         row += "</select></td>";
 
 
+        //Cache csdl bảng LOP vào local Storage => Cải hiện tốc độ truy xuất
+        let lop;
+        if (JSON.parse(localStorage.getItem("lop"+MKT))) {
+            lop = JSON.parse(localStorage.getItem("lop"+MKT));
+        } else {
+            lop = danhSachLop(sinhVien["maKhoaTruong"]);
+            localStorage.setItem("lop"+MKT, JSON.stringify(lop));
+        }
 
+        //end cache
 
-
-        //Class field
-        let tenLop = danhSachLop(sinhVien["maKhoaTruong"]);
         row += "<td><select name='maLop'>";
-        for (let lop of tenLop) {
-            if (lop.tenLop == sinhVien["tenLop"])
-                row += "<option value='" + lop.maLop + "' selected>" + lop.tenLop+ "</option>";
+        for (let l of lop) {
+            if (l.maLop == sinhVien["maLop"])
+                row += "<option value='" + l.maLop + "' selected>" + l.tenLop + "</option>";
             else
-                row += "<option value='" + lop.maLop + "'>" + lop.tenLop+ "</option>";
-
-
+                row += "<option value='" + l.maLop + "'>" + l.tenLop + "</option>";
         }
         row += "</select></td>";
+
 
         row += "<td><select name='khoa'>";
         for (let i = 45; i <= 50; i++) {
             if (("K" + i).toUpperCase() == sinhVien["khoa"].toUpperCase())
-                row += "<option value='" + i + "' selected>K" + i + "</option>"
+                row += "<option value='K" + i + "' selected>K" + i + "</option>"
             else
-                row += "<option value='" + i + "'>K" + i + "</option>"
+                row += "<option value='K" + i + "'>K" + i + "</option>"
         }
 
         row += "</select></td>";
@@ -92,11 +109,10 @@ function hienThiSinhVien(danhSachSinhVien) {
             pages.push(stack.join(""));
             stack = [];
         }
+        
     }
-    if (count % 10 != 0) {
-        pages.push(stack.join(""));
-    }
-
+    if (count % 10 != 0)
+                pages.push(stack.join(""));
     document.getElementById("pagin").innerHTML = "";
     for (let i = 0; i < pages.length; i++) {
         const button = document.createElement("button");
@@ -107,8 +123,13 @@ function hienThiSinhVien(danhSachSinhVien) {
     }
     if (pages.length > 0)
         phanTrang(pages[0], 0);
-
 }
+
+
+
+
+
+
 
 function toggle(target) {
     const btn = target.querySelector('input[type="checkbox"]');

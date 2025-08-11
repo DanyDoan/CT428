@@ -2,6 +2,7 @@ function xoaSinhVien(MSSV){
     xhttp = new XMLHttpRequest();
 
     xhttp.onload = function(){
+        alert(this.responseText);
         let danhSachSinhVien = JSON.parse(this.responseText);
         document.getElementById("anounceBox").innerHTML = "<h2>Xóa thành công</h2>";
         hienThiSinhVien(danhSachSinhVien.data);
@@ -11,13 +12,3 @@ function xoaSinhVien(MSSV){
     xhttp.send("MSSV=" + encodeURIComponent(MSSV));
 }
 
-function danhSachXoa(){
-    const targets = document.getElementsByName("remove");
-    for (let sv of targets){
-        if (sv.checked === true){
-            let row = sv.parentElement.parentElement;
-            let MSSV = row.querySelectorAll('input')[0].value;
-            xoaSinhVien(MSSV);
-        }
-    }
-}
