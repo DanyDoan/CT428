@@ -6,7 +6,7 @@ if (!isset($_SESSION['MSCB'])) {
     exit;
 }
 ?>
-
+<?php require("thongke.php"); ?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -70,8 +70,8 @@ if (!isset($_SESSION['MSCB'])) {
                     <div class="row align-items-center">
                         <div class="col-lg-6" style="overflow: hidden;">
                             <h2 class="mb-4">Giới thiệu hệ thống</h2>
-                            <p class="lead">Hệ thống quản lý thông tin sinh viên được phát triển nhằm mục đích hỗ trợ công tác quản lý và nâng cao hiệu quả làm việc của giảng viên trong việc theo dõi tình hình học tập của các bạn sinh viên.</p>
-                            <p>Với hệ thống này, giảng viên có thể dễ dàng quản lý thông tin cá nhân của sinh viên, quản lý các tài khoản, mặc khác các bạn sinh viên cũng có thể tìm kiếm thông tin giảng viên tại đây.</p>
+                            <p class="lead">Trường Đại học Cần Thơ là một trong những cơ sở giáo dục đại học trọng điểm của cả nước, đặc biệt giữ vai trò then chốt trong đào tạo nguồn nhân lực chất lượng cao cho khu vực Đồng bằng sông Cửu Long. Với quy mô hàng chục nghìn sinh viên đang theo học cùng đội ngũ giảng viên và cán bộ đông đảo, nhu cầu quản lý và tra cứu thông tin nhanh chóng, chính xác trở nên vô cùng cần thiết.</p>
+                            <p>Hệ thống quản lý thông tin sinh viên được phát triển nhằm hỗ trợ giảng viên và cán bộ trong việc cập nhật, tìm kiếm và quản lý dữ liệu sinh viên một cách khoa học, thuận tiện và an toàn. Việc áp dụng hệ thống không chỉ giúp tiết kiệm thời gian, giảm thiểu sai sót trong xử lý thông tin, mà còn góp phần hiện đại hóa công tác quản lý, đáp ứng yêu cầu của một môi trường đại học năng động và chuyên nghiệp.</p>
                         </div>
                         <div class="col-lg-6">
                             <img src="../shared/banner/RLC1.jpg" alt="Giới thiệu" class=" rounded custom-img img-fluid">
@@ -79,6 +79,38 @@ if (!isset($_SESSION['MSCB'])) {
                     </div>
                 </div>
             </section>
+
+            <section class="py-5">
+                <div class="container">
+                    <h2 class="text-center mb-5">Thống kê hệ thống</h2>
+                    <div class="row g-4 text-center">
+                        <div class="col-md-4">
+                            <div class="card p-4 shadow-sm feature-card">
+                                <i class="bi bi-people-fill" style="font-size: 2rem; color: #007bff;"></i>
+                                <h3><?php echo $totalCanBo; ?></h3>
+                                <p>Cán bộ / Giảng viên</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card p-4 shadow-sm feature-card">
+                                <i class="bi bi-award-fill" style="font-size: 2rem; color: #ffc107;"></i>
+                                <h3><?php echo $totalTienSi; ?></h3>
+                                <p>Tiến sĩ</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card p-4 shadow-sm feature-card">
+                                <i class="bi bi-mortarboard-fill" style="font-size: 2rem; color: #28a745;"></i>
+                                <h3><?php echo $totalSinhVien; ?></h3>
+                                <p>Sinh viên</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
 
             <!-- Các chức năng chính -->
             <section class="py-5">
