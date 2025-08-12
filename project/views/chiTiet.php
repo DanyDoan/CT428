@@ -58,21 +58,9 @@ require("../config/db.php");
             width: 120px;
             height: 50px;
             padding: 5px;
-            background: linear-gradient(to bottom, rgba(157, 216, 255, 1), rgba(25, 64, 148, 0.9));
+            /* background: linear-gradient(to bottom, rgba(157, 216, 255, 1), rgba(25, 64, 148, 0.9)); */
             color: white;
             transition: 0.5s;
-        }
-
-        #a3 button:nth-child(1) {
-            background: linear-gradient(to bottom, rgba(90, 210, 134, 1), rgba(4, 104, 11, 0.9));
-        }
-
-        #a3 button:nth-child(2) {
-            background: linear-gradient(to bottom, rgba(237, 119, 106, 1), rgba(99, 3, 3, 0.9));
-        }
-
-        #a3 button:nth-child(3) {
-            background: linear-gradient(to bottom, rgba(239, 237, 125, 1), rgba(138, 150, 2, 0.9));
 
         }
 
@@ -82,9 +70,30 @@ require("../config/db.php");
             animation: slide 0.3s forwards;
         }
 
+        .btn-donate {
+            --clr-font-main: #333;
+            --btn-bg-1: #61daff;
+            --btn-bg-2: #0d47a1;
+            --btn-bg-color: #fff;
+            --radii: 0.5em;
+            background-image: linear-gradient(325deg, var(--btn-bg-2) 0, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
+            background-size: 280% auto;
+            border: none;
+            border-radius: var(--radii);
+            box-shadow: 0 0 20px #47b8ff80, 0 5px 5px -1px #3a7de940, inset 4px 4px 8px #afe6ff80, inset -4px -4px 8px #135fd859;
+            color: var(--btn-bg-color);
+            cursor: pointer;
+            font-family: Segoe UI, system-ui, sans-serif;
+            font-size: 1rem;
+            font-size: var(--size, 1rem);
+            padding: .5em 1em;
+            transition: .8s;
+        }
+
         @keyframes slide {
             to {
-                background-position-y: -49px;
+                background-position-y: -50px;
+                background-position-x: -120px;
             }
 
         }
@@ -109,9 +118,9 @@ require("../config/db.php");
             width: fit-content;
             max-width: 200px;
             background: rgba(255, 255, 255, 1);
-            border: 1px solid black;
-            border-width: 0px 0px 1px 0px;
+            border-width: 0px;
             border-radius: 5px;
+            color:rgba(155, 154, 154, 1)
         }
 
         td {
@@ -232,11 +241,11 @@ require("../config/db.php");
                 </table>
             </div>
             <div id="a3">
-                <button type="button" onclick="capNhat()">Cập nhật</button>
-                <button type="button" onclick="confirmXoa()">Xóa sinh viên</button>
+                <button type="button" class="btn-donate" onclick="capNhat()">Cập nhật</button>
+                <button type="button" class="btn-donate" onclick="confirmXoa()">Xóa sinh viên</button>
 
-                <button type="button" onclick="huy()">Đặt lại</button>
-                <button type="button" onclick="window.close()">Tắt tab</button>
+                <button type="button" class="btn-donate" onclick="huy()">Đặt lại</button>
+                <button type="button" class="btn-donate" onclick="window.close()">Tắt tab</button>
             </div>
         </div>
 

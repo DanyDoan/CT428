@@ -26,10 +26,13 @@ require("../config/db.php");
             z-index: 1;
             display: grid;
             padding: 20px 0px;
-            gap: 20px 0px;
+            gap: 30px 0px;
+            /* max-width: 80svw; */
+            justify-content: space-around;
             grid-template-areas:
                 "box1 box2 box2"
-                "searchBar pagin modify"
+                "searchBar modify modify"
+                "pagin pagin pagin"
                 "container container container"
             ;
             height: fit-content;
@@ -61,7 +64,7 @@ require("../config/db.php");
             display: flex;
             flex-direction: column;
             padding: 10px;
-            border: 5px solid #001528;
+            border: 5px solid #052f6dff;
             border-radius: 0.5em;
             background-color: #eee;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -104,7 +107,7 @@ require("../config/db.php");
             background: none;
             color: rgba(82, 82, 77, 0.72);
             border-width: 0px 0px 2px 0px;
-            font-weight: 800;
+            font-weight: 500;
         }
 
         #box1 input::placeholder,
@@ -162,7 +165,7 @@ require("../config/db.php");
             background-color: #eee;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             border-radius: 0.2em;
-            border-width: 1px 1px;
+            border-width: 0px;
             color: black;
         }
 
@@ -182,15 +185,10 @@ require("../config/db.php");
         #modify button:hover {
             transition: 0.2s;
             transform: scale(1.1);
-            background-color: black;
+            background-color: rgba(140, 134, 134, 1);
             color: white;
         }
 
-        .currentPage {
-            transform: scale(1.1);
-            background-color: black;
-            color: white;
-        }
 
         #anounceBox {
             grid-area: anounceBox;
@@ -198,7 +196,7 @@ require("../config/db.php");
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 5px solid #001528;
+            border: 5px solid #052f6dff;
             border-radius: 0.5em;
             background-color: #eee;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -210,7 +208,7 @@ require("../config/db.php");
             text-align: center;
             font-size: 1em;
             font-weight: 800;
-            color: rgba(28, 108, 3, 1);
+            color: #052f6dff;
             text-transform: uppercase;
             animation: fade 5s forwards;
         }
@@ -237,6 +235,8 @@ require("../config/db.php");
             margin: 10px;
             border-collapse: collapse;
             background-color: red;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 0.2em;
         }
 
         #studentList * {
@@ -252,17 +252,20 @@ require("../config/db.php");
             min-width: 75px;
             max-width: 150px;
             padding: 2px 0px;
+            border: 1px solid rgba(222, 221, 221, 1);
         }
 
 
         #studentList th {
-            background-color: rgb(47, 79, 172);
+            padding: 5px;
+            background-color: #0d6efd;
             color: white;
             font-size: 0.8em;
 
         }
 
-        .MSSV, .checkBox{
+        .MSSV,
+        .checkBox {
             pointer-events: none;
         }
 
@@ -283,11 +286,11 @@ require("../config/db.php");
         }
 
         #studentList tr {
-            background-color: rgba(252, 255, 159, 1);
+            background-color: rgba(255, 255, 255, 1);
         }
 
         #studentList tr:nth-child(2n) {
-            background-color: rgba(255, 255, 255, 1);
+            background-color: rgba(217, 235, 245, 1);
         }
 
         #studentList tbody tr:hover {
@@ -302,6 +305,7 @@ require("../config/db.php");
             height: 100%;
             background: none;
             border: none;
+
         }
 
         #studentList option {
@@ -337,10 +341,57 @@ require("../config/db.php");
         #modify {
             grid-area: modify;
             display: flex;
-            justify-content: end;
+            justify-content: center;
             gap: 10px;
         }
 
+        #modify button {
+            width: 5em;
+            background-color: rgba(75, 192, 64, 1);
+            color: white;
+            border: 1px solid white;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        #modify button:nth-child(2) {
+            background-color: rgba(232, 84, 84, 1);
+        }
+
+        #modify button:hover {
+            background-color: rgba(64, 155, 90, 1);
+        }
+
+        #modify button:nth-child(2):hover {
+            background-color: rgba(161, 61, 61, 1);
+        }
+
+        button {
+            border: 1px solid rgba(237, 236, 236, 1);
+        }
+
+        .btn-donate {
+            --clr-font-main: #333;
+            --btn-bg-1: #61daff;
+            --btn-bg-2: #0d47a1;
+            --btn-bg-color: #fff;
+            --radii: 0.5em;
+            background-image: linear-gradient(325deg, var(--btn-bg-2) 0, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
+            background-size: 280% auto;
+            border: none;
+            border-radius: var(--radii);
+            box-shadow: 0 0 20px #47b8ff80, 0 5px 5px -1px #3a7de940, inset 4px 4px 8px #afe6ff80, inset -4px -4px 8px #135fd859;
+            color: var(--btn-bg-color);
+            cursor: pointer;
+            font-family: Segoe UI, system-ui, sans-serif;
+            font-size: 1rem;
+            font-size: var(--size, 1rem);
+            font-weight: 500;
+            min-height: 44px;
+            min-width: 160px;
+            padding: .5em 1em;
+            transition: .8s;
+        }
 
         /* Responsive Styles */
 
@@ -349,25 +400,46 @@ require("../config/db.php");
                 font-size: 10px;
             }
 
-            #box1,
+            /* #box1,
+            #box2 {
+                display: none;
+            } */
+
+            #content {
+                grid-template-areas:
+                    "box1"
+                    "searchBar"
+                    "pagin"
+                    "modify"
+                    "container";
+                /* height: fit-content; */
+            }
+
             #box2 {
                 display: none;
             }
 
-            #content {
-                grid-template-areas:
-                    "searchBar searchBar"
-                    "pagin modify"
-                    "container container";
-                height: fit-content;
+            #box1 {
+                width: fit-content;
+                flex-direction: column;
             }
-            #pagin, #modify{
-                width: 100%;
+
+            #pagin,
+            #modify {
+                /* width: 100%; */
                 justify-content: right;
-                margin:0px 100px
+                margin: 0px 100px
             }
-            #modify{
+
+            #modify {
                 justify-content: left;
+            }
+
+            tr td:nth-child(3),
+            tr td:nth-child(4),
+            tr th:nth-child(3),
+            tr th:nth-child(4) {
+                display: none;
             }
         }
 
@@ -504,17 +576,14 @@ require("../config/db.php");
 
             <!-- modify -->
             <div id="modify">
-                <div>
-                    <button onclick='danhSachSua()'>
-                        Cập nhật
-                    </button>
-                </div>
+                <button onclick='danhSachSua()'>
+                    Cập nhật
+                </button>
 
-                <div>
-                    <button onclick='danhSachXoa()'>
-                        Xóa
-                    </button>
-                </div>
+
+                <button onclick='danhSachXoa()'>
+                    Xóa
+                </button>
             </div>
 
             <!-- container -->
@@ -601,15 +670,15 @@ require("../config/db.php");
     }
 
     //Truy vết những sinh viên cần xóa
-    function danhSachXoa(){
-    const targets = document.getElementsByName("remove");
-    for (let sv of targets){
-        if (sv.checked === true){
-            let row = sv.parentElement.parentElement;
-            let MSSV = row.querySelectorAll('input')[0].value;
-            xoaSinhVien(MSSV);
+    function danhSachXoa() {
+        const targets = document.getElementsByName("remove");
+        for (let sv of targets) {
+            if (sv.checked === true) {
+                let row = sv.parentElement.parentElement;
+                let MSSV = row.querySelectorAll('input')[0].value;
+                xoaSinhVien(MSSV);
+            }
         }
     }
-}
 </script>
 </script>

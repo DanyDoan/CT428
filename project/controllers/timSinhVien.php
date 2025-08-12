@@ -21,7 +21,7 @@
         $fieldValue = "%".$_POST["fieldValue"]."%";
         $stm = $conn->prepare("SELECT * FROM SINHVIEN
                                JOIN LOP ON LOP.maLop = SINHVIEN.maLop
-                               WHERE $field LIKE ?");
+                               WHERE BINARY $field LIKE ?");
 
         $stm->bind_param("s", $fieldValue);
         $stm->execute();
