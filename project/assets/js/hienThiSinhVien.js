@@ -12,7 +12,7 @@ function phanTrang(danhSachSinhVien, k) {
         document.getElementById("pagin").innerHTML = "";
     }
     else {
-        let theader = "<thead><tr><th>Mã Số Sinh Viên</th><th>Họ Tên Sinh Viên</th><th>Giới Tính</th><th>Trường / Khoa</th><th>Ngành Học</th><th>Khóa</th></th><th onclick='selectAll(" + '"update"' + ")'>Lưu Thay Đổi</th><th onclick='selectAll(" + '"remove"' + ")'>Xóa Sinh Viên</th></tr></thead>";
+        let theader = "<thead><tr><th>Mã Số Sinh Viên</th><th>Họ Tên Sinh Viên</th><th>Giới Tính</th><th>Khoa/Trường</th><th>Lớp</th><th>Khóa</th></th><th onclick='selectAll(" + '"update"' + ")'>Cập nhật</th><th onclick='selectAll(" + '"remove"' + ")'>Xóa</th></tr></thead>";
         document.getElementById("studentList").innerHTML = theader + "<tbody>" + danhSachSinhVien + "</tbody>";
     }
 }
@@ -139,6 +139,6 @@ function toggle(target) {
 function selectAll(act_type) {
     const cols = document.getElementsByName(act_type);
     for (let col of cols)
-        col.checked = true;
+        col.checked = !col.checked;
 }
 

@@ -11,7 +11,7 @@ function themSinhVien() {
 
     xhttp.onload = function () {
         document.getElementById("anounceBox").innerHTML = "";
-        alert(this.responseText);
+        // alert(this.responseText);
         let danhSachSinhVien = JSON.parse(this.responseText);
         if (danhSachSinhVien["status"] == "null") {
             document.getElementById("anounceBox").innerHTML = "<h2>Không được bỏ trống dữ liệu</h2>";

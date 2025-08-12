@@ -18,7 +18,7 @@ require("../config/db.php");
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="../assets/css/style.css?v=213.1231" rel="stylesheet">
-    <title>Sinh viên</title>
+    <title>Quản lý</title>
 
     <style>
         #content {
@@ -27,7 +27,6 @@ require("../config/db.php");
             display: grid;
             padding: 20px 0px;
             gap: 20px 0px;
-            align-items: center;
             grid-template-areas:
                 "box1 box2 box2"
                 "searchBar pagin modify"
@@ -62,8 +61,8 @@ require("../config/db.php");
             display: flex;
             flex-direction: column;
             padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
+            border: 5px solid #001528;
+            border-radius: 0.5em;
             background-color: #eee;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
@@ -195,6 +194,7 @@ require("../config/db.php");
 
         #anounceBox {
             grid-area: anounceBox;
+            padding: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -206,9 +206,9 @@ require("../config/db.php");
             height: 10em;
         }
 
-        h2 {
+        #anounceBox h2 {
             text-align: center;
-            font-size: 0.8em;
+            font-size: 1em;
             font-weight: 800;
             color: rgba(28, 108, 3, 1);
             text-transform: uppercase;
@@ -249,9 +249,9 @@ require("../config/db.php");
         #studentList th,
         #studentList td {
             width: fit-content;
-            min-width: 80px;
+            min-width: 75px;
             max-width: 150px;
-            padding: 5px 0px;
+            padding: 2px 0px;
         }
 
 
@@ -262,7 +262,7 @@ require("../config/db.php");
 
         }
 
-        .MSSV {
+        .MSSV, .checkBox{
             pointer-events: none;
         }
 
@@ -297,21 +297,21 @@ require("../config/db.php");
         #studentList input,
         #studentList select,
         #studentList option {
-            font-size: 1em;
+            font-size: 0.75em;
             width: 80%;
             height: 100%;
             background: none;
             border: none;
         }
 
-        /* #studentList option {
+        #studentList option {
             font-size: 1.2em;
-        } */
+        }
 
         #studentList .checkBox {
             appearance: none;
-            width: 30px;
-            height: 15px;
+            width: 2em;
+            height: 1em;
             background-color: white;
             align-items: center;
             border: 1px solid black;
@@ -341,6 +341,7 @@ require("../config/db.php");
             gap: 10px;
         }
 
+
         /* Responsive Styles */
 
         @media only screen and (max-width: 1000px) {
@@ -360,15 +361,15 @@ require("../config/db.php");
                     "container container";
                 height: fit-content;
             }
+            #pagin, #modify{
+                width: 100%;
+                justify-content: right;
+                margin:0px 100px
+            }
+            #modify{
+                justify-content: left;
+            }
         }
-
-        #modify {
-            justify-content: center;
-        }
-
-
-
-
 
         @keyframes fade {
             from {
@@ -467,7 +468,6 @@ require("../config/db.php");
                                 </select>
                                 <button type="button" onclick="themSinhVien()">Thêm</button>
                             </div>
-                            <!-- <button type="button" onclick="hide()">Ẩn</button> -->
                         </div>
                     </form>
                 </fieldset>
@@ -480,7 +480,6 @@ require("../config/db.php");
                 <div id="anounceBox">
                     <h2>Hộp thông báo</h2>
                 </div>
-                <h3 style='text-align:center; font-size:1.2em; color:goldenrod'>Thông báo</h3>
             </div>
 
             <!-- searchBar -->
@@ -562,9 +561,10 @@ require("../config/db.php");
         ganDanhSachLop(document.getElementById('maKhoaTruong').value);
     }
 
+    //Vào trang thông tin cá nhân của sinh viên cụ thể
     function chiTiet(MSSV) {
         localStorage.setItem("MSSV", MSSV);
-        window.location.href = "./chiTiet.php";
+        window.open("./chiTiet.php", "_blank");
     }
 
     // Gán danh sách lớp dựa trên Khoa/Trường của sinh viên

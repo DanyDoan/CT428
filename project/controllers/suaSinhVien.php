@@ -24,9 +24,6 @@ if ($data["type"] == 0) {
     if (
         empty($data["hoTen"])
         || empty($data["MSSV"])
-        || empty($data["soDienThoai"])
-        || empty($data["email"])
-        || empty($data["diaChi"])
     ) {
         $output = ["message" => "Không được để trống dữ liệu"];
         echo json_encode($output);
@@ -42,7 +39,7 @@ foreach ($array as $muc) {
     if ($A->lay($muc) != $data[$muc]) {
             $A->sua($conn, $muc, $data[$muc]);
             $change++;
-            $message = $message . "- changed " . $muc . "<br>";
+            $message = $message . "<br>- THAY ĐỔI " . $muc;
     }
 }
 
@@ -65,7 +62,7 @@ if ($data["type"] == 0) {
 
     $result = $conn->query($query);
     $result = $result->fetch_all(MYSQLI_ASSOC);
-    $output = ["message" => $message, "data" => $result];
+    $output = ["message" => $message."<br>".$A->lay("MSSV"), "data" => $result];
     echo json_encode($output);
 } else {
     $output = ["message" => $message];
