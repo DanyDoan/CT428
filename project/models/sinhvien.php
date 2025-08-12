@@ -1,7 +1,7 @@
 <?php
     class SINHVIEN{
 
-        //Thông tin có sẵn
+        //Thông tin có sẵn của bảng SINHVIEN
         private $MSSV;
         private $hoTen;
         private $ngaySinh;
@@ -12,11 +12,12 @@
         private $khoa; //Khóa not Khoa!
         private $maLop;
         
-        //Thông tin liên kết
+        //Thông tin liên kết với bảng LOP, KHOATRUONG
         private $tenLop;
         private $maKhoaTruong;
         private $tenKhoaTruong;
 
+        //Hàm xây dựng nhận [kết nối] và [MSSV] để truy xuất và gán thông tin cho sinh vien
         public function __construct($conn, $mssv)
         {
             $query = "SELECT * 
@@ -38,13 +39,14 @@
             $this->khoa = $row["khoa"];
             $this->maLop = $row["maLop"];
 
-            //Thông tin từ bảng LOP+KHOATRUONG
+            //Thông tin từ bảng LOP, KHOATRUONG
             $this->tenLop = $row["tenLop"];
             $this->maKhoaTruong = $row["maKhoaTruong"];
             $this->tenKhoaTruong = $row["tenKhoaTruong"];
         }
 
 
+        //Hàm sửa thông tin sinh viên sử dụng [kết nối] [field] và [newValue] để thay đổi thông tin trường cụ thể 
         public function sua($conn, $field, $newValue)
         {
             $stm = $conn->prepare("UPDATE SINHVIEN
@@ -55,10 +57,12 @@
             $stm->execute();
         }
 
+        //Hàm truy xuất thông tin đối tượng sinh viên dựa trên [field]
         public function lay($field){
             return $this->$field;
         }
 
+        //Hàm trả về toàn bộ thông tin đối tượng sinh viên (dùng để gửi dữ liệu cho javascript xử lý)
         public function layThongTin(){
             return [
                 "MSSV"          => $this->MSSV ?? "",

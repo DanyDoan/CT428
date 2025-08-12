@@ -13,7 +13,8 @@ require("../config/db.php");
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
-    <title>Trang chủ</title>
+    <title>
+    </title>
     <style>
         #sideBar {
             background-color: red !important;
@@ -21,8 +22,8 @@ require("../config/db.php");
 
         #content {
             display: grid;
-            grid-template-columns: auto;
-            grid-template-rows: auto;
+            /* grid-template-columns: auto; */
+            /* grid-template-rows: auto; */
             grid-template-areas:
                 "a1 a2"
                 "a1 a3"
@@ -34,10 +35,12 @@ require("../config/db.php");
 
         #a1 {
             grid-area: a1;
+            height: fit-content;
         }
 
         #a2 {
             grid-area: a2;
+            height: fit-content;
         }
 
         #a3 {
@@ -52,22 +55,41 @@ require("../config/db.php");
         #a3 button {
             border: 1px solid white;
             border-radius: 10px;
-            ;
+            width: 120px;
+            height: 50px;
             padding: 5px;
-            background: linear-gradient(to right, rgba(173, 207, 230, 1), rgba(54, 110, 221, 0.64));
+            background: linear-gradient(to bottom, rgba(157, 216, 255, 1), rgba(25, 64, 148, 0.9));
             color: white;
-            transition: 0.2s;
+            transition: 0.5s;
+        }
+
+        #a3 button:nth-child(1) {
+            background: linear-gradient(to bottom, rgba(90, 210, 134, 1), rgba(4, 104, 11, 0.9));
+        }
+
+        #a3 button:nth-child(2) {
+            background: linear-gradient(to bottom, rgba(237, 119, 106, 1), rgba(99, 3, 3, 0.9));
+        }
+
+        #a3 button:nth-child(3) {
+            background: linear-gradient(to bottom, rgba(239, 237, 125, 1), rgba(138, 150, 2, 0.9));
+
         }
 
         #a3 button:hover {
-            transition: 0.2s;
+            /* transition: 1.5s; */
             transform: scale(1.1);
-            background: linear-gradient(to left, rgba(173, 207, 230, 1), rgba(54, 110, 221, 0.64));
+            animation: slide 0.3s forwards;
+        }
+
+        @keyframes slide {
+            to {
+                background-position-y: -49px;
+            }
+
         }
 
         .box {
-            width: 100%;
-            height: 100%;
             min-width: fit-content;
             min-height: fit-content;
             padding: 10px;
@@ -86,7 +108,7 @@ require("../config/db.php");
         option {
             width: fit-content;
             max-width: 200px;
-            background: rgba(110, 255, 74, 0.41);
+            background: rgba(255, 255, 255, 1);
             border: 1px solid black;
             border-width: 0px 0px 1px 0px;
             border-radius: 5px;
@@ -94,6 +116,25 @@ require("../config/db.php");
 
         td {
             padding: 20px;
+        }
+
+        @media only screen and (max-width: 1000px) {
+            #content {
+                grid-template-areas:
+                    "a3"
+                    "a1"
+                    "a2"
+                ;
+                /* gap:100px; */
+            }
+
+            #a1,
+            #a2,
+            #a3 {
+                min-height: fit-content !important;
+                height: fit-content;
+            }
+
         }
     </style>
 </head>
@@ -192,9 +233,10 @@ require("../config/db.php");
             </div>
             <div id="a3">
                 <button type="button" onclick="capNhat()">Cập nhật</button>
-                <button type="button" onclick="huy()">Hủy</button>
-                <button type="button" onclick="window.location.href='./quanly.php'">Quay về</button>
-                <button type="button" onclick="xoaSinhVien(document.getElementById('MSSV').value); alert('Xóa thành công');window.location.href='./quanly.php'">Xóa sinh viên</button>
+                <button type="button" onclick="confirmXoa()">Xóa sinh viên</button>
+
+                <button type="button" onclick="huy()">Đặt lại</button>
+                <button type="button" onclick="window.close()">Tắt tab</button>
             </div>
         </div>
 
@@ -216,7 +258,7 @@ require("../config/db.php");
     <!-- script chính -->
     <script>
         const MSSV = localStorage.getItem("MSSV");
-
+        document.getElementsByTagName("title")[0].innerHTML = MSSV;
         ganThongTin();
 
 
@@ -250,7 +292,7 @@ require("../config/db.php");
                     row += "<option value='" + truong.maKhoaTruong + "'>" + truong.tenKhoaTruong + "</option>";
             }
             document.getElementById("maKhoaTruong").innerHTML = row;
- 
+
             //Lớp
             const lop = JSON.parse(localStorage.getItem("lop" + MKT));
             row = "";
@@ -312,6 +354,15 @@ require("../config/db.php");
             }
             xhttp.open("POST", "../controllers/suaSinhVien.php");
             xhttp.send(JSON.stringify(data));
+        }
+
+        function confirmXoa() {
+            if (confirm("Xác nhận xóa sinh viên")) {
+                xoaSinhVien(document.getElementById("MSSV").value);
+                setTimeout(() => {
+                    window.close()
+                }, 1500);
+            }
         }
 
         function huy() {

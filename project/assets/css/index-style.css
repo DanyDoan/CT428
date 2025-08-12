@@ -1,0 +1,124 @@
+/* Reset cơ bản */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Banner */
+.hero-banner {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: white;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    color: white;
+    z-index: 2;
+}
+
+.banner-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Giữ ảnh banner nằm gọn trong phần #main */
+#main .owl-carousel {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#main .owl-carousel .owl-stage-outer {
+    width: 100%;
+}
+
+#main .owl-carousel img {
+    display: block;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+/* Card chức năng */
+.feature-card {
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Giới thiệu */
+.about-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+}
+
+/* Icon */
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #0d6efd;
+}
+
+.custom-img {
+    max-width: 100%;
+    /* không vượt quá phần chứa */
+    height: auto;
+    display: block;
+}
+
+/* Ép các card có chiều cao bằng nhau và nút ở cuối */
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.feature-card p {
+    flex-grow: 1; /* Đẩy nội dung giãn ra */
+}
+
+.feature-card .btn {
+    margin-top: auto; /* Nút luôn nằm dưới */
+}
+
+.about-section {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+.about-section h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2a4d69;
+}
+
+.about-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}

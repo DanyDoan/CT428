@@ -111,13 +111,18 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                             </div> -->
                             <div class="mb-3">
                                 <label for="maLop" class="form-label">Lớp cố vấn</label>
-                                <input type="text" id="maLop" name="maLop" class="form-control">
+                                <select id="maLop" name="maLop" class="form-select" required>
+                                    <option value="">-- Chọn lớp --</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="MSCB" class="form-label">Mã tài khoản</label>
                                 <input type="text" id="MSCB" name="MSCB" class="form-control" minlength="6" maxlength="6" required placeholder="001234">
                             </div>
-
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" name="email" class="form-control" required placeholder="vtbtran@gmail.com">
+                            </div>
                             <div class="mb-3">
                                 <label for="matKhau" class="form-label">Đặt mật khẩu</label>
                                 <input type="password" id="matKhau" name="matKhau" class="form-control" required>
@@ -185,6 +190,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                     return;
                 }
 
+
+
                 // Kiểm tra độ mạnh
                 if (password.length < 8) {
                     passwordBar.className = 'password-strength-bar weak';
@@ -243,6 +250,38 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                 }
             }
         });
+
+        document.getElementById("noiCongTac").addEventListener("change", function() {
+            const maKhoaTruong = this.value;
+            const lopSelect = document.getElementById("maLop");
+            lopSelect.innerHTML = '<option value="">-- Chọn lớp --</option>';
+
+            if (maKhoaTruong) {
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "get_lop.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        try {
+                            const res = JSON.parse(xhr.responseText);
+                            res.data.forEach(item => {
+                                const option = document.createElement("option");
+                                option.value = item.maLop; // lưu mã lớp
+                                option.textContent = item.tenLop; // hiển thị tên lớp
+                                lopSelect.appendChild(option);
+                            });
+                        } catch (err) {
+                            console.error("Lỗi parse JSON:", err);
+                            console.log("Phản hồi từ server:", xhr.responseText);
+                        }
+                    }
+                };
+
+                // Gửi dữ liệu dạng application/x-www-form-urlencoded
+                xhr.send("maKhoaTruong=" + encodeURIComponent(maKhoaTruong));
+            }
+        });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -264,11 +303,12 @@ function checkIfExist($conn, $id)
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $MSCB = $_POST['MSCB'];
     $hoTen = $_POST['hoTen'];
+    $matKhau = $_POST['matKhau'];
     $ngaySinh = $_POST['ngaySinh'];
     $gioiTinh = $_POST['gioiTinh'];
-    // $noiCongTac = $_POST['noiCongTac'];
-    $maLop = $_POST['maLop'] ?? '';
-    $matKhau = $_POST['matKhau'];
+    $maLop = $_POST['maLop'];
+    $noiCongTac = $_POST['noiCongTac'];
+    $email = $_POST['email'];
     $matKhauXacNhan = $_POST['matKhauXacNhan'];
     $key = $_POST['key'] ?? '';
     $generatedKey = $_SESSION['generatedKey'] ?? '';
@@ -286,8 +326,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         $hashedPassword = password_hash($matKhau, PASSWORD_DEFAULT);
 
-        $stmt = $conn->prepare("INSERT INTO CANBO (MSCB, matKhau, hoTen, ngaySinh, gioiTinh, maLop) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssss", $MSCB, $hashedPassword, $hoTen, $ngaySinh, $gioiTinh, $maLop);
+        $stmt = $conn->prepare("INSERT INTO CANBO (MSCB, matKhau, hoTen, ngaySinh, gioiTinh, noiCongTac, maLop, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssss", $MSCB, $hashedPassword, $hoTen, $ngaySinh, $gioiTinh, $noiCongTac, $maLop, $email);
 
         if ($stmt->execute()) {
             $_SESSION['generatedKey'] = generateSecurityKey(8);

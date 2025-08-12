@@ -27,6 +27,7 @@ if (!isset($_SESSION['MSCB'])) {
             margin-top: 16px;
         }
         table {
+            width: 100%;
             margin-top: 16px;
             border-collapse: collapse;
         }
