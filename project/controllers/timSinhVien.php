@@ -5,8 +5,14 @@
     $query = "";
     $output = [];
     if (empty($_POST["fieldValue"])){
-        $query = "SELECT * FROM SINHVIEN
-                  JOIN LOP ON LOP.maLop = SINHVIEN.maLop";
+
+        //Chân lý cột đời 
+        $query = "SELECT * FROM SINHVIEN a
+                  JOIN LOP b ON a.maLop = b.maLop
+                  JOIN KHOATRUONG c ON c.maKhoaTruong = b.maKhoaTruong
+                  ORDER BY c.maKhoaTruong, a.maLop, a.khoa, a.MSSV";
+        // 
+
         $result = $conn->query($query);
         $output = $result->fetch_all(MYSQLI_ASSOC);
     }

@@ -7,8 +7,8 @@
                 maLop varchar(50) NOT NULL,
                 khoa varchar(5) NOT NULL,
                 diaChi varchar(50),
-                soDienThoai varchar(50),
-                email varchar(50),
+                soDienThoai varchar(50) UNIQUE,
+                email varchar(50) UNIQUE,
                 FOREIGN KEY (maLop) REFERENCES lop(maLop));"; 
     try {
         $conn->query($query);
