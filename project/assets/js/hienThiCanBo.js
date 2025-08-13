@@ -74,14 +74,14 @@ function hienThiCanBo(danhSachCanBo) {
         stack.push(row);
         count++;
 
-        if (count % 10 == 0) {
+        if (count % 12 == 0) {
             pages.push(stack.join(""));
             stack = [];
         }
     }
 
     // Nếu còn dữ liệu lẻ trang
-    if (count % 10 != 0) {
+    if (count % 12 != 0) {
         pages.push(stack.join(""));
     }
 

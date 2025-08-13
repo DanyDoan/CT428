@@ -62,6 +62,8 @@ if (!isset($_SESSION['MSCB'])) {
 
         #pagin{
             margin-top: 8px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         #canBoList th {
@@ -99,17 +101,39 @@ if (!isset($_SESSION['MSCB'])) {
 
    <form method="GET" id="searchBar">
                 <select id="searchingField" name="searchingField">
-                    <option value="maKhoaTruong">Mã Khoa</option>
+                    <option value="maKhoaTruong">Khoa / Trường</option>
                 </select>
-                <input type="text" name="fieldValue" placeholder="...">
+                <select id="fieldValue" name="fieldValue">
+                                    <option value="">Tất cả</option>
+                                    <optgroup label="Viện">
+                                    <option value="DA">Viện Công nghệ sinh học</option>
+                                    <optgroup label="Cấp Trường">
+                                        <option value="DI">Trường CNTT&TT</option>
+                                        <option value="TN">Trường Bách Khoa</option>
+                                        <option value="KT">Trường Kinh Tế</option>
+                                        <option value="NN">Trường Nông Nghiệp</option>
+                                        <option value="SP">Trường Sư Phạm</option>
+                                        <option value="TS">Trường Thủy Sản</option>
+                                    </optgroup>
+                                    <optgroup label="Cấp Khoa">
+                                        <option value="MT">Khoa Chính Trị</option>
+                                        <option value="KH">Khoa Khoa Học Tự Nhiên</option>
+                                        <option value="XH">Khoa KHXH&NV</option>
+                                        <option value="KL">Khoa Luật</option>
+                                        <option value="MT">Khoa MT&TNTN</option>
+                                        <option value="FL">Khoa Ngoại Ngữ</option>
+                                        <option value="TD">Khoa Giáo Dục Thể Chất</option>
+                                    </optgroup>
+                                </select>
                 <button type="button" onclick="timCanBo()">Tìm Kiếm</button>
                 <button type="button" onclick="window.location.reload()">Hủy</button>
             </form>
          
         <table id="canBoList">
                 </table>
-        <div id="pagin">
+        
             </div>
+            <div id="pagin">
             </div>
 </body>
 

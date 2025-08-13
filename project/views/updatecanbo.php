@@ -12,7 +12,7 @@ $error = "";
 $success = "";
 
 // Lấy thông tin người dùng
-$stmt = $conn->prepare("SELECT * FROM CANBO WHERE MSCB = ?");
+$stmt = $conn->prepare("SELECT * FROM CANBO JOIN LOP ON LOP.maLop = CANBO.maLop WHERE MSCB = ?");
 $stmt->bind_param("s", $MSCB);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -24,8 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hoTen = $_POST['hoTen'];
     $ngaySinh = $_POST['ngaySinh'];
     $gioiTinh = $_POST['gioiTinh'];
-    $noiCongTac = $_POST['noiCongTac'];
-    $maLopCoVan = $_POST['maLopCoVan'];
+    // $noiCongTac = $_POST['noiCongTac'];
+    $maLop = $_POST['maLop'] ?? "";
+    $diaChi = $_POST['diaChi']??"";
+    $chucVu = $_POST['chucVu']??"";
+    $email = $_POST['email']??"";
+    $soDienThoai = $_POST['soDienThoai']??"";
 
     // Kiểm tra nếu người dùng muốn đổi mật khẩu
     $changePassword = isset($_POST['change_password']) && $_POST['change_password'] == '1';
@@ -43,13 +47,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "Mật khẩu mới yếu (tối thiểu 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt)";
         } else {
             $hashedPassword = password_hash($matKhauMoi, PASSWORD_DEFAULT);
-            $stmt = $conn->prepare("UPDATE CANBO SET hoTen=?, ngaySinh=?, gioiTinh=?, noiCongTac=?, maLopCoVan=?, matKhau=? WHERE MSCB=?");
-            $stmt->bind_param("sssssss", $hoTen, $ngaySinh, $gioiTinh, $noiCongTac, $maLopCoVan, $hashedPassword, $MSCB);
+            if (!empty($maLop)) {
+                $stmt = $conn->prepare("UPDATE CANBO SET hoTen=?, ngaySinh=?, gioiTinh=?, diaChi=?, chucVu=?, email=?,soDienThoai=?,maLop=?,matKhau=? WHERE MSCB=?");
+                $stmt->bind_param("ssssssssss", $hoTen, $ngaySinh, $gioiTinh, $diaChi, $chucVu, $email,$soDienThoai ,$maLop, $hashedPassword, $MSCB);
+            } else {
+                $stmt = $conn->prepare("UPDATE CANBO SET hoTen=?, ngaySinh=?, gioiTinh=?, diaChi=?, chucVu=?, email=?,soDienThoai=?,matKhau=? WHERE MSCB=?");
+                $stmt->bind_param("sssssssss", $hoTen, $ngaySinh, $gioiTinh, $diaChi, $chucVu, $email,$soDienThoai, $hashedPassword, $MSCB);
+            }
         }
     } else {
         // Không đổi mật khẩu
-        $stmt = $conn->prepare("UPDATE CANBO SET hoTen=?, ngaySinh=?, gioiTinh=?, noiCongTac=?, maLopCoVan=? WHERE MSCB=?");
-        $stmt->bind_param("ssssss", $hoTen, $ngaySinh, $gioiTinh, $noiCongTac, $maLopCoVan, $MSCB);
+        if (!empty($maLop)) {
+            $stmt = $conn->prepare("UPDATE CANBO SET hoTen=?, ngaySinh=?,gioiTinh=?, diaChi=?, chucVu=?,email=?,soDienThoai=?,maLop=? WHERE MSCB=?");
+            $stmt->bind_param("sssssssss", $hoTen, $ngaySinh, $gioiTinh, $diaChi, $chucVu, $email,$soDienThoai ,$maLop, $MSCB);
+        } else {
+            $stmt = $conn->prepare("UPDATE CANBO SET hoTen=?, ngaySinh=?,gioiTinh=?, diaChi=?, chucVu=?,email=?,soDienThoai=? WHERE MSCB=?");
+            $stmt->bind_param("ssssssss", $hoTen, $ngaySinh, $gioiTinh, $diaChi, $chucVu,$email, $soDienThoai, $MSCB);
+        }
     }
 
     if (empty($error)) {
@@ -58,8 +72,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user['hoTen'] = $hoTen;
             $user['ngaySinh'] = $ngaySinh;
             $user['gioiTinh'] = $gioiTinh;
-            $user['noiCongTac'] = $noiCongTac;
-            $user['maLopCoVan'] = $maLopCoVan;
+            // $user['noiCongTac'] = $noiCongTac;
+            if (!empty($maLop)) {
+                $user['maLop'] = $maLop;
+            }
+            $user['diaChi'] = $diaChi;
+            $user['chucVu'] = $chucVu;
+            $user['email'] = $email;
+            $user['soDienThoai'] = $soDienThoai;
         } else {
             $error = "Lỗi cập nhật: " . $stmt->error;
         }
@@ -78,6 +98,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .password-fields {
+            display: none;
+            transition: all 0.3s ease;
+        }
+
+        .lopCoVan-fields {
             display: none;
             transition: all 0.3s ease;
         }
@@ -149,34 +174,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="mb-3">
-                    <label for="noiCongTac" class="form-label">Nơi công tác</label>
-                    <select id="noiCongTac" name="noiCongTac" class="form-select" required>
-                        <optgroup label="Cấp Trường">
-                            <option value="DI" <?= $user['noiCongTac'] === 'DI' ? 'selected' : '' ?>>Trường CNTT&TT</option>
-                            <option value="CN" <?= $user['noiCongTac'] === 'CN' ? 'selected' : '' ?>>Trường Bách Khoa</option>
-                            <option value="KT" <?= $user['noiCongTac'] === 'KT' ? 'selected' : '' ?>>Trường Kinh Tế</option>
-                            <option value="NN" <?= $user['noiCongTac'] === 'NN' ? 'selected' : '' ?>>Trường Nông Nghiệp</option>
-                            <option value="SP" <?= $user['noiCongTac'] === 'SP' ? 'selected' : '' ?>>Trường Sư Phạm</option>
-                            <option value="TS" <?= $user['noiCongTac'] === 'TS' ? 'selected' : '' ?>>Trường Thủy Sản</option>
-                        </optgroup>
-                        <optgroup label="Cấp Khoa">
-                            <option value="DB" <?= $user['noiCongTac'] === 'DB' ? 'selected' : '' ?>>Khoa Dự Bị Dân Tộc</option>
-                            <option value="MT" <?= $user['noiCongTac'] === 'MT' ? 'selected' : '' ?>>Khoa Chính Trị</option>
-                            <option value="TN" <?= $user['noiCongTac'] === 'TN' ? 'selected' : '' ?>>Khoa Khoa Học Tự Nhiên</option>
-                            <option value="XH" <?= $user['noiCongTac'] === 'XH' ? 'selected' : '' ?>>Khoa KHXH&NV</option>
-                            <option value="KL" <?= $user['noiCongTac'] === 'KL' ? 'selected' : '' ?>>Khoa Luật</option>
-                            <option value="MTN" <?= $user['noiCongTac'] === 'MTN' ? 'selected' : '' ?>>Khoa MT&TNTN</option>
-                            <option value="FL" <?= $user['noiCongTac'] === 'FL' ? 'selected' : '' ?>>Khoa Ngoại Ngữ</option>
-                            <option value="TC" <?= $user['noiCongTac'] === 'TC' ? 'selected' : '' ?>>Khoa Giáo Dục Thể Chất</option>
-                        </optgroup>
+                    <label for="diaChi" class="form-label">Địa chỉ</label>
+                    <input type="text" class="form-control" id="diaChi" name="diaChi" value="<?= htmlspecialchars($user['diaChi']) ?>" >
+                </div>
+
+                <div class="mb-3">
+                    <label for="chucVu" class="form-label">Chức vụ</label>
+                    <select id="chucVu" name="chucVu" class="form-select" >
+                        <option value="Giảng viên cao cấp" <?= $user['chucVu'] === 'Giảng viên cao cấp' ? 'selected' : '' ?>>Giảng viên cao cấp</option>
+                        <option value="Giảng viên chính" <?= $user['chucVu'] === 'Giảng viên chính' ? 'selected' : '' ?>>Giảng viên chính</option>
+                        <option value="Giảng viên" <?= $user['chucVu'] === 'Giảng viên' ? 'selected' : '' ?>>Giảng viên</option>
+                        <option value="Trợ giảng" <?= $user['chucVu'] === 'Trợ giảng' ? 'selected' : '' ?>>Trợ giảng</option>
                     </select>
                 </div>
 
                 <div class="mb-3">
-                    <label for="maLopCoVan" class="form-label">Mã lớp cố vấn</label>
-                    <input type="text" class="form-control" id="lopCoVan" name="lopCoVan" value="<?= htmlspecialchars($user['lopCoVan']) ?>" required>
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" >
                 </div>
 
+
+                <div class="mb-3">
+                    <label for="soDienThoai" class="form-label">Số điện thoại</label>
+                    <input type="text" class="form-control" id="soDienThoai" name="soDienThoai" value="<?= htmlspecialchars($user['soDienThoai']) ?>" >
+                </div>
+
+                <div class="mb-3 form-check">
+                     <input type="checkbox" class="form-check-input" id="change_lopCoVan_checkbox" name="change_lopCoVan" value="1">
+                     <label class="form-check-label" for="change_lopCoVan_checkbox">Đổi lớp cố vấn</label>
+                </div>
+                <div id="lopCoVan-fields" class="lopCoVan-fields">
+                    <div class="mb-3">
+                        <label for="noiCongTac" class="form-label">Công tác tại</label>
+                        <select id="noiCongTac" name="noiCongTac" class="form-select">
+                            <option value="">-- Chọn Khoa / Trường --</option>
+                            <optgroup label="Viện">
+                                <option value="DA">Viện Công nghệ sinh học</option>
+                            <optgroup label="Cấp Trường">
+                                <option value="DI">Trường CNTT&TT</option>
+                                <option value="TN">Trường Bách Khoa</option>
+                                <option value="KT">Trường Kinh Tế</option>
+                                <option value="NN">Trường Nông Nghiệp</option>
+                                <option value="SP">Trường Sư Phạm</option>
+                                <option value="TS">Trường Thủy Sản</option>
+                            </optgroup>
+                            <optgroup label="Cấp Khoa">
+                                <option value="MT">Khoa Chính Trị</option>
+                                <option value="KH">Khoa Khoa Học Tự Nhiên</option>
+                                <option value="XH">Khoa KHXH&NV</option>
+                                <option value="KL">Khoa Luật</option>
+                                <option value="MT">Khoa MT&TNTN</option>
+                                <option value="FL">Khoa Ngoại Ngữ</option>
+                                <option value="TD">Khoa Giáo Dục Thể Chất</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="maLop" class="form-label">Lớp cố vấn</label>
+                        <select id="maLop" name="maLop" class="form-select">
+                            <option value="">-- Chọn lớp --</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="change_password_checkbox" name="change_password" value="1">
                     <label class="form-check-label" for="change_password_checkbox">Đổi mật khẩu</label>
@@ -286,6 +345,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     passwordFeedback.className = 'form-text text-success';
                 }
             });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const lopCheckbox = document.getElementById('change_lopCoVan_checkbox');
+        const lopFields = document.getElementById('lopCoVan-fields');
+
+        lopCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+        lopFields.style.display = 'block';
+        document.getElementById('noiCongTac').required = true;
+        document.getElementById('maLop').required = true;
+         } else {
+        lopFields.style.display = 'none';
+        document.getElementById('noiCongTac').required = false;
+        document.getElementById('maLop').required = false;
+        }
+        });
+
+        });
+
+        
+
+
+        document.getElementById("noiCongTac").addEventListener("change", function() {
+            const maKhoaTruong = this.value;
+            const lopSelect = document.getElementById("maLop");
+            lopSelect.innerHTML = '<option value="">-- Chọn lớp --</option>';
+
+            if (maKhoaTruong) {
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "get_lop.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        try {
+                            const res = JSON.parse(xhr.responseText);
+                            res.data.forEach(item => {
+                                const option = document.createElement("option");
+                                option.value = item.maLop; // lưu mã lớp
+                                option.textContent = item.tenLop; // hiển thị tên lớp
+                                lopSelect.appendChild(option);
+                            });
+                        } catch (err) {
+                            console.error("Lỗi parse JSON:", err);
+                            console.log("Phản hồi từ server:", xhr.responseText);
+                        }
+                    }
+                };
+
+                // Gửi dữ liệu dạng application/x-www-form-urlencoded
+                xhr.send("maKhoaTruong=" + encodeURIComponent(maKhoaTruong));
+            }
         });
     </script>
 </body>

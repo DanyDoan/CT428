@@ -46,7 +46,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
                 "user-profile user-profile calendar_month"
                 "user-profile user-profile edit-profile"
                 "user-profile user-profile edit-profile"
-                "fact_check forum feedback";
+                "fact_check advisor-class-meeting-info feedback";
         }
 
         .box {
@@ -101,16 +101,8 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             grid-area: feedback;
         }
 
-        .forum {
-            grid-area: forum;
-        }
-
-        .messages {
-            grid-area: messages;
-        }
-
-        .group {
-            grid-area: group;
+        .advisor-class-meeting-info {
+            grid-area: advisor-class-meeting-info;
         }
 
         .fact_check {
@@ -259,15 +251,16 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             <span class="sub-title-box">Khoa / Trường</span>
             <?php echo htmlspecialchars($row['tenKhoaTruong']); ?>
             <span class="sub-title-box">Chức vụ</span>
-            <?php echo htmlspecialchars($row['chucVu']??"(chưa cập nhật)"); ?>
+             <?php echo htmlspecialchars(!empty($row['chucVu']) ? $row['chucVu'] : "(chưa cập nhật)"); ?>
             <span class="sub-title-box">Lớp cố vấn</span>
-            <?php echo htmlspecialchars($row['tenLop']??"(chưa cập nhật)"); ?>
+            <?php echo htmlspecialchars($row['tenLop']); ?>
             <span class="sub-title-box">Địa chỉ liên hệ</span>
-            <?php echo htmlspecialchars($row['diaChi']??"(chưa cập nhật)");?>
+            <?php echo htmlspecialchars(!empty($row['diaChi']) ? $row['diaChi'] : "(chưa cập nhật)"); ?>
             <span class="sub-title-box">SĐT</span>
-            <?php echo htmlspecialchars($row['soDienThoai']??"(chưa cập nhật)");?>
+            <?php echo htmlspecialchars(!empty($row['soDienThoai']) ? $row['soDienThoai'] : "(chưa cập nhật)"); ?>
             <span class="sub-title-box">Email</span>
-            <?php echo htmlspecialchars($row['email']??"(chưa cập nhật)");?>
+            <?php echo htmlspecialchars(!empty($row['email']) ? $row['email'] : "(chưa cập nhật)"); ?>
+
         </div>
     </div>
 </body>
@@ -305,7 +298,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
 
 
     function showComingSoon() {
-        alert("Tính năng đang trong quá trình phát triển!");
+        alert("Tính năng sẽ được phát triễn trong tương lai!");
     }
 
     function setLocalStorage(tenLop) {
