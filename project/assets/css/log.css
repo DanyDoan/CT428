@@ -1,0 +1,49 @@
+
+        table {
+            width: 80%;
+            margin: 10px AUTO;
+            padding: 10px;
+            border-collapse: collapse;
+            background-color: red;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 0.2em;
+        }
+
+        table * {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+
+
+        table th,
+        table td {
+            width: fit-content;
+            min-width: 75px;
+            max-width: 150px;
+            padding: 2px 0px;
+            border: 1px solid rgba(221, 196, 196, 1);
+            padding: 10px;
+            align-content: start;
+        }
+
+
+        table th {
+            padding: 5px;
+            background-color: #0d6efd;
+            color: white;
+            font-size: 0.8em;
+
+        }
+
+        table tr {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        table tr:nth-child(2n) {
+            background-color: rgba(217, 235, 245, 1);
+        }
+
+        br {
+            display: inline;
+        }

@@ -2,25 +2,25 @@
 session_start();
 
 if (!isset($_SESSION['MSCB'])) {
-    header("Location: login.php");
+    header("Location: dangNhap.php");
     exit;
 }
 ?>
-<?php require("thongke.php"); ?>
+<?php require("../controllers/thongKe.php"); ?>
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../shared/banner/logo.png">
     <link rel="stylesheet" href="../assets/sidebar-style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
-    <link href="../assets/css/index-style.css" rel="stylesheet">
+    <link href="../assets/css/index.css" rel="stylesheet">
+    <link rel="icon" href="../assets/images/logo.png">
     <title>Trang chủ</title>
 </head>
 
@@ -41,12 +41,12 @@ if (!isset($_SESSION['MSCB'])) {
                 <div class="carousel-inner">
                     <!-- Banner 1 -->
                     <div class="carousel-item active">
-                        <img src="../shared/banner/banner2.png" class="d-block w-100" alt="Banner 1">
+                        <img src="../assets/images/banner2.png" class="d-block w-100" alt="Banner 1">
                     </div>
 
                     <!-- Banner 2 -->
                     <div class="carousel-item">
-                        <img src="../shared/banner/banner1.png" class="d-block w-100" alt="Banner 2">
+                        <img src="../assets/images/banner1.png" class="d-block w-100" alt="Banner 2">
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@ if (!isset($_SESSION['MSCB'])) {
                             <p>Hệ thống quản lý thông tin sinh viên được phát triển nhằm hỗ trợ giảng viên và cán bộ trong việc cập nhật, tìm kiếm và quản lý dữ liệu sinh viên một cách khoa học, thuận tiện và an toàn. Việc áp dụng hệ thống không chỉ giúp tiết kiệm thời gian, giảm thiểu sai sót trong xử lý thông tin, mà còn góp phần hiện đại hóa công tác quản lý, đáp ứng yêu cầu của một môi trường đại học năng động và chuyên nghiệp.</p>
                         </div>
                         <div class="col-lg-6">
-                            <img src="../shared/banner/RLC1.jpg" alt="Giới thiệu" class=" rounded custom-img img-fluid">
+                            <img src="../assets/images/RLC1.jpg" alt="Giới thiệu" class=" rounded custom-img img-fluid">
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,7 @@ if (!isset($_SESSION['MSCB'])) {
                         <div class="col-md-4">
                             <div class="card p-4 shadow-sm feature-card">
                                 <i class="bi bi-people-fill" style="font-size: 2rem; color: #5cb85c;"></i>
-                                <h3><?php echo $totalCanBo; ?></h3>
+                                <h3><?php echo ($totalCanBo-1); ?></h3>
                                 <p>Cán bộ / Giảng viên</p>
                             </div>
                         </div>
@@ -140,48 +140,50 @@ if (!isset($_SESSION['MSCB'])) {
 
 
 
-                <!-- Các chức năng chính -->
-                <section class="py-5">
-                    <div class="container">
-                        <h2 class="text-center mb-5">Các chức năng chính</h2>
-                        <div class="row g-4">
-                            <div class="col-md-4">
-                                <div class="card feature-card p-4 text-center">
-                                    <i class="bi bi-person-vcard feature-icon"></i>
-                                    <h3>Xem thông tin cán bộ</h3>
-                                    <p>Xem thông tin về cán bộ, giảng viên đang công tác tại trường</p>
-                                    <a href="./dscanbo.php" class="btn btn-sm btn-outline-primary">Chi tiết</a>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card feature-card p-4 text-center">
-                                    <i class="bi bi-book feature-icon"></i>
-                                    <h3>Quản lý tài khoản cá nhân</h3>
-                                    <p>Xem trang thông tin cá nhân và các chức năng sẵn dùng</p>
-                                    <?php
-                                        if ($_SESSION["MSCB"] == "000000"){
-                                    ?>
-                                        <a href="#" class="btn btn-sm btn-outline-primary">Chi tiết</a>
-                                    <?php
-                                        }else{
-                                    ?>
-                                        <a href="./canbo.php" class="btn btn-sm btn-outline-primary">Chi tiết</a>
-                                    <?php
-                                        }
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card feature-card p-4 text-center">
-                                    <i class="bi bi-search feature-icon"></i>
-                                    <h3>Quản lý thông tin sinh viên</h3>
-                                    <p>Quản lý tài khoản sinh viên, tác vụ thêm/sửa/xóa</p>
-                                    <a href="./quanly.php" class="btn btn-sm btn-outline-primary">Chi tiết</a>
-                                </div>
+            <!-- Các chức năng chính -->
+            <section class="py-5">
+                <div class="container">
+                    <h2 class="text-center mb-5">Các chức năng chính</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card feature-card p-4 text-center">
+                                <i class="bi bi-search feature-icon"></i>
+                                <h3>Quản lý thông tin sinh viên</h3>
+                                <p>Quản lý tài khoản sinh viên, tác vụ thêm/sửa/xóa</p>
+                                <a href="./quanLySinhVien.php" class="btn btn-sm btn-outline-primary">Chi tiết</a>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="card feature-card p-4 text-center">
+                                <i class="bi bi-person-vcard feature-icon"></i>
+                                <h3>Xem thông tin cán bộ</h3>
+                                <p>Xem thông tin về cán bộ, giảng viên đang công tác tại trường</p>
+                                <a href="./danhSachCanBo.php" class="btn btn-sm btn-outline-primary">Chi tiết</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card feature-card p-4 text-center">
+                                <i class="bi bi-book feature-icon"></i>
+                                <h3>Quản lý tài khoản cá nhân</h3>
+                                <p>Xem trang thông tin cá nhân và các chức năng sẵn dùng</p>
+                                <?php
+                                if ($_SESSION["MSCB"] == "000000") {
+                                ?>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">Chi tiết</a>
+                                <?php
+                                } else {
+                                ?>
+                                    <a href="./canBo.php" class="btn btn-sm btn-outline-primary">Chi tiết</a>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+
+
                     </div>
-                </section>
+                </div>
+            </section>
         </div>
 
         <!-- Footer -->

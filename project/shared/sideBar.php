@@ -18,14 +18,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <span class="menu-text">Trang chủ</span>
                 </a>
             </li>
-            <li class="nav-item <?= ($current_page == 'quanly.php' || $current_page == 'chiTiet.php') ? 'bg-primary' : '' ?>">
-                <a href="quanly.php" class="nav-link text-white d-flex align-items-center">
+            <li class="nav-item <?= ($current_page == 'quanLySinhVien.php' || $current_page == 'chiTiet.php') ? 'bg-primary' : '' ?>">
+                <a href="quanLySinhVien.php" class="nav-link text-white d-flex align-items-center">
                     <i class="bi bi-people me-2"></i>
                     <span class="menu-text">Quản lý</span>
                 </a>
             </li>
-            <li class="nav-item <?= $current_page == 'dscanbo.php' ? 'bg-primary' : '' ?>">
-                <a href="dscanbo.php" class="nav-link text-white d-flex align-items-center">
+            <li class="nav-item <?= $current_page == 'danhSachCanBo.php' ? 'bg-primary' : '' ?>">
+                <a href="danhSachCanBo.php" class="nav-link text-white d-flex align-items-center">
                     <i class="bi bi-list me-2"></i>
                     <span class="menu-text">Danh sách cán bộ</span>
                 </a>
@@ -43,8 +43,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <?php
             }else{
             ?>
-                        <li class="nav-item <?= $current_page == 'canbo.php' ? 'bg-primary' : '' ?>">
-                <a href="canbo.php" class="nav-link text-white d-flex align-items-center">
+                        <li class="nav-item <?= $current_page == 'canBo.php' ? 'bg-primary' : '' ?>">
+                <a href="canBo.php" class="nav-link text-white d-flex align-items-center">
                     <i class="bi bi-person-badge me-2"></i>
                     <span class="menu-text">Cán bộ</span>
                 </a>

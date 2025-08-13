@@ -3,7 +3,7 @@ session_start();
 require_once("../config/db.php");
 
 if (!isset($_SESSION['MSCB'])) {
-    header("Location: login.php");
+    header("Location: dangNhap.php");
     exit;
 }
 
@@ -26,10 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $gioiTinh = $_POST['gioiTinh'];
     // $noiCongTac = $_POST['noiCongTac'];
     $maLop = $_POST['maLop'] ?? "";
-    $diaChi = $_POST['diaChi']??"";
-    $chucVu = $_POST['chucVu']??"";
-    $email = $_POST['email']??"";
-    $soDienThoai = $_POST['soDienThoai']??"";
+    $diaChi = $_POST['diaChi'] ?? "";
+    $chucVu = $_POST['chucVu'] ?? "";
+    $email = $_POST['email'] ?? "";
+    $soDienThoai = $_POST['soDienThoai'] ?? "";
 
     // Kiểm tra nếu người dùng muốn đổi mật khẩu
     $changePassword = isset($_POST['change_password']) && $_POST['change_password'] == '1';
@@ -49,20 +49,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $hashedPassword = password_hash($matKhauMoi, PASSWORD_DEFAULT);
             if (!empty($maLop)) {
                 $stmt = $conn->prepare("UPDATE CANBO SET hoTen=?, ngaySinh=?, gioiTinh=?, diaChi=?, chucVu=?, email=?,soDienThoai=?,maLop=?,matKhau=? WHERE MSCB=?");
-                $stmt->bind_param("ssssssssss", $hoTen, $ngaySinh, $gioiTinh, $diaChi, $chucVu, $email,$soDienThoai ,$maLop, $hashedPassword, $MSCB);
+                $stmt->bind_param("ssssssssss", $hoTen, $ngaySinh, $gioiTinh, $diaChi, $chucVu, $email, $soDienThoai, $maLop, $hashedPassword, $MSCB);
             } else {
                 $stmt = $conn->prepare("UPDATE CANBO SET hoTen=?, ngaySinh=?, gioiTinh=?, diaChi=?, chucVu=?, email=?,soDienThoai=?,matKhau=? WHERE MSCB=?");
-                $stmt->bind_param("sssssssss", $hoTen, $ngaySinh, $gioiTinh, $diaChi, $chucVu, $email,$soDienThoai, $hashedPassword, $MSCB);
+                $stmt->bind_param("sssssssss", $hoTen, $ngaySinh, $gioiTinh, $diaChi, $chucVu, $email, $soDienThoai, $hashedPassword, $MSCB);
             }
         }
     } else {
         // Không đổi mật khẩu
         if (!empty($maLop)) {
             $stmt = $conn->prepare("UPDATE CANBO SET hoTen=?, ngaySinh=?,gioiTinh=?, diaChi=?, chucVu=?,email=?,soDienThoai=?,maLop=? WHERE MSCB=?");
-            $stmt->bind_param("sssssssss", $hoTen, $ngaySinh, $gioiTinh, $diaChi, $chucVu, $email,$soDienThoai ,$maLop, $MSCB);
+            $stmt->bind_param("sssssssss", $hoTen, $ngaySinh, $gioiTinh, $diaChi, $chucVu, $email, $soDienThoai, $maLop, $MSCB);
         } else {
             $stmt = $conn->prepare("UPDATE CANBO SET hoTen=?, ngaySinh=?,gioiTinh=?, diaChi=?, chucVu=?,email=?,soDienThoai=? WHERE MSCB=?");
-            $stmt->bind_param("ssssssss", $hoTen, $ngaySinh, $gioiTinh, $diaChi, $chucVu,$email, $soDienThoai, $MSCB);
+            $stmt->bind_param("ssssssss", $hoTen, $ngaySinh, $gioiTinh, $diaChi, $chucVu, $email, $soDienThoai, $MSCB);
         }
     }
 
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user['email'] = $email;
             $user['soDienThoai'] = $soDienThoai;
             $_SESSION["chucVu"] = $chucVu;
-            header("Location: ./canbo.php");
+            header("Location: ./canBo.php");
         } else {
             $error = "Lỗi cập nhật: " . $stmt->error;
         }
@@ -96,50 +96,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <meta charset="UTF-8">
-    <title>Cập nhật thông tin cán bộ</title>
-    <link rel="icon" href="../shared/banner/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../assets/css/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .password-fields {
-            display: none;
-            transition: all 0.3s ease;
-        }
+    <link href="../assets/css/capNhatCanBo.css" rel="stylesheet">
+    <title>Cập nhật thông tin cán bộ</title>
 
-        .lopCoVan-fields {
-            display: none;
-            transition: all 0.3s ease;
-        }
 
-        .password-strength {
-            height: 5px;
-            margin-top: 5px;
-            background-color: #e9ecef;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .password-strength-bar {
-            height: 100%;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .weak {
-            background-color: #dc3545;
-            width: 33%;
-        }
-
-        .medium {
-            background-color: #ffc107;
-            width: 66%;
-        }
-
-        .strong {
-            background-color: #28a745;
-            width: 100%;
-        }
-    </style>
 </head>
 
 <body class="bg-light">
@@ -179,12 +142,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="mb-3">
                     <label for="diaChi" class="form-label">Địa chỉ</label>
-                    <textarea class="form-control" id="diaChi" name="diaChi" value="<?= htmlspecialchars($user['diaChi']) ?>" ></textarea>
+                    <textarea class="form-control" id="diaChi" name="diaChi" value="<?= htmlspecialchars($user['diaChi']) ?>"></textarea>
                 </div>
 
                 <div class="mb-3">
                     <label for="chucVu" class="form-label">Trình độ</label>
-                    <select id="chucVu" name="chucVu" class="form-select" >
+                    <select id="chucVu" name="chucVu" class="form-select">
                         <option value="Giáo sư" <?= $user['chucVu'] === 'Giáo sư' ? 'selected' : '' ?>>Giáo sư</option>
                         <option value="Phó giáo sư" <?= $user['chucVu'] === 'Phó giáo sư' ? 'selected' : '' ?>>Phó giáo sư</option>
                         <option value="Tiến sĩ" <?= $user['chucVu'] === 'Tiến sĩ' ? 'selected' : '' ?>>Tiến sĩ</option>
@@ -194,18 +157,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" >
+                    <input type="text" class="form-control" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>">
                 </div>
 
 
                 <div class="mb-3">
                     <label for="soDienThoai" class="form-label">Số điện thoại</label>
-                    <input type="text" class="form-control" id="soDienThoai" name="soDienThoai" value="<?= htmlspecialchars($user['soDienThoai']) ?>" >
+                    <input type="text" class="form-control" id="soDienThoai" name="soDienThoai" value="<?= htmlspecialchars($user['soDienThoai']) ?>">
                 </div>
 
                 <div class="mb-3 form-check">
-                     <input type="checkbox" class="form-check-input" id="change_lopCoVan_checkbox" name="change_lopCoVan" value="1">
-                     <label class="form-check-label" for="change_lopCoVan_checkbox">Đổi lớp cố vấn</label>
+                    <input type="checkbox" class="form-check-input" id="change_lopCoVan_checkbox" name="change_lopCoVan" value="1">
+                    <label class="form-check-label" for="change_lopCoVan_checkbox">Đổi lớp cố vấn</label>
                 </div>
                 <div id="lopCoVan-fields" class="lopCoVan-fields">
                     <div class="mb-3">
@@ -266,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">Cập nhật</button>
-                    <a href="canbo.php" class="btn btn-outline-secondary">Quay lại</a>
+                    <a href="canBo.php" class="btn btn-outline-secondary">Quay lại</a>
                 </div>
             </form>
         </div>
@@ -352,24 +315,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-        const lopCheckbox = document.getElementById('change_lopCoVan_checkbox');
-        const lopFields = document.getElementById('lopCoVan-fields');
+            const lopCheckbox = document.getElementById('change_lopCoVan_checkbox');
+            const lopFields = document.getElementById('lopCoVan-fields');
 
-        lopCheckbox.addEventListener('change', function() {
-        if (this.checked) {
-        lopFields.style.display = 'block';
-        document.getElementById('noiCongTac').required = true;
-        document.getElementById('maLop').required = true;
-         } else {
-        lopFields.style.display = 'none';
-        document.getElementById('noiCongTac').required = false;
-        document.getElementById('maLop').required = false;
-        }
+            lopCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    lopFields.style.display = 'block';
+                    document.getElementById('noiCongTac').required = true;
+                    document.getElementById('maLop').required = true;
+                } else {
+                    lopFields.style.display = 'none';
+                    document.getElementById('noiCongTac').required = false;
+                    document.getElementById('maLop').required = false;
+                }
+            });
+
         });
 
-        });
 
-        
 
 
         document.getElementById("noiCongTac").addEventListener("change", function() {

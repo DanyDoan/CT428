@@ -1,0 +1,38 @@
+.password-fields {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+.lopCoVan-fields {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+.password-strength {
+    height: 5px;
+    margin-top: 5px;
+    background-color: #e9ecef;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.weak {
+    background-color: #dc3545;
+    width: 33%;
+}
+
+.medium {
+    background-color: #ffc107;
+    width: 66%;
+}
+
+.strong {
+    background-color: #28a745;
+    width: 100%;
+}

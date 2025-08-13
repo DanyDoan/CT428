@@ -1,0 +1,414 @@
+        #content {
+            grid-area: content;
+            overflow-y: scroll;
+            display: grid;
+            padding: 15px 0px;
+            gap: 15px;
+            grid-template-rows: repeat(3, min-content);
+            justify-content: space-around;
+            grid-template-areas:
+                "box1 box1 box2"
+                "searchBar searchBar modify"
+                "pagin pagin pagin"
+                "container container container"
+            ;
+            transition: 0.5s;
+        }
+
+        /* Box 1 */
+        #box1 {
+            grid-area: box1;
+            height: fit-content;
+            width: 100%;
+            transition: 1s;
+            z-index: 0;
+            margin: 0px;
+        }
+
+        fieldset {
+            height: 100%;
+            width: fit-content;
+            margin: 0;
+            padding: 10px;
+            border: 2px solid #052f6dff;
+            border-radius: 0.5em;
+            box-sizing: border-box;
+
+            display: flex;
+            flex-direction: column;
+            justify-self: center;
+
+            background-color: #eee;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        fieldset * {
+            width: 100%;
+        }
+
+        #box1 #addingForm label {
+            font-size: 0.8em;
+            font-weight: 800;
+            min-width: fit-content;
+            width: 5em;
+            color: rgb(0, 0, 0);
+            text-align: left;
+        }
+
+        #searchBar {
+            grid-area: searchBar;
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+            gap: 0px 10px;
+        }
+
+
+
+        #box1 input,
+        #box1 select,
+        #box1 button,
+        #box1 input::placeholder {
+            width: fit-content;
+            font-size: 0.8em;
+            background: none;
+            color: rgba(82, 82, 77, 0.72);
+            border-width: 0px 0px 2px 0px;
+            font-weight: 500;
+        }
+
+        #box1 input::placeholder,
+        #box1 input[type="date"] {
+            font-size: 0.9em;
+        }
+
+        #box1 button {
+            background-color: rgb(255, 255, 255);
+            color: black;
+            transition: 0.2s;
+        }
+
+        #box1 button:hover {
+            transition: 0.2s;
+            transform: scale(1.1);
+            background-color: black;
+            color: white;
+        }
+
+        #box1 div {
+            width: fit-content;
+        }
+
+        #box1 #addingForm {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #col1,
+        #col2 {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #col1 div,
+        #col2 div {
+            width: 100%;
+            display: flex;
+            gap: 10px;
+        }
+
+        #box2 {
+            grid-area: box2;
+            width: 15em;
+            height: auto;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px 0px;
+        }
+
+        #searchBar input,
+        #searchBar select {
+            width: fit-content;
+            height: 1.5em;
+            min-height: fit-content;
+            background-color: #eee;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 0.2em;
+            border-width: 0px;
+            color: black;
+        }
+
+        #searchBar button {
+            width: fit-content;
+            height: 1.5em;
+            min-height: fit-content;
+            border-radius: 0.2em;
+            border-width: 1px 1px;
+            background-color: #eee;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.2s;
+
+        }
+
+        #searchBar button:hover,
+        #pagin button:hover,
+        #modify button:hover {
+            transition: 0.2s;
+            transform: scale(1.1);
+            background-color: rgba(140, 134, 134, 1);
+            color: white;
+        }
+
+
+        #anounceBox {
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #052f6dff;
+            border-radius: 0.5em;
+            background-color: #eee;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            width: 100%;
+            height: 100%;
+        }
+
+        #anounceBox h2 {
+            text-align: center;
+            font-size: 0.6em;
+            font-weight: 800;
+            color: #052f6dff;
+            text-transform: uppercase;
+            animation: fade 5s forwards;
+            text-align: left;
+        }
+
+        #pagin {
+            grid-area: pagin;
+            height: fit-content;
+            display: flex;
+            justify-self: start;
+            align-self: end;
+            gap: 10px;
+        }
+
+        #container {
+            grid-area: container;
+            width: 100%;
+            display: flex;
+            align-self: start;
+            justify-content: center;
+        }
+
+        #studentList {
+            width: 100%;
+            padding: 10px;
+            border-collapse: collapse;
+            background-color: red;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 0.2em;
+        }
+
+        #studentList * {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+
+
+        #studentList th,
+        #studentList td {
+            width: fit-content;
+            min-width: 75px;
+            max-width: 150px;
+            padding: 2px 0px;
+            border: 1px solid rgba(222, 221, 221, 1);
+        }
+
+
+        #studentList th {
+            padding: 5px;
+            background-color: #0d6efd;
+            color: white;
+            font-size: 0.8em;
+
+        }
+
+        .MSSV,
+        .checkBox {
+            pointer-events: none;
+        }
+
+        #studentList .icon {
+            height: 15px;
+            width: 15px;
+            background-color: rgba(0, 0, 0, 0);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: none;
+            transition: 0.2s;
+        }
+
+        #studentList .icon:hover {
+            transition: 0.2s;
+            transform: scale(1.1);
+        }
+
+        #studentList tr {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        #studentList tr:nth-child(2n) {
+            background-color: rgba(217, 235, 245, 1);
+        }
+
+        #studentList tbody tr:hover {
+            filter: brightness(0.9);
+        }
+
+        #studentList input,
+        #studentList select,
+        #studentList option {
+            font-size: 0.75em;
+            width: 80%;
+            height: 100%;
+            background: none;
+            border: none;
+
+        }
+
+        #studentList option {
+            font-size: 1.2em;
+            border: 1px solid black;
+        }
+
+        #studentList .checkBox {
+            appearance: none;
+            width: 2em;
+            height: 1em;
+            background-color: white;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        #studentList tr td:nth-last-child(1) .checkBox:checked {
+            background-color: red;
+        }
+
+        #studentList tr td:nth-last-child(2) .checkBox:checked {
+            background-color: green;
+        }
+
+
+
+        #addingForm {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        #modify {
+            grid-area: modify;
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #modify button {
+            width: 5em;
+            height: fit-content;
+            min-width: fit-content;
+            background-color: rgba(75, 192, 64, 1);
+            color: white;
+            border: 1px solid white;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        #modify button:nth-child(2) {
+            background-color: rgba(232, 84, 84, 1);
+        }
+
+        #modify button:hover {
+            background-color: rgba(64, 155, 90, 1);
+        }
+
+        #modify button:nth-child(2):hover {
+            background-color: rgba(161, 61, 61, 1);
+        }
+
+        button {
+            border: 1px solid rgba(237, 236, 236, 1);
+        }
+
+        .btn-donate {
+            --clr-font-main: #333;
+            --btn-bg-1: #61daff;
+            --btn-bg-2: #0d47a1;
+            --btn-bg-color: #fff;
+            --radii: 0.5em;
+            background-image: linear-gradient(325deg, var(--btn-bg-2) 0, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
+            background-size: 280% auto;
+            border: none;
+            border-radius: var(--radii);
+            box-shadow: 0 0 20px #47b8ff80, 0 5px 5px -1px #3a7de940, inset 4px 4px 8px #afe6ff80, inset -4px -4px 8px #135fd859;
+            color: var(--btn-bg-color);
+            cursor: pointer;
+            font-family: Segoe UI, system-ui, sans-serif;
+            font-size: 1rem;
+            font-size: var(--size, 1rem);
+            font-weight: 500;
+            min-height: 44px;
+            min-width: 160px;
+            padding: .5em 1em;
+            transition: .8s;
+        }
+
+        /* Responsive Styles */
+
+        @media only screen and (max-width: 1000px) {
+
+            #content {
+                grid-template-rows: min-content min-content min-content min-content min-content;
+                grid-template-areas:
+                    "box1"
+                    "searchBar"
+                    "modify"
+                    "pagin"
+                    "container";
+                gap: 1em;
+            }
+
+            #box2 {
+                display: none;
+            }
+
+
+            #pagin,
+            #modify {
+                justify-self: center;
+                justify-content: center;
+                margin: 0px 100px;
+            }
+
+            tr td:nth-child(3),
+            tr td:nth-child(4),
+            tr th:nth-child(3),
+            tr th:nth-child(4) {
+                display: none;
+            }
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }

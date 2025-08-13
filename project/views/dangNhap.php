@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button type="reset" class="btn btn-outline-secondary">Hủy</button>
                 </div>
                 <div class="text-center mt-3">
-                    <small>Bạn chưa có tài khoản? <a href="register.php">Đăng ký ngay</a></small>
+                    <small>Bạn chưa có tài khoản? <a href="dangKy.php">Đăng ký ngay</a></small>
                 </div>
             </form>
         </div>
