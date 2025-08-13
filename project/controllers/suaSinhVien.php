@@ -60,7 +60,7 @@ if ($data["type"] == 0) {
 
     $result = $conn->query($query);
     $result = $result->fetch_all(MYSQLI_ASSOC);
-    $output = ["message" => $A->lay("MSSV").$message."<br>", "data" => $result];
+    $output = ["message" => $A->lay("MSSV")."<br>".$message."<br>", "data" => $result];
     echo json_encode($output);
 } else {
     $output = ["message" => $message];

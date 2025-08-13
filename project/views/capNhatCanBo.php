@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="../assets/css/logo.png">
+    <link rel="icon" href="../assets/images/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/css/capNhatCanBo.css" rel="stylesheet">
     <title>Cập nhật thông tin cán bộ</title>
@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>">
+                    <input type="text" class="form-control" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
                 </div>
 
 

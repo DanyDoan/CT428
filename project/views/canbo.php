@@ -29,7 +29,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
     <link rel="stylesheet" href="../assets/css/style.css?v=1.6.7">
     <link rel="stylesheet" href="../assets/sidebar-style.css" />
     <link rel="stylesheet" href="../assets/css/canBo.css" />
-    <link rel="icon" href="../shared/banner/logo.png">
+    <link rel="icon" href="../assets/images/logo.png">
 
     <title>Cán bộ</title>
 

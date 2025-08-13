@@ -1,58 +1,74 @@
-# CT428
-# Kế hoạch dự án (dự kiến)
+# CT428 - Website Quản Lý Sinh Viên
 
-# I/ Chuẩn bị
+## Tổng quan
+    Website Quản Lý Sinh Viên là ứng dụng web hỗ trợ nhà trường, cán bộ và giảng viên quản lý
+thông tin sinh viên một cách thuận tiện, nhanh chóng và chính xác.  
+    Hệ thống cho phép lưu trữ hồ sơ, quản lý lớp học, tìm kiếm và thống kê dữ liệu, đồng thời cung
+cấp giao diện thân thiện giúp người dùng dễ dàng thao tác.
 
-# 1/ Thiết kế cơ sở dữ liệu (Làm chung)
-#   - Xác định các bảng cần thiết
-#   - Xác định kiểu dữ liệu, khóa, ràng buộc dữ liệu
-#   - Tạo bảng
-# 2/ Xây dựng câu trúc thư mục
-# 3/ Xác định giao diện chung
-#   - Chọn mẫu giao diện đơn giản
-#   - Thống nhất template
-#   - Quy ước style chung: màu sắc, font, bố cục
+## Các chức năng chính
+- **Kiểm soát truy cập**
+  + **Đăng ký/Đăng nhập**: Quản lý phiên, cho phép người dùng được phân quyền truy cập vào hệ thống. Hệ thống hướng đến hai đối tượng chính: người dùng là cán bộ giảng viên và người dùng quản lý hệ thông với mã số cán bộ đặc biệt (000000).
+  
+- **Thao tác với dữ liệu sinh viên và cán bộ giảng viên(CRUD)**
+  + **Create**: Thêm sinh viên, cán bộ giảng viên mới vào cơ sở dữ liệu.
+  + **Read**: Xem và truy xuất thông tin sinh viên, cán bộ giảng viên.
+  + **Update**: Cập nhật thông tin sinh viên, cán bộ giảng viên.
+  + **Delete**: Xóa sinh viên khỏi cơ sở dữ liệu.
 
-# II/ Tiến hành
+- **Bổ sung thông tin**
+  + Cho phép bổ sung các thông tin tùy chọn sinh viên, cán bộ giảng viên.
 
-# 4/ Xây dựng giao diện đăng ký (Tạo tài khoản quản trị)
-#   Yêu cầu: 
-#           - Sử dụng phương thức POST
-#           - Mỗi username (MSSV) là duy nhất
-#           - Ràng buộc và băm mật khẩu trước khi đưa lên database
-#           - Giao diện đơn giản 
-# 5/ Xây dựng giao diện đăng nhập
-#   Yêu cầu:
-#           - Sử dụng phương thức POST
-#           - Nhận input của hai trường: username và password
-#           - Dùng $_SESSION để lưu trạng thái đăng nhập
-#           - Thông báo đăng nhập sai hoặc không tồn tại
-#           - Giao diện đơn giản
-# 6/ Xây dựng SideBar, Header và Footer
-#   Yêu cầu:
-#           - Sử dụng hàm require hoặc include để nhúng vào các trang => Dễ chỉnh sửa, đồng bộ hóa
-# 7/ Xây dựng giao diện quản lý (Trang chủ)
-#   Yêu cầu:
-#           - Đọc và hiển thị danh sách sinh viên dạng bảng từ cơ sở dữ liệu
-#           - Mỗi dòng dữ liệu có chức năng "Sửa", "Xóa", "Thêm mới"
-#           - Có chức năng tìm kiếm sinh viên theo tên hoặc MSSV
-# 8/ Xây dựng giao diện thêm sinh viên
-#   Yêu cầu:
-#           - Sử dụng phương thức POST
-#           - Kiểm tra các ràng buộc về khóa chính, bảo mật trước khi đưa lên cơ sở dữ liệu
-#           - Sau khi hoàn thành, thực hiện chuyển về trang chủ
-# 9/ Xây dựng giao diện Sửa thông tin sinh viên
-#   Yêu cầu:
-#           - Tương tự giao diện thêm sinh viên
-#           - Thông tin sinh viên sẽ được hiện sẵn 
-#           - Có thể disable trường ma_sv
-#           - Kiểm tra và cập nhật lên cơ sở dữ liệu
-# 10/ Chức năng xóa sinh viên
-# 11/ Chức năng tìm kiếm theo tên hoặc MSSV
+- **Tìm kiếm & thống kê**
+  + Tìm kiếm sinh viên theo mã sinh viên, tên, mã khoa/trường, tên lớp, giới tính, khóa học
+  + Tìm kiếm sinh viên theo lớp của cán bộ cố vấn 
+  + Thống kê cán bộ giảng viên của từng khoa/trường
 
+- **Theo dõi và giám sát hoạt động của cán bộ giảng viên**
+  + Ghi nhận những thao tác trên dữ liệu của sinh viên được thực hiện bởi cán bộ giảng viên
 
-#Buổi họp đầu tiên 25/6/2025
-#Code Giao diện cho các trang
-#Đăng nhập/ Đăng ký: chị Trân
-#Thông Tin Cán Bộ: Tuấn
-#Quản Lý Sinh Viên: Dân
+## Chức năng phụ
+ - **Hộp thư đến**: Liên kết đến trang gmail.com
+ - **Lịch công tác**: Liên kết đến trang lịch công tác của cit.ctu.edu.vn
+
+## Công nghệ sử dụng
+ - **Frontend**: HTML, CSS (Kết hợp Bootstrap), Javascript
+ - **Backend**: PHP
+ - **Cơ sở dữ liệu**: MySQL
+ - **Kỹ thuật**: AJAX
+
+## Yêu cầu hệ thống
+ - **Web server**: XAMPP (Apache + PHP)
+ - **CSDL**: MySQL
+ - **Trình duyệt**: Chrome, Firefox hoặc Edge mới
+nhất
+
+## Hướng dẫn cài đặt
+ - **Clone dự án**
+    git clone https://github.com/
+ - **Import file dữ liệu đính kèm**
+ - **Mở file config/db.php và thiết lập kết nối**
+ - **Chạy website**
+    + Di chuyển toàn bộ dự án vào thư mục htdocs của XAMPP
+    + Khởi động Apache và MySQL
+    + Mở trình duyệt và truy cập
+        http://localhost/CT428/project/views
+
+## Cấu trúc thư mục
+────────────────────────────────────────
+📁 project
+├── 📁 assets/
+│   ├── 📁 css/
+│   ├── 📁 images/
+│   └── 📁 js/
+├── 📁 config/
+├── 📁 controllers/
+├── 📁 migrations/
+├── 📁 models/
+├── 📁 shared/
+└── 📁 views/
+────────────────────────────────────────
+
+## Tài khoản quản trị (mặc định)
+ - MSCB: 000000
+ - Mật khẩu: superadmin

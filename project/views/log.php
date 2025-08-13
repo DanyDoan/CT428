@@ -24,7 +24,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../shared/banner/logo.png">
+    <link rel="icon" href="../assets/images/logo.png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../assets/css/sidebar-style.css" />

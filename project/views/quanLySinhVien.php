@@ -12,14 +12,14 @@ if (!isset($_SESSION['MSCB'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../shared/banner/logo.png">
+    <link rel="icon" href="../assets/images/logo.png">
     <link rel="stylesheet" href="../assets/css/sidebar-style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
-    <link href="../assets/css/quanLySinhVien.css" rel="stylesheet">
+    <link href="../assets/css/quanLySinhVien.css?v=123.123" rel="stylesheet">
     <title>Quản lý</title>
 
 
