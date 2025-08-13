@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../shared/banner/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Đăng ký</title>
     <style>
@@ -91,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                                 <label for="noiCongTac" class="form-label">Công tác tại</label>
                                 <select id="noiCongTac" name="noiCongTac" class="form-select">
                                     <optgroup label="Cấp Trường">
-                                        <option value="DI">Trường CNTT&TT</option>
+                                        <option value="DI" selected>Trường CNTT&TT</option>
                                         <option value="TN">Trường Bách Khoa</option>
                                         <option value="KT">Trường Kinh Tế</option>
                                         <option value="NN">Trường Nông Nghiệp</option>
@@ -157,6 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                                     Tôi cam kết thực hiện đúng trách nhiệm và nghĩa vụ
                                 </label>
                             </div>
+                            <a href="login.php">Đã có tài khoản?</a>
                             <div class="d-flex justify-content-end gap-2">
                                 <button type="submit" name="submit" class="btn btn-primary">Đăng Ký</button>
                                 <button type="reset" class="btn btn-secondary">Hủy</button>
@@ -251,8 +253,11 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             }
         });
 
-        document.getElementById("noiCongTac").addEventListener("change", function() {
-            const maKhoaTruong = this.value;
+        layLop();
+        document.getElementById("noiCongTac").addEventListener("change", layLop())
+
+        function layLop() {
+            const maKhoaTruong = document.getElementById("noiCongTac").value;
             const lopSelect = document.getElementById("maLop");
             lopSelect.innerHTML = '<option value="">-- Chọn lớp --</option>';
 
@@ -281,7 +286,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                 // Gửi dữ liệu dạng application/x-www-form-urlencoded
                 xhr.send("maKhoaTruong=" + encodeURIComponent(maKhoaTruong));
             }
-        });
+        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

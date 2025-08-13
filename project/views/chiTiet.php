@@ -1,5 +1,10 @@
 <?php
 require("../config/db.php");
+session_start();
+if (!isset($_SESSION['MSCB'])) {
+    header("Location: login.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +13,7 @@ require("../config/db.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png">
+    <link rel="icon" href="../shared/banner/logo.png">
     <link rel="stylesheet" href="../assets/sidebar-style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
@@ -120,7 +125,7 @@ require("../config/db.php");
             background: rgba(255, 255, 255, 1);
             border-width: 0px;
             border-radius: 5px;
-            color:rgba(155, 154, 154, 1)
+            color: rgba(155, 154, 154, 1)
         }
 
         td {
@@ -167,12 +172,12 @@ require("../config/db.php");
                 <table>
                     <tbody>
                         <tr>
-                            <td><label for="hoTen">Họ tên đầy đủ: </label></td>
-                            <td><input type="text" id="hoTen" name="hoTen"></td>
+                            <td><label for="MSSV">Mã số sinh viên: </label></td>
+                            <td><input type="text" id="MSSV" name="MSSV" disabled style="color:black"></td>
                         </tr>
                         <tr>
-                            <td><label for="MSSV">Mã số sinh viên: </label></td>
-                            <td><input type="text" id="MSSV" name="MSSV"></td>
+                            <td><label for="hoTen">Họ tên đầy đủ: </label></td>
+                            <td><input type="text" id="hoTen" name="hoTen"></td>
                         </tr>
                         <tr>
                             <td><label for="ngaySinh">Ngày sinh: </label></td>
@@ -341,7 +346,6 @@ require("../config/db.php");
         function capNhat() {
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
-                alert(this.responseText);
                 const response = JSON.parse(this.responseText);
             }
 

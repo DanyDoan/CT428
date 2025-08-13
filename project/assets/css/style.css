@@ -1,7 +1,7 @@
 body {
     display: grid;
     grid-template-columns: auto minmax(80svw, 100svw);
-    grid-template-rows: auto;
+    grid-template-rows: auto ;
     grid-template-areas:
         "sideBar main";
     position: relative;
@@ -9,11 +9,17 @@ body {
 
 #sidebar {
     grid-area: sideBar;
+    height: 100%;
     display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    position: sticky;
+    top:0px;
+    z-index: 100;
 }
 
 #sideHead {
-    min-height: 10svh;
+    height: 8svh;
     box-sizing: border-box;
 }
 
@@ -21,18 +27,19 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: fit-content;
+    height: 100%;
 }
 
 #main {
     grid-area: main;
     display: grid;
-    grid-template-rows: 10svh 80svh 5svh;
+    grid-template-rows: 8svh auto 8svh;
     grid-template-areas:
         "header"
         "content"
         "footer"
     ;
+    margin: 0px;
 }
 
 #header {
@@ -54,13 +61,19 @@ body {
 
 #footer {
     grid-area: footer;
-    background-color: #f5f5f5;
+    background-color: #edeaea;
     color: #001528;
     font-size: 14px;
-    display:flex;
+    display: flex;
     text-align: center;
     align-items: center;
     justify-content: center;
     opacity: 0.5;
     box-sizing: border-box;
+}
+
+@media only screen and (max-width: 1000px) {
+    * {
+        font-size: 10px;
+    }
 }

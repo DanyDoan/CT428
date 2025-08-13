@@ -39,17 +39,15 @@ foreach ($array as $muc) {
     if ($A->lay($muc) != $data[$muc]) {
             $A->sua($conn, $muc, $data[$muc]);
             $change++;
-            $message = $message . "<br>- THAY ĐỔI " . $muc;
+            $message = $message . "- THAY ĐỔI " . $muc."<br>";
     }
 }
-
-if ($message == "")
-    $message = "Nothing has been changed!";
-
-//Lưu công việc lên log
-$logQuery = "INSERT INTO LOG(MSCB, moTa, MSSV) 
-             VALUES('".$_SESSION["MSCB"]."', '$message', '".$A->lay("MSSV")."');";
-$conn->query($logQuery);
+if ($message != ""){
+    //Lưu công việc lên log
+    $logQuery = "INSERT INTO LOG(MSCB, moTa, MSSV) 
+                VALUES('".$_SESSION["MSCB"]."', '$message', '".$A->lay("MSSV")."');";
+    $conn->query($logQuery);
+}
 
 //Trả kết quả về 
 if ($data["type"] == 0) {
@@ -62,7 +60,7 @@ if ($data["type"] == 0) {
 
     $result = $conn->query($query);
     $result = $result->fetch_all(MYSQLI_ASSOC);
-    $output = ["message" => $message."<br>".$A->lay("MSSV"), "data" => $result];
+    $output = ["message" => $A->lay("MSSV").$message."<br>", "data" => $result];
     echo json_encode($output);
 } else {
     $output = ["message" => $message];

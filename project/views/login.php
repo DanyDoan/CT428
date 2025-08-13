@@ -21,6 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result->num_rows === 1) {
         $row = $result->fetch_assoc();
         if (password_verify($matKhau, $row['matKhau'])) {
+            $_SESSION['hoTen'] = $row['hoTen'];
+            $_SESSION['chucVu'] = $row['chucVu'];
             $_SESSION['MSCB'] = $MSCB;
             echo "<script>alert('Đăng nhập thành công!'); window.location.href = 'index.php';</script>";
         } else {
@@ -42,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Đăng nhập</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../shared/banner/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 

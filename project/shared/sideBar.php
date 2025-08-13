@@ -1,9 +1,8 @@
 <?php
 $current_page = basename($_SERVER['PHP_SELF']);
-// SESSION_start();
 ?>
 
-<div id="sidebar" class="d-flex flex-column text-white vh-100 shadow" style="width: 200px; background-color: #001528; transition: width 0.6s;">
+<div id="sidebar" class="d-flex flex-column text-white vh-100 shadow" style="width: 10em; background-color: #001528; transition: width 0.6s;">
     <div id="sideHead" class="d-flex justify-content-between align-items-center p-3">
         <span class="fs-5 fw-bold" id="sidebar-brand">Quản Lý</span>
         <button class="btn btn-sm btn-primary" id="toggle-btn">
@@ -19,28 +18,25 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <span class="menu-text">Trang chủ</span>
                 </a>
             </li>
-            <li class="nav-item <?= $current_page == 'quanly.php' ? 'bg-primary' : '' ?>">
+            <li class="nav-item <?= ($current_page == 'quanly.php' || $current_page == 'chiTiet.php') ? 'bg-primary' : '' ?>">
                 <a href="quanly.php" class="nav-link text-white d-flex align-items-center">
                     <i class="bi bi-people me-2"></i>
                     <span class="menu-text">Quản lý</span>
                 </a>
             </li>
+            <li class="nav-item <?= $current_page == 'canbo.php' ? 'bg-primary' : '' ?>">
+                <a href="canbo.php" class="nav-link text-white d-flex align-items-center">
+                    <i class="bi bi-person-badge me-2"></i>
+                    <span class="menu-text">Cán bộ</span>
+                </a>
+            </li>
             <?php
-            if (isset($_SESSION['MSCB']) && $_SESSION['MSCB'] == 0) {
+            if ($_SESSION['MSCB'] == "0") {
             ?>
-                <li class="nav-item <?= $current_page == 'logfile.php' ? 'bg-primary' : '' ?>">
-                    <a href="logfile.php" class="nav-link text-white d-flex align-items-center">
+                <li class="nav-item <?= $current_page == 'log.php' ? 'bg-primary' : '' ?>">
+                    <a href="log.php" class="nav-link text-white d-flex align-items-center">
                         <i class="bi bi-person-badge me-2"></i>
                         <span class="menu-text">Log File</span>
-                    </a>
-                </li>
-            <?php
-            } else {
-            ?>
-                <li class="nav-item <?= $current_page == 'canbo.php' ? 'bg-primary' : '' ?>">
-                    <a href="canbo.php" class="nav-link text-white d-flex align-items-center">
-                        <i class="bi bi-person-badge me-2"></i>
-                        <span class="menu-text">Cán bộ</span>
                     </a>
                 </li>
             <?php
@@ -51,8 +47,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
         <div class="mt-auto p-3 d-flex align-items-center">
             <div id="profile-info">
-                <strong>Eren</strong><br>
-                <small>Designer</small>
+                <strong>
+                    <?php echo isset($_SESSION['hoTen']) ? htmlspecialchars($_SESSION['hoTen']) : 'Khách'; ?>
+                </strong><br>
+                <small>
+                    <?php echo isset($_SESSION['chucVu']) ? htmlspecialchars($_SESSION['chucVu']) : ''; ?>
+                </small>
             </div>
         </div>
     </div>
@@ -67,8 +67,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
     const icon = toggleBtn.querySelector("i");
 
     toggleBtn.addEventListener("click", () => {
-        const isCollapsed = sidebar.style.width === "60px";
-        sidebar.style.width = isCollapsed ? "200px" : "60px";
+        const isCollapsed = sidebar.style.width === "4em";
+        sidebar.style.width = isCollapsed ? "10em" : "4em";
 
         // Toggle visibility with Bootstrap utility classes and opacity
         brandText.classList.toggle("d-none", !isCollapsed);

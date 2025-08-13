@@ -23,7 +23,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png">
+    <link rel="icon" href="../shared/banner/logo.png">
     <link rel="stylesheet" href="../assets/css/style.css?v=1.6.7">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

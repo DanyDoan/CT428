@@ -1,95 +1,75 @@
 <?php
+require("../config/db.php");
 session_start();
 if (!isset($_SESSION['MSCB'])) {
     header("Location: login.php");
     exit;
 }
-require("../config/db.php");
 ?>
 <!DOCTYPE html>
 <html lang="vi">
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png">
+    <link rel="icon" href="../shared/banner/logo.png">
     <link rel="stylesheet" href="../assets/sidebar-style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="../assets/css/style.css?v=213.1231" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
     <title>Quản lý</title>
 
     <style>
         #content {
-            /* overflow-y: scroll; */
-            z-index: 1;
+            grid-area: content;
+            overflow-y: scroll;
             display: grid;
-            padding: 20px 0px;
-            gap: 30px 0px;
-            /* max-width: 80svw; */
+            padding: 15px 0px;
+            gap: 15px;
+            grid-template-rows: repeat(3, min-content);
             justify-content: space-around;
             grid-template-areas:
-                "box1 box2 box2"
-                "searchBar modify modify"
+                "box1 box1 box2"
+                "searchBar searchBar modify"
                 "pagin pagin pagin"
                 "container container container"
             ;
-            height: fit-content;
-            max-height: 80svh;
             transition: 0.5s;
         }
 
-
+        /* Box 1 */
         #box1 {
             grid-area: box1;
+            height: fit-content;
             width: 100%;
             transition: 1s;
             z-index: 0;
-        }
-
-        #searchBar {
-            grid-area: searchBar;
-            height: fit-content;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        #pagin {
-            grid-area: pagin;
+            margin: 0px;
         }
 
         fieldset {
+            height: 100%;
+            width: fit-content;
+            margin: 0;
+            padding: 10px;
+            border: 2px solid #052f6dff;
+            border-radius: 0.5em;
+            box-sizing: border-box;
+
             display: flex;
             flex-direction: column;
-            padding: 10px;
-            border: 5px solid #052f6dff;
-            border-radius: 0.5em;
+            justify-self: center;
+
             background-color: #eee;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-
-            box-sizing: border-box;
-            width: fit-content;
-            justify-self: center;
         }
 
         fieldset * {
             width: 100%;
         }
 
-        fieldset legend {
-            width: fit-content;
-            text-transform: uppercase;
-            font-weight: 800;
-            background-image: linear-gradient(to left, rgb(0, 0, 0), rgb(85, 113, 255));
-            color: transparent;
-            background-clip: text;
-            animation: surfing 5s linear infinite;
-        }
-
         #box1 #addingForm label {
-            display: inline-block;
             font-size: 0.8em;
             font-weight: 800;
             min-width: fit-content;
@@ -98,12 +78,22 @@ require("../config/db.php");
             text-align: left;
         }
 
+        #searchBar {
+            grid-area: searchBar;
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+            gap: 0px 10px;
+        }
+
+
+
         #box1 input,
         #box1 select,
         #box1 button,
         #box1 input::placeholder {
             width: fit-content;
-            font-size: 0.85em;
+            font-size: 0.8em;
             background: none;
             color: rgba(82, 82, 77, 0.72);
             border-width: 0px 0px 2px 0px;
@@ -153,6 +143,8 @@ require("../config/db.php");
 
         #box2 {
             grid-area: box2;
+            width: 15em;
+            height: auto;
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px 0px;
@@ -161,7 +153,8 @@ require("../config/db.php");
         #searchBar input,
         #searchBar select {
             width: fit-content;
-            height: 2em;
+            height: 1.5em;
+            min-height: fit-content;
             background-color: #eee;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             border-radius: 0.2em;
@@ -171,7 +164,8 @@ require("../config/db.php");
 
         #searchBar button {
             width: fit-content;
-            height: 2em;
+            height: 1.5em;
+            min-height: fit-content;
             border-radius: 0.2em;
             border-width: 1px 1px;
             background-color: #eee;
@@ -191,32 +185,33 @@ require("../config/db.php");
 
 
         #anounceBox {
-            grid-area: anounceBox;
             padding: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 5px solid #052f6dff;
+            border: 2px solid #052f6dff;
             border-radius: 0.5em;
             background-color: #eee;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             width: 100%;
-            height: 10em;
+            height: 100%;
         }
 
         #anounceBox h2 {
             text-align: center;
-            font-size: 1em;
+            font-size: 0.6em;
             font-weight: 800;
             color: #052f6dff;
             text-transform: uppercase;
             animation: fade 5s forwards;
+            text-align: left;
         }
 
         #pagin {
             grid-area: pagin;
+            height: fit-content;
             display: flex;
-            justify-self: center;
+            justify-self: start;
             align-self: end;
             gap: 10px;
         }
@@ -230,9 +225,8 @@ require("../config/db.php");
         }
 
         #studentList {
-            max-width: 100%;
-            min-width: 95%;
-            margin: 10px;
+            width: 100%;
+            padding: 10px;
             border-collapse: collapse;
             background-color: red;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -340,13 +334,16 @@ require("../config/db.php");
 
         #modify {
             grid-area: modify;
+            height: fit-content;
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap:10px;
         }
 
         #modify button {
             width: 5em;
+            height: fit-content;
+            min-width: fit-content;
             background-color: rgba(75, 192, 64, 1);
             color: white;
             border: 1px solid white;
@@ -396,43 +393,28 @@ require("../config/db.php");
         /* Responsive Styles */
 
         @media only screen and (max-width: 1000px) {
-            * {
-                font-size: 10px;
-            }
-
-            /* #box1,
-            #box2 {
-                display: none;
-            } */
 
             #content {
+                grid-template-rows: min-content min-content min-content min-content min-content;
                 grid-template-areas:
                     "box1"
                     "searchBar"
-                    "pagin"
                     "modify"
+                    "pagin"
                     "container";
-                /* height: fit-content; */
+                gap: 1em;
             }
 
             #box2 {
                 display: none;
             }
 
-            #box1 {
-                width: fit-content;
-                flex-direction: column;
-            }
 
             #pagin,
             #modify {
-                /* width: 100%; */
-                justify-content: right;
-                margin: 0px 100px
-            }
-
-            #modify {
-                justify-content: left;
+                justify-self: center;
+                justify-content: center;
+                margin: 0px 100px;
             }
 
             tr td:nth-child(3),
@@ -458,10 +440,8 @@ require("../config/db.php");
 <body>
 
     <!-- Sidebar -->
-    <div id="sideBar">
-        <?php require("../shared/sideBar.php"); ?>
-    </div>
-    <!-- Main -->
+    <?php require("../shared/sideBar.php"); ?>
+
     <div id="main">
 
         <!-- Header -->
@@ -475,7 +455,7 @@ require("../config/db.php");
             <!-- box1 -->
             <div id="box1">
                 <fieldset>
-                    <legend>Thêm sinh viên</legend>
+                    <!-- <legend>Thêm sinh viên</legend> -->
                     <form method="POST" id="addingForm">
                         <div id="col1">
                             <div>
@@ -500,7 +480,7 @@ require("../config/db.php");
                         </div>
                         <div id="col2">
                             <div>
-                                <label for="maKhoaTruong">Trường</label>
+                                <label for="maKhoaTruong">Trường: </label>
                                 <select id="maKhoaTruong" name="maKhoaTruong">
                                     <optgroup label="Trường/Khoa đào tạo">
                                         <option value="DA">Viện Công nghệ Sinh học và thực phẩm</option>
@@ -522,14 +502,14 @@ require("../config/db.php");
                                 </select>
                             </div>
                             <div>
-                                <label for="maLop">Lớp</label>
+                                <label for="maLop">Lớp: </label>
                                 <select id="maLop" name="maLop">
                                     <!-- asd -->
                                 </select>
 
                             </div>
                             <div>
-                                <label for="khoa">Khóa</label>
+                                <label for="khoa">Khóa: </label>
                                 <select id="khoa" name="khoa">
                                     <option value="K45">K45</option>
                                     <option value="K46">K46</option>
@@ -550,7 +530,7 @@ require("../config/db.php");
             <!-- box2 -->
             <div id="box2">
                 <div id="anounceBox">
-                    <h2>Hộp thông báo</h2>
+                    <!-- <h2>Hộp thông báo</h2> -->
                 </div>
             </div>
 
@@ -565,13 +545,10 @@ require("../config/db.php");
                     <option value="khoa">Khóa</option>
                 </select>
                 <input type="text" name="fieldValue" placeholder="...">
-                <button type="button" onclick="timSinhVien()">Tìm Kiếm</button>
+                <button type="button" onclick="timSinhVien()">                                <i class="bi bi-search feature-icon"></i>
+</button>
                 <button type="button" onclick="window.location.reload()">Hủy</button>
             </form>
-
-            <!-- pagin -->
-            <div id="pagin">
-            </div>
 
 
             <!-- modify -->
@@ -585,6 +562,12 @@ require("../config/db.php");
                     Xóa
                 </button>
             </div>
+
+            <!-- pagin -->
+            <div id="pagin">
+            </div>
+
+
 
             <!-- container -->
             <div id="container">

@@ -13,7 +13,7 @@ if (!isset($_SESSION['MSCB'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png">
+    <link rel="icon" href="../shared/banner/logo.png">
     <link rel="stylesheet" href="../assets/sidebar-style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
@@ -27,9 +27,7 @@ if (!isset($_SESSION['MSCB'])) {
 <body>
 
     <!-- Sidebar -->
-    <div id="sideBar">
         <?php require("../shared/sideBar.php"); ?>
-    </div>
 
     <!-- Main -->
     <div id="main">
