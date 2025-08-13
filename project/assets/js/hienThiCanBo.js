@@ -59,12 +59,12 @@ function hienThiCanBo(danhSachCanBo) {
         row += `<td>${canBo["hoTen"]}</td>`;
         row += `<td>${canBo["gioiTinh"]}</td>`;
         for (let truong of khoaTruong) {
-            if (truong.maKhoaTruong == canBo["maKhoaTruong"]){
+            if (truong.maKhoaTruong == canBo["maKhoaTruong"]) {
                 row += "<td>" + truong.tenKhoaTruong + "</td>";
                 MKT = truong.maKhoaTruong;
             }
         }
-        
+
         row += `<td>${canBo["tenLop"] ?? "..."}</td>`;
         row += `<td>${canBo["email"] ?? "..."}</td>`;
         row += `<td>${canBo["soDienThoai"] ?? "..."}</td>`;
@@ -90,7 +90,11 @@ function hienThiCanBo(danhSachCanBo) {
         const button = document.createElement("button");
         button.addEventListener("click", () => phanTrang(pages[i], i));
         button.innerText = `${i + 1}`;
-        button.classList.add("pageButton");
+        // button.classList.add("pageButton");
+        button.classList.add("btn");
+        button.classList.add("btn-sm");
+        button.classList.add("btn-light");
+
         document.getElementById("pagin").appendChild(button);
     }
     if (pages.length > 0)
@@ -98,12 +102,12 @@ function hienThiCanBo(danhSachCanBo) {
 
 }
 
-function toggle(target){
+function toggle(target) {
     const btn = target.querySelector('input[type="checkbox"]');
     btn.checked = !btn.checked;
 }
 
-function selectAll(act_type){
+function selectAll(act_type) {
     const cols = document.getElementsByName(act_type);
     for (let col of cols)
         col.checked = true;

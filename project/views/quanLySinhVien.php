@@ -124,7 +124,7 @@ if (!isset($_SESSION['MSCB'])) {
 
             <!-- searchBar -->
             <form method="GET" id="searchBar">
-                <select id="searchingField" name="searchingField">
+                <select id="searchingField" class="btn btn-sm" name="searchingField">
                     <option value="MSSV">Mã Số Sinh Viên</option>
                     <option value="hoTen">Họ Tên Sinh Viên</option>
                     <option value="gioiTinh">Giới Tính</option>
@@ -132,10 +132,10 @@ if (!isset($_SESSION['MSCB'])) {
                     <option value="maKhoaTruong">Mã Trường</option>
                     <option value="khoa">Khóa</option>
                 </select>
-                <input type="text" name="fieldValue" placeholder="...">
-                <button type="button" onclick="timSinhVien()"> <i class="bi bi-search feature-icon"></i>
+                <input type="text" class="btn btn-sm" name="fieldValue" placeholder="...">
+                <button type="button" class="btn btn-sm" onclick="timSinhVien()"> <i class="bi bi-search feature-icon"></i>
                 </button>
-                <button type="button" onclick="window.location.reload()">Hủy</button>
+                <button type="button" class="btn btn-sm" onclick="window.location.reload()">Hủy</button>
             </form>
 
 

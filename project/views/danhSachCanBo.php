@@ -38,10 +38,10 @@ if (!isset($_SESSION['MSCB'])) {
         <div class="container">
 
             <form method="GET" id="searchBar">
-                <select id="searchingField" name="searchingField">
+                <select class="btn btn-sm" id="searchingField" name="searchingField">
                     <option value="maKhoaTruong">Khoa / Trường</option>
                 </select>
-                <select id="fieldValue" name="fieldValue">
+                <select class="btn btn-sm" id="fieldValue" name="fieldValue">
                     <option value="">Tất cả</option>
                     <optgroup label="Viện">
                         <option value="DA">Viện Công nghệ sinh học</option>
@@ -63,8 +63,8 @@ if (!isset($_SESSION['MSCB'])) {
                         <option value="TD">Khoa Giáo Dục Thể Chất</option>
                     </optgroup>
                 </select>
-                <button type="button" onclick="timCanBo()"><i class="bi bi-search feature-icon"></i></button>
-                <button type="button" onclick="window.location.reload()">Hủy</button>
+                <button type="button" class="btn btn-sm" onclick="timCanBo()"><i class="bi bi-search feature-icon"></i></button>
+                <button type="button" class="btn btn-sm" onclick="window.location.reload()">Hủy</button>
             </form>
 
             <table id="canBoList">
