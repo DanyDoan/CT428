@@ -12,15 +12,16 @@
         private $khoa; //Khóa not Khoa!
         private $maLop;
         
-        //Thông tin liên kết với bảng LOP, KHOATRUONG
+        //Thông tin liên kết với bảng LOP, KHOATRUONG, CANBO
         private $tenLop;
         private $maKhoaTruong;
         private $tenKhoaTruong;
 
+
         //Hàm xây dựng nhận [kết nối] và [MSSV] để truy xuất và gán thông tin cho sinh vien
         public function __construct($conn, $mssv)
         {
-            $query = "SELECT * 
+            $query = "SELECT *
                       FROM SINHVIEN a 
                       JOIN LOP b ON a.maLop = b.maLop
                       JOIN KHOATRUONG c ON b.maKhoaTruong = c.maKhoaTruong
@@ -39,7 +40,8 @@
             $this->khoa = $row["khoa"];
             $this->maLop = $row["maLop"];
 
-            //Thông tin từ bảng LOP, KHOATRUONG
+
+            //Thông tin từ bảng LOP, KHOATRUONG, CANBO
             $this->tenLop = $row["tenLop"];
             $this->maKhoaTruong = $row["maKhoaTruong"];
             $this->tenKhoaTruong = $row["tenKhoaTruong"];

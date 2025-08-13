@@ -254,7 +254,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         });
 
         layLop();
-        document.getElementById("noiCongTac").addEventListener("change", layLop())
+        document.getElementById("noiCongTac").addEventListener("change", layLop)
 
         function layLop() {
             const maKhoaTruong = document.getElementById("noiCongTac").value;

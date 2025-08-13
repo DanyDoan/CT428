@@ -3,7 +3,6 @@ function suaSinhVien(data) {
     let xhttp = new XMLHttpRequest();
     xhttp.onload = function () {
         // try {
-            // alert(xhttp.responseText)
             let output = JSON.parse(xhttp.responseText);
             try{
                 document.getElementById("anounceBox").innerHTML = "<h2>"+output["message"]+"</h2>";

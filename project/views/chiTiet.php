@@ -235,12 +235,27 @@ if (!isset($_SESSION['MSCB'])) {
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="MSCB">Cố vấn học tập: </label></td>
-                            <td><span id="MSCB" name="MSCB"> Thầy </span></td>
+                            <td><label for="tenCoVan">Cố vấn học tập: </label></td>
+                            <td><span id="tenCoVan" name="tenCoVan">
+                                    <!-- Mã nhúng -->
+                                </span>
+                            </td>
                         </tr>
                         <tr>
-                            <td><label for="emailCB">Email cố vấn: </label></td>
-                            <td><span id="emailCB" name="emailCB">@thay</span></td>
+                            <td><label for="emailCoVan">Email cố vấn: </label></td>
+                            <td>
+                                <span id="emailCoVan" name="emailCoVan">
+                                    <!-- Mã nhúng -->
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="soDienThoaiCoVan">Số điện thoại cố vấn: </label></td>
+                            <td>
+                                <span id="soDienThoaiCoVan" name="soDienThoaiCoVan">
+                                    <!-- Mã nhúng -->
+                                </span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -280,12 +295,22 @@ if (!isset($_SESSION['MSCB'])) {
             const data = layThongTin();
 
             //Xử lý input
-            document.getElementById("hoTen").value = data.hoTen;
-            document.getElementById("MSSV").value = data.MSSV;
-            document.getElementById("soDienThoai").value = data.soDienThoai;
-            document.getElementById("email").value = data.email;
-            document.getElementById("diaChi").value = data.diaChi;
-            document.getElementById("ngaySinh").value = data.ngaySinh;
+            document.getElementById("hoTen").value = data.sv.hoTen;
+            document.getElementById("MSSV").value = data.sv.MSSV;
+            document.getElementById("soDienThoai").value = data.sv.soDienThoai;
+            document.getElementById("email").value = data.sv.email;
+            document.getElementById("diaChi").value = data.sv.diaChi;
+            document.getElementById("ngaySinh").value = data.sv.ngaySinh;
+            if (data.cb == null) {
+                document.getElementById("tenCoVan").innerText = "Chưa có thông tin";
+                document.getElementById("emailCoVan").innerText = "Chưa có thông tin";
+                document.getElementById("soDienThoaiCoVan").innerText = "Chưa có thông tin";
+            } else {
+                document.getElementById("tenCoVan").innerText = data.cb.hoTen || "Chưa có thông tin";
+                document.getElementById("emailCoVan").innerText = data.cb.email || "Chưa có thông tin";
+                document.getElementById("soDienThoaiCoVan").innerText = data.cb.soDienThoai || "Chưa có thông tin";
+            }
+
             //Xử lý radio
             if (data.gioiTinh == "Nam")
                 document.getElementById("Nam").checked = true;
@@ -299,7 +324,7 @@ if (!isset($_SESSION['MSCB'])) {
             let row = "";
             let MKT;
             for (let truong of khoaTruong) {
-                if (truong.maKhoaTruong == data.maKhoaTruong) {
+                if (truong.maKhoaTruong == data.sv.maKhoaTruong) {
                     row += "<option value='" + truong.maKhoaTruong + "' selected>" + truong.tenKhoaTruong + "</option>";
                     MKT = truong.maKhoaTruong;
                 } else
@@ -332,12 +357,20 @@ if (!isset($_SESSION['MSCB'])) {
 
         function layThongTin() {
             const xhttp = new XMLHttpRequest();
-            xhttp.open("GET", "../controllers/laySinhVien.php?MSSV=" + MSSV, false);
-            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhttp.open("GET", "../controllers/laySinhVien.php?MSSV=" + localStorage.getItem("MSSV"), false);
             xhttp.send();
 
-            const sv = JSON.parse(xhttp.responseText);
-            return sv.data;
+            if (xhttp.status === 200) {
+                try {
+                    return JSON.parse(xhttp.responseText);
+                } catch (err) {
+                    console.error("JSON parse error:", err, xhttp.responseText);
+                    return null;
+                }
+            } else {
+                console.error("Request error:", xhttp.status, xhttp.statusText);
+                return null;
+            }
         }
 
 

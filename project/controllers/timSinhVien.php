@@ -21,13 +21,21 @@ if (empty($_POST["fieldValue"])) {
 } else {
     $field = $_POST["searchingField"];
     $fieldValue = "%" . $_POST["fieldValue"] . "%";
-    $stm = $conn->prepare("SELECT * FROM SINHVIEN
-                               JOIN LOP ON LOP.maLop = SINHVIEN.maLop
+
+    if ($field == "maLop"){
+        $stm = $conn->prepare("SELECT * FROM SINHVIEN a
+                                JOIN LOP b ON a.maLop = b.maLop
+                                WHERE BINARY a.maLop LIKE ?");
+    }
+    else{
+    $stm = $conn->prepare("SELECT * FROM SINHVIEN a
+                               JOIN LOP b ON a.maLop = b.maLop
                                WHERE BINARY $field LIKE ?");
+    }
 
     $stm->bind_param("s", $fieldValue);
     $stm->execute();
     $result = $stm->get_result();
     $output = $result->fetch_all(MYSQLI_ASSOC);
 }
-echo json_encode(["soLuong" => "Số lượng kết quả trả về: ".$result->num_rows, "data" => $output]);
+echo json_encode(["soLuong" => "Số lượng kết quả trả về: " . $result->num_rows, "data" => $output]);

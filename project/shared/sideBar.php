@@ -2,7 +2,7 @@
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
-<div id="sidebar" class="d-flex flex-column text-white vh-100 shadow" style="width: 10em; background-color: #001528; transition: width 0.6s;">
+<div id="sidebar" class="d-flex flex-column text-white vh-100 shadow" style="width: 12em; background-color: #001528; transition: width 0.6s;">
     <div id="sideHead" class="d-flex justify-content-between align-items-center p-3">
         <span class="fs-5 fw-bold" id="sidebar-brand">Quản Lý</span>
         <button class="btn btn-sm btn-primary" id="toggle-btn">
@@ -24,12 +24,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <span class="menu-text">Quản lý</span>
                 </a>
             </li>
-            <li class="nav-item <?= $current_page == 'canbo.php' ? 'bg-primary' : '' ?>">
-                <a href="canbo.php" class="nav-link text-white d-flex align-items-center">
-                    <i class="bi bi-person-badge me-2"></i>
-                    <span class="menu-text">Cán bộ</span>
+            <li class="nav-item <?= $current_page == 'dscanbo.php' ? 'bg-primary' : '' ?>">
+                <a href="dscanbo.php" class="nav-link text-white d-flex align-items-center">
+                    <i class="bi bi-list me-2"></i>
+                    <span class="menu-text">Danh sách cán bộ</span>
                 </a>
             </li>
+
             <?php
             if ($_SESSION['MSCB'] == "0") {
             ?>
@@ -40,9 +41,17 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     </a>
                 </li>
             <?php
+            }else{
+            ?>
+                        <li class="nav-item <?= $current_page == 'canbo.php' ? 'bg-primary' : '' ?>">
+                <a href="canbo.php" class="nav-link text-white d-flex align-items-center">
+                    <i class="bi bi-person-badge me-2"></i>
+                    <span class="menu-text">Cán bộ</span>
+                </a>
+            </li>
+            <?php
             }
             ?>
-
         </ul>
 
         <div class="mt-auto p-3 d-flex align-items-center">
@@ -68,7 +77,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
     toggleBtn.addEventListener("click", () => {
         const isCollapsed = sidebar.style.width === "4em";
-        sidebar.style.width = isCollapsed ? "10em" : "4em";
+        sidebar.style.width = isCollapsed ? "12em" : "4em";
 
         // Toggle visibility with Bootstrap utility classes and opacity
         brandText.classList.toggle("d-none", !isCollapsed);

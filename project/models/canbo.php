@@ -8,16 +8,19 @@ class canbo
     private $hoTen;
     private $ngaySinh;
     private $gioiTinh;
+    private $maLop;
     private $tenLop;
     private $noiCongTac;
+    private $chucVu;
+    private $soDienThoai;
 
     public function __construct($conn, $id)
     {
         $sql = "SELECT *
-                FROM user
+                FROM CANBO a LEFT JOIN LOP b ON a.maLop = b.maLop
                 WHERE MSCB = '$id'";
 
-        $result = $conn->querry($sql);
+        $result = $conn->query($sql);
         $row = $result->fetch_assoc();
 
         $this->MSCB = $id;
@@ -26,8 +29,10 @@ class canbo
         $this->hoTen = $row["hoTen"];
         $this->ngaySinh = $row["ngaySinh"];
         $this->gioiTinh = $row["gioiTinh"];
-        $this->tenLop = $row["maLopCoVan"];
+        $this->maLop = $row["maLop"];
         $this->noiCongTac = $row["noiCongTac"];
+        $this->chucVu = $row["chucVu"];
+        $this->soDienThoai = $row["soDienThoai"];
     }
 
 

@@ -36,7 +36,8 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
 
     <style>
         table {
-            width: 100%;
+            width: 80%;
+            margin: 10px AUTO;
             padding: 10px;
             border-collapse: collapse;
             background-color: red;
@@ -58,6 +59,8 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             max-width: 150px;
             padding: 2px 0px;
             border: 1px solid rgba(221, 196, 196, 1);
+            padding: 10px;
+            align-content: start;
         }
 
 
@@ -75,6 +78,10 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
 
         table tr:nth-child(2n) {
             background-color: rgba(217, 235, 245, 1);
+        }
+
+        br {
+            display: inline;
         }
     </style>
 
@@ -112,7 +119,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
         function chenLog() {
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
-                // alert(this.responseText);
+                alert(this.responseText)
                 const response = JSON.parse(this.responseText);
 
                 let tb = "<table>"
