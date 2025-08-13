@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="card p-5 shadow rounded-4" style="width: 100%; max-width: 600px;">
-            <h3 class="text-center mb-4 fw-bold text-uppercase text-primary">Cập nhật thông tin</h3>
+            <h3 class="text-center mb-4 fw-bold">CẬP NHẬT THÔNG TIN CÁN BỘ</h3>
 
             <?php if (!empty($error)): ?>
                 <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
