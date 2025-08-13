@@ -32,7 +32,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </li>
 
             <?php
-            if ($_SESSION['MSCB'] == "0") {
+            if ($_SESSION['MSCB'] == "000000") {
             ?>
                 <li class="nav-item <?= $current_page == 'log.php' ? 'bg-primary' : '' ?>">
                     <a href="log.php" class="nav-link text-white d-flex align-items-center">

@@ -27,7 +27,7 @@ if (!isset($_SESSION['MSCB'])) {
 <body>
 
     <!-- Sidebar -->
-        <?php require("../shared/sideBar.php"); ?>
+    <?php require("../shared/sideBar.php"); ?>
 
     <!-- Main -->
     <div id="main">
@@ -77,14 +77,50 @@ if (!isset($_SESSION['MSCB'])) {
                     </div>
                 </div>
             </section>
-
             <section class="py-5">
                 <div class="container">
                     <h2 class="text-center mb-5">Thống kê hệ thống</h2>
+
+                    <!-- Hàng 1: Giáo sư - Phó giáo sư - Tiến sĩ -->
+                    <div class="row g-4 text-center mb-4">
+                        <div class="col-md-4">
+                            <div class="card p-4 shadow-sm feature-card">
+                                <i class="bi bi-award-fill" style="font-size: 2rem; color: #d9534f;"></i>
+                                <h3><?php echo $totalGiaoSu; ?></h3>
+                                <p>Giáo sư</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card p-4 shadow-sm feature-card">
+                                <i class="bi bi-person-fill-up" style="font-size: 2rem; color: #f0ad4e;"></i>
+                                <h3><?php echo $totalPhoGiaoSu; ?></h3>
+                                <p>Phó giáo sư</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card p-4 shadow-sm feature-card">
+                                <i class="bi bi-mortarboard-fill" style="font-size: 2rem; color: #5bc0de;"></i>
+                                <h3><?php echo $totalTienSi; ?></h3>
+                                <p>Tiến sĩ</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hàng 2: Thạc sĩ - Cán bộ - Sinh viên -->
                     <div class="row g-4 text-center">
                         <div class="col-md-4">
                             <div class="card p-4 shadow-sm feature-card">
-                                <i class="bi bi-people-fill" style="font-size: 2rem; color: #007bff;"></i>
+                                <i class="bi bi-mortarboard" style="font-size: 2rem; color: #0275d8;"></i>
+                                <h3><?php echo $totalThacSi; ?></h3>
+                                <p>Thạc sĩ</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card p-4 shadow-sm feature-card">
+                                <i class="bi bi-people-fill" style="font-size: 2rem; color: #5cb85c;"></i>
                                 <h3><?php echo $totalCanBo; ?></h3>
                                 <p>Cán bộ / Giảng viên</p>
                             </div>
@@ -92,15 +128,7 @@ if (!isset($_SESSION['MSCB'])) {
 
                         <div class="col-md-4">
                             <div class="card p-4 shadow-sm feature-card">
-                                <i class="bi bi-award-fill" style="font-size: 2rem; color: #ffc107;"></i>
-                                <h3><?php echo $totalTienSi; ?></h3>
-                                <p>Tiến sĩ</p>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="card p-4 shadow-sm feature-card">
-                                <i class="bi bi-mortarboard-fill" style="font-size: 2rem; color: #28a745;"></i>
+                                <i class="bi bi-person-video3" style="font-size: 2rem; color: #6610f2;"></i>
                                 <h3><?php echo $totalSinhVien; ?></h3>
                                 <p>Sinh viên</p>
                             </div>
@@ -110,38 +138,50 @@ if (!isset($_SESSION['MSCB'])) {
             </section>
 
 
-            <!-- Các chức năng chính -->
-            <section class="py-5">
-                <div class="container">
-                    <h2 class="text-center mb-5">Các chức năng chính</h2>
-                    <div class="row g-4">
-                        <div class="col-md-4">
-                            <div class="card feature-card p-4 text-center">
-                                <i class="bi bi-person-vcard feature-icon"></i>
-                                <h3>Xem thông tin cán bộ</h3>
-                                <p>Xem thông tin về cán bộ, giảng viên đang công tác tại trường</p>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Chi tiết</a>
+
+
+                <!-- Các chức năng chính -->
+                <section class="py-5">
+                    <div class="container">
+                        <h2 class="text-center mb-5">Các chức năng chính</h2>
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="card feature-card p-4 text-center">
+                                    <i class="bi bi-person-vcard feature-icon"></i>
+                                    <h3>Xem thông tin cán bộ</h3>
+                                    <p>Xem thông tin về cán bộ, giảng viên đang công tác tại trường</p>
+                                    <a href="./dscanbo.php" class="btn btn-sm btn-outline-primary">Chi tiết</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card feature-card p-4 text-center">
-                                <i class="bi bi-book feature-icon"></i>
-                                <h3>Quản lý tài khoản cá nhân</h3>
-                                <p>Xem trang thông tin cá nhân và các chức năng sẵn dùng</p>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Chi tiết</a>
+                            <div class="col-md-4">
+                                <div class="card feature-card p-4 text-center">
+                                    <i class="bi bi-book feature-icon"></i>
+                                    <h3>Quản lý tài khoản cá nhân</h3>
+                                    <p>Xem trang thông tin cá nhân và các chức năng sẵn dùng</p>
+                                    <?php
+                                        if ($_SESSION["MSCB"] == "000000"){
+                                    ?>
+                                        <a href="#" class="btn btn-sm btn-outline-primary">Chi tiết</a>
+                                    <?php
+                                        }else{
+                                    ?>
+                                        <a href="./canbo.php" class="btn btn-sm btn-outline-primary">Chi tiết</a>
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card feature-card p-4 text-center">
-                                <i class="bi bi-search feature-icon"></i>
-                                <h3>Quản lý thông tin sinh viên</h3>
-                                <p>Quản lý tài khoản sinh viên, tác vụ thêm/sửa/xóa</p>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Chi tiết</a>
+                            <div class="col-md-4">
+                                <div class="card feature-card p-4 text-center">
+                                    <i class="bi bi-search feature-icon"></i>
+                                    <h3>Quản lý thông tin sinh viên</h3>
+                                    <p>Quản lý tài khoản sinh viên, tác vụ thêm/sửa/xóa</p>
+                                    <a href="./quanly.php" class="btn btn-sm btn-outline-primary">Chi tiết</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
         </div>
 
         <!-- Footer -->

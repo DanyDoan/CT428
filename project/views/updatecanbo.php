@@ -80,9 +80,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user['chucVu'] = $chucVu;
             $user['email'] = $email;
             $user['soDienThoai'] = $soDienThoai;
+            $_SESSION["chucVu"] = $chucVu;
+            header("Location: ./canbo.php");
         } else {
             $error = "Lỗi cập nhật: " . $stmt->error;
         }
+
         $stmt->close();
     }
 }
@@ -176,16 +179,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="mb-3">
                     <label for="diaChi" class="form-label">Địa chỉ</label>
-                    <input type="text" class="form-control" id="diaChi" name="diaChi" value="<?= htmlspecialchars($user['diaChi']) ?>" >
+                    <textarea class="form-control" id="diaChi" name="diaChi" value="<?= htmlspecialchars($user['diaChi']) ?>" ></textarea>
                 </div>
 
                 <div class="mb-3">
-                    <label for="chucVu" class="form-label">Chức vụ</label>
+                    <label for="chucVu" class="form-label">Trình độ</label>
                     <select id="chucVu" name="chucVu" class="form-select" >
-                        <option value="Giảng viên cao cấp" <?= $user['chucVu'] === 'Giảng viên cao cấp' ? 'selected' : '' ?>>Giảng viên cao cấp</option>
-                        <option value="Giảng viên chính" <?= $user['chucVu'] === 'Giảng viên chính' ? 'selected' : '' ?>>Giảng viên chính</option>
-                        <option value="Giảng viên" <?= $user['chucVu'] === 'Giảng viên' ? 'selected' : '' ?>>Giảng viên</option>
-                        <option value="Trợ giảng" <?= $user['chucVu'] === 'Trợ giảng' ? 'selected' : '' ?>>Trợ giảng</option>
+                        <option value="Giáo sư" <?= $user['chucVu'] === 'Giáo sư' ? 'selected' : '' ?>>Giáo sư</option>
+                        <option value="Phó giáo sư" <?= $user['chucVu'] === 'Phó giáo sư' ? 'selected' : '' ?>>Phó giáo sư</option>
+                        <option value="Tiến sĩ" <?= $user['chucVu'] === 'Tiến sĩ' ? 'selected' : '' ?>>Tiến sĩ</option>
+                        <option value="Thạc sĩ" <?= $user['chucVu'] === 'Thạc sĩ' ? 'selected' : '' ?>>Thạc sĩ</option>
                     </select>
                 </div>
 
@@ -220,7 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <option value="TS">Trường Thủy Sản</option>
                             </optgroup>
                             <optgroup label="Cấp Khoa">
-                                <option value="MT">Khoa Chính Trị</option>
+                                <option value="ML">Khoa Chính Trị</option>
                                 <option value="KH">Khoa Khoa Học Tự Nhiên</option>
                                 <option value="XH">Khoa KHXH&NV</option>
                                 <option value="KL">Khoa Luật</option>

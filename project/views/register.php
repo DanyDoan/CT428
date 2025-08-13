@@ -158,7 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                                     Tôi cam kết thực hiện đúng trách nhiệm và nghĩa vụ
                                 </label>
                             </div>
-                            <a href="login.php">Đã có tài khoản?</a>
+                            <a href="dangNhap.php">Đã có tài khoản?</a>
                             <div class="d-flex justify-content-end gap-2">
                                 <button type="submit" name="submit" class="btn btn-primary">Đăng Ký</button>
                                 <button type="reset" class="btn btn-secondary">Hủy</button>
@@ -263,7 +263,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 
             if (maKhoaTruong) {
                 const xhr = new XMLHttpRequest();
-                xhr.open("POST", "get_lop.php", true);
+                xhr.open("POST", "layLop.php", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
                 xhr.onreadystatechange = function() {

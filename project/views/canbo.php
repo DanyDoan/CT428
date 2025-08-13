@@ -250,7 +250,7 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
             <?php echo htmlspecialchars($row['gioiTinh']); ?>
             <span class="sub-title-box">Khoa / Trường</span>
             <?php echo htmlspecialchars($row['tenKhoaTruong']); ?>
-            <span class="sub-title-box">Chức vụ</span>
+            <span class="sub-title-box">Trình độ</span>
              <?php echo htmlspecialchars(!empty($row['chucVu']) ? $row['chucVu'] : "(chưa cập nhật)"); ?>
             <span class="sub-title-box">Lớp cố vấn</span>
             <?php echo htmlspecialchars($row['tenLop']); ?>

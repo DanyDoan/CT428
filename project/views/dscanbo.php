@@ -116,7 +116,7 @@ if (!isset($_SESSION['MSCB'])) {
                                         <option value="TS">Trường Thủy Sản</option>
                                     </optgroup>
                                     <optgroup label="Cấp Khoa">
-                                        <option value="MT">Khoa Chính Trị</option>
+                                        <option value="ML">Khoa Chính Trị</option>
                                         <option value="KH">Khoa Khoa Học Tự Nhiên</option>
                                         <option value="XH">Khoa KHXH&NV</option>
                                         <option value="KL">Khoa Luật</option>
