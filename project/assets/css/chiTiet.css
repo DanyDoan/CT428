@@ -4,31 +4,33 @@
 
         #content {
             display: grid;
-            /* grid-template-columns: auto; */
-            /* grid-template-rows: auto; */
+            grid-template-columns: auto auto;
+            grid-template-rows: auto auto;
             grid-template-areas:
                 "a1 a2"
                 "a1 a3"
 
             ;
-            gap: 10%;
-            padding: 10px 50px;
+            gap: 5%;
+            padding: 10px;
         }
 
+        #a1, #a2, #a3{
+            height: fit-content;
+            width: fit-content;
+            justify-self: center;
+        }
         #a1 {
             grid-area: a1;
-            height: fit-content;
         }
 
         #a2 {
             grid-area: a2;
-            height: fit-content;
         }
 
         #a3 {
             grid-area: a3;
             width: 100%;
-            height: fit-content;
             display: flex;
             gap: 10px;
             justify-content: center;

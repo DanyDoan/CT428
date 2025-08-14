@@ -5,9 +5,9 @@
     $query = "";
     $output = [];
     if (empty($_POST["fieldValue"])){
-        $query = "SELECT * FROM CANBO 
+        $query = "SELECT * FROM CANBO
                   JOIN LOP ON LOP.maLop = CANBO.maLop 
-                  ORDER BY maKhoaTruong, MSCB";
+                  ORDER BY chucVu, maKhoaTruong, CANBO.maLop, MSCB";
         $result = $conn->query($query);
         $output = $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -16,7 +16,8 @@
         $fieldValue = "%".$_POST["fieldValue"]."%";
         $stm = $conn->prepare("SELECT * FROM CANBO 
                                JOIN LOP ON LOP.maLop = CANBO.maLop 
-                               WHERE $field LIKE ?");
+                               WHERE $field LIKE ?
+                               ORDER BY chucVu('Giáo sư', 'Phó giáo sư', 'Tiến sĩ', 'Thạc sĩ', 'Trợ giảng'), maKhoatruong, maLop, MSCB");
 
         $stm->bind_param("s", $fieldValue);
         $stm->execute();

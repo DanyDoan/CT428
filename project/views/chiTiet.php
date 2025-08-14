@@ -63,11 +63,11 @@ if (!isset($_SESSION['MSCB'])) {
                         </tr>
                         <tr>
                             <td><label for="soDienThoai">Số điện thoại: </label></td>
-                            <td><input type="number" id="soDienThoai" name="soDienThoai"></td>
+                            <td><input type="number" id="soDienThoai" name="soDienThoai" min="1" step="1"></td>
                         </tr>
                         <tr>
                             <td><label for="email">Email: </label></td>
-                            <td><input type="email" id="email" name="email"></td>
+                            <td><textarea type="email" id="email" name="email" disabled></textarea></td>
                         </tr>
                         <tr>
                             <td><label for="diaChi">Địa chỉ thường trú: </td>
@@ -251,6 +251,8 @@ if (!isset($_SESSION['MSCB'])) {
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
                 const response = JSON.parse(this.responseText);
+                alert("Cập nhật thành công!");
+                ganThongTin();
             }
 
             let gender = document.getElementById("Nam").checked == true ? "Nam" : "Nữ";

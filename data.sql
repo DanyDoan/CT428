@@ -35,8 +35,8 @@ INSERT INTO CANBO(MSCB, hoTen, matKhau, gioiTinh, noiCongTac, maLop, chucVu, ema
 INSERT INTO CANBO(MSCB, hoTen, matKhau, gioiTinh, noiCongTac, maLop, chucVu, email, isAdmin) VALUES('000005', 'Hoàng Lan Oanh', 'password', 'Nữ', 'DI', '7480202', 'Tiến sĩ', 'lanoanh@ctu.edu.vn', '0');
 INSERT INTO CANBO(MSCB, hoTen, matKhau, gioiTinh, noiCongTac, maLop, chucVu, email, isAdmin) VALUES('000006', 'Nguyễn Thị Bé Ba', 'password', 'Nữ', 'DI', '7480102', 'Thạc sĩ', 'beba@ctu.edu.vn', '0');
 INSERT INTO CANBO(MSCB, hoTen, matKhau, gioiTinh, noiCongTac, maLop, chucVu, email, isAdmin) VALUES('000007', 'Quách Ngọc Châu', 'password', 'Nữ', 'DI', '7480104', 'Tiến sĩ', 'minhchau@ctu.du.vn', '0');
-INSERT INTO CANBO(MSCB, hoTen, matKhau, gioiTinh, noiCongTac, maLop, chucVu, email, isAdmin) VALUES('000008', 'Võ Thị Bảo Ngọc', 'password', 'Nữ', 'DI', '7480201', 'Tiến sĩ', 'baongoc@student.ctu.edu.vn', '0');
-INSERT INTO CANBO(MSCB, hoTen, matKhau, gioiTinh, noiCongTac, maLop, chucVu, email, isAdmin) VALUES('000009', 'Nguyễn Huy Hoàng', 'password', 'Nam', 'DI', '7480201', 'Giáo sư', 'huyhoang@student.ctu.edu.vn', '0');
+INSERT INTO CANBO(MSCB, hoTen, matKhau, gioiTinh, noiCongTac, maLop, chucVu, email, isAdmin) VALUES('000008', 'Võ Thị Bảo Ngọc', 'password', 'Nữ', 'DI', '7480201', 'Tiến sĩ', 'baongoc@ctu.edu.vn', '0');
+INSERT INTO CANBO(MSCB, hoTen, matKhau, gioiTinh, noiCongTac, maLop, chucVu, email, isAdmin) VALUES('000009', 'Nguyễn Huy Hoàng', 'password', 'Nam', 'DI', '7480201', 'Giáo sư', 'huyhoang@ctu.edu.vn', '0');
 INSERT INTO CANBO(MSCB, hoTen, matKhau, gioiTinh, noiCongTac, maLop, chucVu, email, isAdmin) VALUES('000010', 'Mathew Andeson', 'password', 'Nam', 'DA', '7420201', 'Phó giáo sư', 'mathew@ctu.edu.vn', '0');
 
 

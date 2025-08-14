@@ -10,6 +10,7 @@ function themSinhVien() {
 
 
     xhttp.onload = function () {
+        alert(this.responseText);
         document.getElementById("anounceBox").innerHTML = "";
         let danhSachSinhVien = JSON.parse(this.responseText);
         if (danhSachSinhVien["status"] == "null") {

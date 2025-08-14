@@ -61,25 +61,24 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
         <?php require("../shared/footer.html"); ?>
     </div>
 
-
-
-
-
     <script>
         chenLog();
 
         function chenLog() {
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
+                alert(this.responseText)
                 const response = JSON.parse(this.responseText);
 
+                let count = 1;
                 let tb = "<table>"
-                tb += "<tr><th>Thời gian</th><th>MSSB</th><th>Tên cán bộ</th><th>Mô tả</th><th>Mã số sinh viên</th></tr>"
+                tb += "<tr><th>STT</th><th>Thời gian</th><th>MSSB</th><th>Tên cán bộ</th><th>Mô tả</th><th>Mã số sinh viên</th></tr>"
                 for (let task of response.data) {
-                    tb += "<tr>";
+                    tb += "<tr><td>"+count+"</td>";
                     for (let field in task)
                         tb += "<td>" + task[field] + "</td>";
                     tb += "</tr>"
+                    count++;
                 }
                 tb += "</table>";
                 document.getElementById("content").innerHTML = tb;

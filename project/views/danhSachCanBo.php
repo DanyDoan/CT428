@@ -77,7 +77,7 @@ if (!isset($_SESSION['MSCB'])) {
 
 </html>
 
-<script src="../assets/js/hienThiCanBo.js?v=2.23.0"></script>
+<script src="../assets/js/hienThiCanBo.js?v=2.2123.3.0"></script>
 <script src="../assets/js/timCanBo.js?v=21.12.123.3"></script>
 <script>
     timCanBo();

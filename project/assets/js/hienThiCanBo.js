@@ -23,10 +23,10 @@ function phanTrang(htmlRows, pageIndex) {
                 <th>Mã Số Cán Bộ</th>
                 <th>Họ Tên Cán Bộ</th>
                 <th>Giới Tính</th>
+                <th>Trinh độ học vấn</th>
                 <th>Khoa / Trường </th>
                 <th>Lớp cố vấn</th>
                 <th>Email</th>
-                <th>SĐT</th>
             </tr>
         </thead>
     `;
@@ -58,6 +58,11 @@ function hienThiCanBo(danhSachCanBo) {
         row += `<td>${canBo["MSCB"]}</td>`;
         row += `<td>${canBo["hoTen"]}</td>`;
         row += `<td>${canBo["gioiTinh"]}</td>`;
+        if (canBo["chucVu"] == null)
+            row += `<td>...</td>`;
+        else
+        row += `<td>${canBo["chucVu"]}</td>`;
+
         for (let truong of khoaTruong) {
             if (truong.maKhoaTruong == canBo["maKhoaTruong"]) {
                 row += "<td>" + truong.tenKhoaTruong + "</td>";
@@ -67,8 +72,6 @@ function hienThiCanBo(danhSachCanBo) {
 
         row += `<td>${canBo["tenLop"] ?? "..."}</td>`;
         row += `<td>${canBo["email"] ?? "..."}</td>`;
-        row += `<td>${canBo["soDienThoai"] ?? "..."}</td>`;
-
         row += "</tr>";
 
         stack.push(row);
@@ -100,15 +103,4 @@ function hienThiCanBo(danhSachCanBo) {
     if (pages.length > 0)
         phanTrang(pages[0], 0);
 
-}
-
-function toggle(target) {
-    const btn = target.querySelector('input[type="checkbox"]');
-    btn.checked = !btn.checked;
-}
-
-function selectAll(act_type) {
-    const cols = document.getElementsByName(act_type);
-    for (let col of cols)
-        col.checked = true;
 }

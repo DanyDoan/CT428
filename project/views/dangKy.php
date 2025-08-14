@@ -330,9 +330,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo "<script>alert('Mã tài khoản đã tồn tại');</script>";
     } else {
         $hashedPassword = password_hash($matKhau, PASSWORD_DEFAULT);
+        $chucVu = "Trợ giảng";
 
-        $stmt = $conn->prepare("INSERT INTO CANBO (MSCB, matKhau, hoTen, ngaySinh, gioiTinh, noiCongTac, maLop, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssss", $MSCB, $hashedPassword, $hoTen, $ngaySinh, $gioiTinh, $noiCongTac, $maLop, $email);
+        $stmt = $conn->prepare("INSERT INTO CANBO (MSCB, matKhau, hoTen, ngaySinh, gioiTinh, noiCongTac, maLop, email, chucVu) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssss", $MSCB, $hashedPassword, $hoTen, $ngaySinh, $gioiTinh, $noiCongTac, $maLop, $email, $chucVu);
 
         if ($stmt->execute()) {
             $_SESSION['generatedKey'] = generateSecurityKey(8);
@@ -340,7 +341,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
             echo "<script>alert('Lỗi khi đăng ký: " . $stmt->error . "');</script>";
         }
-
         $stmt->close();
     }
     $conn->close();
