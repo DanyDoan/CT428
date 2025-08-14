@@ -151,6 +151,10 @@
 
         }
 
+        #pagin button {
+            border-radius: 5px;
+        }
+
         #searchBar button:hover,
         #pagin button:hover,
         #modify button:hover {
@@ -322,7 +326,7 @@
             height: fit-content;
             min-width: fit-content;
             background-color: rgb(70, 199, 58);
-            box-shadow: 0 0 20px #5ff133c6, 0 5px 5px -1px #3a7de940, inset 4px 4px 8px #afe6ff80, inset -4px -4px 8px #135fd859;
+            box-shadow: 0 0 5px #5ff133c6, 0 5px 5px -1px #3a7de940, inset 4px 4px 8px #afe6ff80, inset -4px -4px 8px #135fd859;
             --clr-font-main: #bc3232;
             --btn-bg-color: #ffffff;
             --radii: 0.5em;
@@ -334,12 +338,12 @@
             font-family: Segoe UI, system-ui, sans-serif;
             padding: .5em 1em;
             transition: .8s;
-            font-size:0.8em;
+            font-size: 0.8em;
         }
 
         #modify button:nth-child(2) {
             background-color: rgba(232, 84, 84, 1);
-            box-shadow: 0 0 20px #f52500c6, 0 5px 5px -1px #3a7de940, inset 4px 4px 8px #afe6ff80, inset -4px -4px 8px #135fd859;
+            box-shadow: 0 0 5px #f52500c6, 0 5px 5px -1px #e93aa640, inset 4px 4px 8px #afe6ff80, inset -4px -4px 8px #d8136c59;
 
         }
 
