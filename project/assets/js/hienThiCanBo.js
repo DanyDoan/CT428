@@ -23,7 +23,7 @@ function phanTrang(htmlRows, pageIndex) {
                 <th>Mã Số Cán Bộ</th>
                 <th>Họ Tên Cán Bộ</th>
                 <th>Giới Tính</th>
-                <th>Trinh độ học vấn</th>
+                <th>Trình độ học vấn</th>
                 <th>Khoa / Trường </th>
                 <th>Lớp cố vấn</th>
                 <th>Email</th>

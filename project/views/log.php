@@ -67,7 +67,6 @@ if ($stmt->execute() && ($result = $stmt->get_result())) {
         function chenLog() {
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
-                alert(this.responseText)
                 const response = JSON.parse(this.responseText);
 
                 let count = 1;

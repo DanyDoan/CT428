@@ -4,7 +4,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <div id="sidebar" class="d-flex flex-column text-white vh-100 shadow" style="width: 12em; background-color: #001528; transition: width 0.6s;">
     <div id="sideHead" class="d-flex justify-content-between align-items-center p-3">
-        <span class="fs-5 fw-bold" id="sidebar-brand">Quản Lý</span>
+        <span class="fs-5 fw-bold" id="sidebar-brand"><img src="../assets/images/logo.png?v=12321" style="width:40px; height:40px" ></img></span>
         <button class="btn btn-sm btn-primary" id="toggle-btn">
             <i class="bi bi-chevron-left"></i>
         </button>

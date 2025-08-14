@@ -20,7 +20,7 @@ if (!isset($_SESSION['MSCB'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../assets/css/index.css" rel="stylesheet">
-    <link rel="icon" href="../assets/images/logo.png">
+    <link rel="icon" href="../assets/images/logo.png?v=12312">
     <title>Trang chủ</title>
 </head>
 
