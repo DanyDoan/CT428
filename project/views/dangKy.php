@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             <div class="col-md-8 col-lg-6">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h3 class="card-title text-center mb-4">Đăng Ký Quản Trị Viên</h3>
+                        <h3 class="card-title text-center mb-4" style="text-transform:uppercase; color:rgba(13,110,253);font-weight:700">Đăng Ký Cán Bộ</h3>
                         <form method="POST">
                             <div class="mb-3">
                                 <label for="hoTen" class="form-label">Họ và Tên</label>

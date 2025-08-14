@@ -1,47 +1,62 @@
-# CT428 - Website Quản Lý Sinh Viên
+# 📚 CT428 - Website Quản Lý Sinh Viên
 
-## Tổng quan
-    Website Quản Lý Sinh Viên là ứng dụng web hỗ trợ nhà trường, cán bộ và giảng viên quản lý
-thông tin sinh viên một cách thuận tiện, nhanh chóng và chính xác.  
-    Hệ thống cho phép lưu trữ hồ sơ, quản lý lớp học, tìm kiếm và thống kê dữ liệu, đồng thời cung
-cấp giao diện thân thiện giúp người dùng dễ dàng thao tác.
+## 📌 Giới thiệu
+Website Quản Lý Sinh Viên là ứng dụng web hỗ trợ nhà trường, cán bộ và giảng viên quản lý thông tin sinh viên một cách **thuận tiện, nhanh chóng và chính xác**.  
 
-## Các chức năng chính
-- **Kiểm soát truy cập**
-  + **Đăng ký/Đăng nhập**: Quản lý phiên, cho phép người dùng được phân quyền truy cập vào hệ thống. Hệ thống hướng đến hai đối tượng chính: người dùng là cán bộ giảng viên và người dùng quản lý hệ thông với mã số cán bộ đặc biệt (000000).
-  
-- **Thao tác với dữ liệu sinh viên và cán bộ giảng viên(CRUD)**
-  + **Create**: Thêm sinh viên, cán bộ giảng viên mới vào cơ sở dữ liệu.
-  + **Read**: Xem và truy xuất thông tin sinh viên, cán bộ giảng viên.
-  + **Update**: Cập nhật thông tin sinh viên, cán bộ giảng viên.
-  + **Delete**: Xóa sinh viên khỏi cơ sở dữ liệu.
+Hệ thống cho phép:  
+- Lưu trữ hồ sơ sinh viên và cán bộ giảng viên.  
+- Quản lý lớp học, tìm kiếm và thống kê dữ liệu.  
+- Giao diện thân thiện, dễ thao tác.  
 
-- **Bổ sung thông tin**
-  + Cho phép bổ sung các thông tin tùy chọn sinh viên, cán bộ giảng viên.
+---
 
-- **Tìm kiếm & thống kê**
-  + Tìm kiếm sinh viên theo mã sinh viên, tên, mã khoa/trường, tên lớp, giới tính, khóa học
-  + Tìm kiếm sinh viên theo lớp của cán bộ cố vấn 
-  + Thống kê cán bộ giảng viên của từng khoa/trường
+## ⚙️ Chức năng chính
 
-- **Theo dõi và giám sát hoạt động của cán bộ giảng viên**
-  + Ghi nhận những thao tác trên dữ liệu của sinh viên được thực hiện bởi cán bộ giảng viên
+### 1. Kiểm soát truy cập
+- **Đăng ký / Đăng nhập**: Quản lý phiên đăng nhập và phân quyền người dùng.  
+- Hệ thống có 2 loại tài khoản:  
+  - **Cán bộ giảng viên**  
+  - **Quản trị hệ thống** (MSCB = `000000`)  
 
-## Chức năng phụ
- - **Hộp thư đến**: Liên kết đến trang gmail.com
- - **Lịch công tác**: Liên kết đến trang lịch công tác của cit.ctu.edu.vn
+### 2. Quản lý dữ liệu sinh viên & cán bộ giảng viên (CRUD)
+- **Create**: Thêm mới  
+- **Read**: Xem và truy xuất thông tin  
+- **Update**: Cập nhật thông tin  
+- **Delete**: Xóa sinh viên khỏi hệ thống  
 
-## Công nghệ sử dụng
- - **Frontend**: HTML, CSS (Kết hợp Bootstrap), Javascript
- - **Backend**: PHP
- - **Cơ sở dữ liệu**: MySQL
- - **Kỹ thuật**: AJAX
+### 3. Bổ sung thông tin
+- Cho phép thêm thông tin tùy chọn cho sinh viên và cán bộ giảng viên  
 
-## Yêu cầu hệ thống
- - **Web server**: XAMPP (Apache + PHP)
- - **CSDL**: MySQL
- - **Trình duyệt**: Chrome, Firefox hoặc Edge mới
-nhất
+### 4. Tìm kiếm & thống kê
+- Tìm kiếm sinh viên theo: mã SV, tên, khoa/trường, lớp, giới tính, khóa học  
+- Tìm sinh viên theo lớp của cán bộ cố vấn  
+- Thống kê cán bộ giảng viên theo từng khoa/trường  
+
+### 5. Theo dõi hoạt động
+- Ghi nhận các thao tác trên dữ liệu sinh viên được thực hiện bởi cán bộ giảng viên  
+
+---
+
+## 🛠️ Chức năng phụ
+- **Hộp thư đến**: Liên kết đến [Gmail](https://mail.google.com)  
+- **Lịch công tác**: Liên kết đến trang lịch của [CIT - CTU](https://cit.ctu.edu.vn)  
+
+---
+
+## 🧰 Công nghệ sử dụng
+- **Frontend**: HTML, CSS (Bootstrap), JavaScript  
+- **Backend**: PHP  
+- **Cơ sở dữ liệu**: MySQL  
+- **Kỹ thuật**: AJAX  
+
+---
+
+## 💻 Yêu cầu hệ thống
+- **Web Server**: [XAMPP](https://www.apachefriends.org/) (Apache + PHP) - Ứng dụng tích hợp đa thành phần dùng để tạo, kiểm thử, phát triển ứng dụng web
+- **CSDL**: MySQL  
+- **Trình duyệt**: Chrome, Firefox hoặc Edge (phiên bản mới nhất)  
+
+---
 
 ## Hướng dẫn cài đặt
  - **Clone dự án**
@@ -56,17 +71,17 @@ nhất
 
 ## Cấu trúc thư mục
 ────────────────────────────────────────
-📁 project
-├── 📁 assets/
-│   ├── 📁 css/
-│   ├── 📁 images/
-│   └── 📁 js/
-├── 📁 config/
-├── 📁 controllers/
-├── 📁 migrations/
-├── 📁 models/
-├── 📁 shared/
-└── 📁 views/
+project/
+├── assets/
+│   ├── css/
+│   ├── images/
+│   └── js/
+├── config/
+├── controllers/
+├── migrations/
+├── models/
+├── shared/
+└── views/
 ────────────────────────────────────────
 
 ## Tài khoản quản trị (mặc định)

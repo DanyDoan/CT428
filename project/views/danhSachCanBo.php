@@ -80,9 +80,5 @@ if (!isset($_SESSION['MSCB'])) {
 <script src="../assets/js/hienThiCanBo.js?v=2.23.0"></script>
 <script src="../assets/js/timCanBo.js?v=21.12.123.3"></script>
 <script>
-    function hideNav() {
-        const sideBar = document.getElementById("sideBar");
-        sideBar.classList.toggle("active");
-    }
     timCanBo();
 </script>

@@ -207,7 +207,7 @@ if (!isset($_SESSION['MSCB'])) {
             const lop = JSON.parse(localStorage.getItem("lop" + MKT));
             row = "";
             for (let l of lop) {
-                if (l.maLop == data.maLop)
+                if (l.maLop == data.sv.maLop)
                     row += "<option value='" + l.maLop + "' selected>" + l.tenLop + "</option>";
                 else
                     row += "<option value='" + l.maLop + "'>" + l.tenLop + "</option>";
