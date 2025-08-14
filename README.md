@@ -70,19 +70,17 @@ Hệ thống cho phép:
         http://localhost/CT428/project/views
 
 ## Cấu trúc thư mục
-──────────────────
-**project/**
-**├── assets/**
-**│   ├── css/**
-**│   ├── images/**
-**│   └── js/**
-**├── config/**
-**├── controllers/**
-**├── migrations/**
-**├── models/**
-**├── shared/**
-**└── views/**
-──────────────────
+ - **project/**
+ - **├── assets/**
+ - **│   ├── css/**
+ - **│   ├── images/**
+ - **│   └── js/**
+ - **├── config/**
+ - **├── controllers/**
+ - **├── migrations/**
+ - **├── models/**
+ - **├── shared/**
+ - **└── views/**
 
 ## Tài khoản quản trị (mặc định)
  - MSCB: 000000
