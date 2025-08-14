@@ -23,8 +23,7 @@
         $hashedPassword = password_hash("superadmin", PASSWORD_DEFAULT);
         $query = "INSERT INTO CANBO(MSCB, hoTen, matKhau, isAdmin) VALUES('000000', 'admin', '$hashedPassword', true)";
         $conn->query($query);
-        $query = "INSERT INTO CANBO(MSCB, hoTen, matKhau, isAdmin) VALUES('000001', 'Đinh Tú Vân', '$hashedPassword', true)";
-        $conn->query($query);
+
         // echo "Thêm thành công<br>";
     }catch(mysqli_sql_exception){
         // echo $conn->error."<br>";

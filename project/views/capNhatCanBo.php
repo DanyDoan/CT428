@@ -342,7 +342,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (maKhoaTruong) {
                 const xhr = new XMLHttpRequest();
-                xhr.open("POST", "get_lop.php", true);
+                xhr.open("POST", "../controllers/layLop.php", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
                 xhr.onreadystatechange = function() {

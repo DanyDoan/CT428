@@ -37,9 +37,10 @@ $message = "";
 
 foreach ($array as $muc) {
     if ($A->lay($muc) != $data[$muc]) {
+            $message = $message . "- THAY ĐỔI " . $muc."<br>";
+            $message = $message . "  ".$A->lay($muc)." -> $data[$muc]<br>";
             $A->sua($conn, $muc, $data[$muc]);
             $change++;
-            $message = $message . "- THAY ĐỔI " . $muc."<br>";
     }
 }
 if ($message != ""){

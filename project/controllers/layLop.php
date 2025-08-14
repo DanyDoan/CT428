@@ -13,6 +13,7 @@ $stmt = $conn->prepare("
     SELECT a.maLop, a.tenLop 
     FROM LOP a
     WHERE a.maKhoaTruong = ?
+    AND a.maLop NOT IN (SELECT c.maLop FROM LOP c JOIN CANBO d ON c.maLop = d.maLop)
     ORDER BY a.tenLop
 ");
 
