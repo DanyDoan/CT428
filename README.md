@@ -32,7 +32,7 @@ Hệ thống cho phép:
 - Tìm sinh viên theo lớp của cán bộ cố vấn  
 - Thống kê cán bộ giảng viên theo từng khoa/trường  
 
-### 5. Theo dõi hoạt động
+### 5. Theo dõi hoạt động - Admin
 - Ghi nhận các thao tác trên dữ liệu sinh viên được thực hiện bởi cán bộ giảng viên  
 
 ---
@@ -40,7 +40,7 @@ Hệ thống cho phép:
 ## 🛠️ Chức năng phụ
 - **Hộp thư đến**: Liên kết đến [Gmail](https://mail.google.com)  
 - **Lịch công tác**: Liên kết đến trang lịch của [CIT - CTU](https://cit.ctu.edu.vn)  
-
+- **Góp ý hệ thông**: Tính năng để cán bộ gửi đề xuất, góp ý để cải thiện hệ thống
 ---
 
 ## 🧰 Công nghệ sử dụng
@@ -52,9 +52,11 @@ Hệ thống cho phép:
 ---
 
 ## 💻 Yêu cầu hệ thống
-- **Web Server**: [XAMPP](https://www.apachefriends.org/) (Apache + PHP) - Ứng dụng tích hợp đa thành phần dùng để tạo, kiểm thử, phát triển ứng dụng web
-- **CSDL**: MySQL  
-- **Trình duyệt**: Chrome, Firefox hoặc Edge (phiên bản mới nhất)  
+
+- **Web Server**: Apache
+- **Trình duyệt**: Chrome, Firefox, Edge hoặc các trình duyệt tương tự.
+
+- **Đề xuất cài đặt**: [XAMPP](https://www.apachefriends.org/) (Apache  + MySQL + PHP) - Ứng dụng tích hợp đa thành phần dùng để tạo, kiểm thử, phát triển ứng dụng web
 
 ---
 
@@ -64,7 +66,7 @@ Hệ thống cho phép:
  - **Import file dữ liệu đính kèm**
  - **Mở file config/db.php và thiết lập kết nối**
  - **Chạy website**
-    + Di chuyển toàn bộ dự án vào thư mục htdocs của XAMPP
+    + Di chuyển toàn bộ dự án vào thư mục htdocs của XAMPP hoặc cấu hình đường dẫn đến thư mục chỉ định
     + Khởi động Apache và MySQL
     + Mở trình duyệt và truy cập
         http://localhost/CT428/project/views

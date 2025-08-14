@@ -152,6 +152,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <option value="Phó giáo sư" <?= $user['chucVu'] === 'Phó giáo sư' ? 'selected' : '' ?>>Phó giáo sư</option>
                         <option value="Tiến sĩ" <?= $user['chucVu'] === 'Tiến sĩ' ? 'selected' : '' ?>>Tiến sĩ</option>
                         <option value="Thạc sĩ" <?= $user['chucVu'] === 'Thạc sĩ' ? 'selected' : '' ?>>Thạc sĩ</option>
+                        <option value="Trợ giảng" <?= $user['chucVu'] === 'Trợ giảng' ? 'selected' : '' ?>>Trợ giảng</option>
+
                     </select>
                 </div>
 
@@ -163,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="mb-3">
                     <label for="soDienThoai" class="form-label">Số điện thoại</label>
-                    <input type="text" class="form-control" id="soDienThoai" name="soDienThoai" value="<?= htmlspecialchars($user['soDienThoai']) ?>">
+                    <input type="number" minlength="10" maxlength="10" class="form-control" id="soDienThoai" name="soDienThoai" value="<?= htmlspecialchars($user['soDienThoai']) ?>">
                 </div>
 
                 <div class="mb-3 form-check">
